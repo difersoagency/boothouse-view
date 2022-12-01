@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/katalog', function () {
     return view('katalog');
 });
+
+Route::get('/cara-pesan', function () {
+    return view('cara');
+});

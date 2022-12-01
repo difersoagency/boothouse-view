@@ -29,6 +29,21 @@ function myFunction() {
     navbar.classList.remove("top-[3%]");
   }
 }
+function searchFunc() {
+  var input = document.querySelector(".product-search");
+  var filter = input.value.toUpperCase();
+  var list = document.querySelector('.list-produk');
+  var produk = list.querySelectorAll('.produk');
+  for (i = 0; i < produk.length; i++) {
+    var namaProduk = produk[i].querySelector('.nama-produk');
+    var value = namaProduk.textContent;
+    if (value.toUpperCase().indexOf(filter) > -1) {
+      produk[i].style.display = "";
+    } else {
+      produk[i].style.display = "none";
+    }
+  }
+}
 
 /***/ }),
 
