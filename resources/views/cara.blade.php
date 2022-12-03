@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-<section class="cara-pesan mt-[25px] md:mt-[20px] w-screen mb-12">
+<section class="cara-pesan mt-[25px] md:mt-[20px] w-screen pb-11">
     <div class="w-full bg-prim-brown py-20 text-center">
         <h1 class="text-[36px] text-prim-yellow font-bold">Cara Pemesanan Booth</h1>
         <a href="" class="text-prim-yellow text-[14px] hover:text-prim-red"></a>
@@ -12,7 +12,7 @@
             <div class="bg-prim-yellow rounded-lg w-full h-[170px] lg:h-[130px] py-[10px] px-[27px]">
                 <p class="text-prim-brown text-[24px]">Pilih tipe dan jenis booth yang Anda inginkan pada katalog BootHouse</p>
 
-                <div class="rounded-full ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
+                <div onclick="location.href = '/katalog';" class="rounded-full button-step ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
                     <i class="fa-solid fa-arrow-right text-prim-white"></i>
                 </div>
 
@@ -23,9 +23,12 @@
             <div class="bg-prim-yellow rounded-lg w-full h-h-[170px] lg:h-[130px] py-[10px] px-[27px]">
                 <p class="text-prim-brown text-[24px]">Setelah memilih tipe dan jenis dari booth, tentukan warna dan ukuran booth</p>
 
-                <div class="rounded-full ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
-                    <i class="fa-solid fa-arrow-right text-prim-white"></i>
+                <div onclick="showImg(this)" class="rounded-full button-step ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
+                    <i class="fa-solid fa-arrow-down text-prim-white"></i>
                 </div>
+            </div>
+            <div class="image-step hidden mt-5 transition-all">
+                <img src="{{asset('assets/images/cara-pesan.png')}}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -34,9 +37,12 @@
             <div class="bg-prim-yellow rounded-lg w-full h-h-[170px] lg:h-[130px] py-[10px] px-[27px]">
                 <p class="text-prim-brown text-[24px]">Upload Gambar Banner dan Logo Bisnis untuk dipasang pada booth Anda.</p>
 
-                <div class="rounded-full ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
-                    <i class="fa-solid fa-arrow-right text-prim-white"></i>
+                <div onclick="showImg(this)" class="rounded-full button-step ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
+                    <i class="fa-solid fa-arrow-down text-prim-white"></i>
                 </div>
+            </div>
+            <div class="image-step hidden mt-5 transition-all">
+                <img src="{{asset('assets/images/cara-pesan.png')}}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -45,9 +51,12 @@
             <div class="bg-prim-yellow rounded-lg w-full h-h-[170px] lg:h-[130px] py-[10px] px-[27px]">
                 <p class="text-prim-brown text-[24px]">Isi kelengkapan data diri untuk pengiriman ooth ke tempat Anda.</p>
 
-                <div class="rounded-full ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
-                    <i class="fa-solid fa-arrow-right text-prim-white"></i>
+                <div onclick="showImg(this)" class="rounded-full button-step ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
+                    <i class="fa-solid fa-arrow-down text-prim-white"></i>
                 </div>
+            </div>
+            <div class="image-step hidden mt-5 transition-all">
+                <img src="{{asset('assets/images/cara-pesan.png')}}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -57,9 +66,12 @@
                 <p class="text-prim-brown text-[24px]">Pilih metode pembarayan yang ingin Anda
                     gunakan dan lakukan pembayaran</p>
 
-                <div class="rounded-full ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
-                    <i class="fa-solid fa-arrow-right text-prim-white"></i>
+                <div class="rounded-full button-step ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer button-step" onclick="showImg(this)">
+                    <i class="fa-solid fa-arrow-down text-prim-white"></i>
                 </div>
+            </div>
+            <div class="image-step hidden mt-5 transition-all">
+                <img src="{{asset('assets/images/cara-pesan.png')}}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -69,7 +81,7 @@
                 <p class="text-prim-brown text-[24px]">Booth sudah dipesan, untuk proses dapat
                     dilihat pada halaman “Pesanan”</p>
 
-                <div class="rounded-full ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
+                <div class="rounded-full button-step ml-auto bg-prim-red h-[40px] w-[40px] text-center py-2 cursor-pointer">
                     <i class="fa-solid fa-arrow-right text-prim-white"></i>
                 </div>
             </div>

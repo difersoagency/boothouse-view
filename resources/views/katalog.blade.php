@@ -28,7 +28,7 @@
                     <p class="text-prim-yellow text-[18px] font-bold nama-produk">Boot Container</p>
                     <p class="text-prim-yellow text-[14px] font-bold harga-produk mb-3">Rp. 20.000</p>
                 </div>
-                <button class="bg-prim-yellow text-prim-brown w-full py-3 font-bold rounded-b-lg">Pilih Booth</button>
+                <button class="bg-prim-yellow text-prim-brown w-full py-3 font-bold rounded-b-lg" onclick="location.href = '/detail-booth';">Pilih Booth</button>
             </div>
             <div class="produk">
                 <div class="bg-prim-brown w-full px-3 py-5 text-center rounded-t-lg h-64 md:h-80">

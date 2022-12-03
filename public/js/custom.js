@@ -5,6 +5,7 @@ window.onscroll = function() {myFunction()};
 let navbar = document.querySelector(".top-nav");
 let sticky = navbar.offsetTop;
 
+// Sticky Navbar
 function myFunction() {
     if (window.pageYOffset != sticky) {
         navbar.classList.add("fixed")
@@ -23,6 +24,7 @@ function myFunction() {
     }
 }
 
+// Search Field
 function searchFunc(){
     let input = document.querySelector(".product-search");
     let filter = input.value.toUpperCase();
@@ -37,4 +39,17 @@ function searchFunc(){
             produk[i].style.display ="none";
         }
     }
+}
+
+// Cara Pesan
+// let step = document.querySelectorAll('.step-detail');
+//     let image = step[4].querySelector('.image-step');
+
+function showImg(event){
+    let buttonParent = event.parentElement.parentElement;
+    let image = buttonParent.querySelector('.image-step');
+    image.classList.toggle('hidden');
+    buttonParent.querySelector('i').classList.toggle('fa-arrow-down');
+    buttonParent.querySelector('i').classList.toggle('fa-arrow-up');
+    
 }

@@ -24,3 +24,16 @@ Route::get('/katalog', function () {
 Route::get('/cara-pesan', function () {
     return view('cara');
 });
+
+
+Route::get('/detail-booth', function () {
+    return view('detail-booth');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/register', function () {
+    return view('register');
+});
