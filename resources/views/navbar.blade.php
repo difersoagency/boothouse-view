@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="login-button col-span-2 ml-auto hidden lg:block">
-        <button class="bg-prim-brown text-prim-yellow font-bold rounded-xl px-[49px] py-[7px] hover:bg-prim-red hover:text-prim-white transition-all">
+        <button onclick="location.href = '/login';" class="bg-prim-brown text-prim-yellow font-bold rounded-xl px-[49px] py-[7px] hover:bg-prim-red hover:text-prim-white transition-all">
             Masuk
         </button>
     </div>

@@ -32,7 +32,7 @@
                             Daftar
                         </button>
                         <div class="w-full lg:w-80 text-center mt-2">
-                            <p class="text-prim-brown text-[12px]">Belum mempunyai akun? <span><a href="" class="font-bold underline hover:text-prim-red transition-colors">Daftar Sekarang</a></span></p>
+                            <p class="text-prim-brown text-[12px]">Belum mempunyai akun? <span><a href="/register" class="font-bold underline hover:text-prim-red transition-colors">Daftar Sekarang</a></span></p>
                         </div>
                     </form>
                 </div>
