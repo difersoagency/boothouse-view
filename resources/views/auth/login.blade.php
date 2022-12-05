@@ -16,43 +16,35 @@
             <div class=" grid grid-cols-1 lg:grid-cols-2 items-center">
                 <div class="formLogin mt-[45%] lg:mt-0">
                     <div class="py-3 w-fit">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-52">
+                        <img src="{{asset('assets/images/logo.png')}}" alt="" class="w-52">
                     </div>
                     <p class="text-prim-brown">
                         Masuk dan buat booth sesuai dengan imajinasi Anda.
                     </p>
-                    <form action="" class="mt-10">
-                        <input type="text"
-                            class="w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Email">
+                    <form action="{{('login')}}" class="mt-10" method="POST">
+                        @csrf
+                        <input type="text" class="w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown" placeholder="Email" name="email">
                         <br>
-                        <input type="password"
-                            class="mt-6 w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Password">
+                        <input type="password" class="mt-6 w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown" placeholder="Password" name="password">
                         <div class="w-full lg:w-80 text-right mt-2">
-                            <a href=""
-                                class="text-prim-brown underline text-[14px] hover:text-prim-red transition-colors">Lupa
-                                Password ?</a>
+                            <a href="" class="text-prim-brown underline text-[14px] hover:text-prim-red transition-colors">Lupa Password ?</a>
                         </div>
-                        <button
-                            class="mt-9 w-full lg:w-80 px-10 py-3 bg-prim-yellow rounded-full hover:bg-prim-red transition-colors hover:text-prim-white text-prim-brown font-bold">
-                            Daftar
+                        <button class="mt-9 w-full lg:w-80 px-10 py-3 bg-prim-yellow rounded-full hover:bg-prim-red transition-colors hover:text-prim-white text-prim-brown font-bold" type="submit">
+                            Login
                         </button>
-                        <div class="w-full lg:w-80 text-center mt-2">
-                            <p class="text-prim-brown text-[12px]">Belum mempunyai akun? <span><a href="/register"
-                                        class="font-bold underline hover:text-prim-red transition-colors">Daftar
-                                        Sekarang</a></span></p>
-                        </div>
                     </form>
+                        <div class="w-full lg:w-80 text-center mt-2">
+                            <p class="text-prim-brown text-[12px]">Belum mempunyai akun? <span><a href="/register" class="font-bold underline hover:text-prim-red transition-colors">Daftar Sekarang</a></span></p>
+                        </div>
                 </div>
                 <div class="hidden lg:block">
-                    <img src="{{ asset('assets/images/login.png') }}" alt="Login Image" class="h-screen ml-auto">
+                    <img src="{{asset('assets/images/login.png')}}" alt="Login Image" class="h-screen ml-auto">
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
 </body>
 
 </html>
