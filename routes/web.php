@@ -24,3 +24,8 @@ Route::get('/katalog', function () {
 Route::get('/cara-pesan', function () {
     return view('cara');
 });
+
+Route::group(['prefix' => '/admin'], function() {
+    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+});
+
