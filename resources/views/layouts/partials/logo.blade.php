@@ -1,8 +1,7 @@
 <div class="menu-header">
 				<span>
 					<a class="navbar-brand" href="index.html">
-						<img class="brand-img img-fluid" src="dist/img/brand-sm.svg" alt="brand" />
-						<img class="brand-img img-fluid" src="dist/img/Jampack.svg" alt="brand" />
+						<img class="brand-img img-fluid" src="{{asset('assets/images/logo.png')}}" alt="brand" style="max-width:25%;max-height:25%;"/>
 					</a>
 					<button class="btn btn-icon btn-rounded btn-flush-dark flush-soft-hover navbar-toggle">
 						<span class="icon">
