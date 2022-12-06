@@ -10,9 +10,16 @@
         </div>
     </div>
     <div class="login-button col-span-2 ml-auto hidden lg:block">
-        <button onclick="location.href = '/login';" class="bg-prim-brown text-prim-yellow font-bold rounded-xl px-[49px] py-[7px] hover:bg-prim-red hover:text-prim-white transition-all">
-            Masuk
-        </button>
+        @if (Auth::check())
+        <button onclick="location.href = '/logout';" class="bg-prim-brown text-prim-yellow font-bold rounded-xl px-[49px] py-[7px] hover:bg-prim-red hover:text-prim-white transition-all">
+            Keluar
+          </button>
+      @else
+      <button onclick="location.href = '/login';" class="bg-prim-brown text-prim-yellow font-bold rounded-xl px-[49px] py-[7px] hover:bg-prim-red hover:text-prim-white transition-all">
+        Masuk
+      </button>
+      @endif
+       
     </div>
     <div class="col-span-6 ml-auto block lg:hidden">
         <div class="w-7 h-1 bg-prim-brown mb-1"></div>

@@ -13,35 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Auth::routes();
 
-Route::get('/katalog', function () {
-    return view('katalog');
-});
-
-Route::get('/cara-pesan', function () {
-    return view('cara');
-});
-
-
-Route::get('/detail-booth', function () {
-    return view('detail-booth');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/thankyou', function () {
-    return view('thankyou');
-});
-
-Route::get('/custom', function () {
-    return view('custom-booth');
-});
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])->name('katalog');
+Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pesan'])->name('cara_pesan');
+Route::get('/detail-booth', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
+Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
