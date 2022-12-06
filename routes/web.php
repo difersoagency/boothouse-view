@@ -45,3 +45,8 @@ Route::get('/thankyou', function () {
 Route::get('/custom', function () {
     return view('website.custom-booth');
 });
+
+Route::group(['prefix' => '/admin'], function() {
+    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+});
+
