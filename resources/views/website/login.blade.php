@@ -29,7 +29,7 @@
                             <a href="" class="text-prim-brown underline text-[14px] hover:text-prim-red transition-colors">Lupa Password ?</a>
                         </div>
                         <button class="mt-9 w-full lg:w-80 px-10 py-3 bg-prim-yellow rounded-full hover:bg-prim-red transition-colors hover:text-prim-white text-prim-brown font-bold">
-                            Daftar
+                            Masuk
                         </button>
                         <div class="w-full lg:w-80 text-center mt-2">
                             <p class="text-prim-brown text-[12px]">Belum mempunyai akun? <span><a href="/register" class="font-bold underline hover:text-prim-red transition-colors">Daftar Sekarang</a></span></p>

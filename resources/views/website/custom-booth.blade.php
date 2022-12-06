@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('website.welcome')
 
 @section('content')
 <section class="katalog mt-[25px] md:mt-[20px] w-screen">
@@ -46,19 +46,5 @@
     </div>
 </section>
 
-<script>
-    // var canvas = document.querySelector('.top-side'),
-    //     context = canvas.getContext('2d');
-
-    // make_base();
-
-    // function make_base() {
-    //     base_image = new Image();
-    //     base_image.src = 'assets/images/logo.png';
-    //     base_image.onload = function() {
-    //         context.drawImage(base_image, 0, 0);
-    //     }
-    // }
-</script>
 
 @endsection

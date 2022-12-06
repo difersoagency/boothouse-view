@@ -13,7 +13,7 @@
 <body>
     <section class="bg-prim-white loginPage overflow-hidden">
         <div class="w-full lg:w-[1280px] mx-auto px-[20px] lg:px-[90px]">
-            <div class=" grid grid-cols-1 lg:grid-cols-2 items-center">
+            <div class=" grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
                 <div class="formLogin mt-[30%] lg:mt-0">
                     <div class="py-3 w-fit">
                         <img src="{{asset('assets/images/logo.png')}}" alt="" class="w-52">
