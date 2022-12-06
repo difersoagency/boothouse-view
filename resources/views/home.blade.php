@@ -21,7 +21,7 @@
             <h2 class="text-prim-brown text-[36px] font-bold mb-[50px]">Tipe Booth di Boot<span class="text-prim-yellow">House</span> ?</h2>
             <div class="list-tipe grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 justify-between gap-16">
                 <div class="lg:col-span-4">
-                    <img src="{{asset('assets/images/booth-1.png')}}" alt="Booth Contoh" class="w-32 mx-auto">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="Booth Contoh" class="w-64 mx-auto">
                     <div class="w-full bg-prim-brown h-[350px] rounded-t-2xl mt-[-150px] pt-[160px] px-[30px]">
                         <h3 class="text-prim-yellow font-bold text-[26px]">Display Booth</h3>
                         <p class="text-[12px] text-prim-yellow mt-2">
@@ -33,7 +33,7 @@
                     </button>
                 </div>
                 <div class="lg:col-span-4">
-                    <img src="{{asset('assets/images/booth-1.png')}}" alt="Booth Contoh" class="w-32 mx-auto">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="Booth Contoh" class="w-64 mx-auto">
                     <div class="w-full bg-prim-brown h-[350px] rounded-t-2xl mt-[-150px] pt-[160px] px-[30px]">
                         <h3 class="text-prim-yellow font-bold text-[26px]">Outdoor Booth</h3>
                         <p class="text-[12px] text-prim-yellow mt-2">
@@ -45,7 +45,7 @@
                     </button>
                 </div>
                 <div class="lg:col-span-4">
-                    <img src="{{asset('assets/images/booth-1.png')}}" alt="Booth Contoh" class="w-32 mx-auto">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="Booth Contoh" class="w-64 mx-auto">
                     <div class="w-full bg-prim-brown h-[350px] rounded-t-2xl mt-[-150px] pt-[160px] px-[30px]">
                         <h3 class="text-prim-yellow font-bold text-[26px]">Portable Booth</h3>
                         <p class="text-[12px] text-prim-yellow mt-2">

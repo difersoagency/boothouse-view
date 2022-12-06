@@ -11,7 +11,7 @@
     <div class="w-full lg:w-[1280px] mx-auto px-[20px] lg:px-[80px] mt-[70px]">
         <div class="detail-produk grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center ">
             <div class="detail-img text-center">
-                <img src="{{asset('assets/images/booth-2.png')}}" alt="" class="w-[80%] mx-auto">
+                <img src="{{asset('assets/images/booth1.png')}}" alt="" class="w-[80%] mx-auto">
             </div>
             <div class="detail-editor">
                 <h2 class="text-prim-brown text-[24px] font-bold mb-8">Nama Produk</h2>

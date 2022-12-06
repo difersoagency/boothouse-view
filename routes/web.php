@@ -41,3 +41,7 @@ Route::get('/register', function () {
 Route::get('/thankyou', function () {
     return view('thankyou');
 });
+
+Route::get('/custom', function () {
+    return view('custom-booth');
+});

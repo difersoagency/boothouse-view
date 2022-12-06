@@ -24,7 +24,7 @@
         <div class="list-produk grid md:grid-cols-3 grid-cols-2 gap-10 mt-[40px]">
             <div class="produk">
                 <div class="bg-prim-brown w-full px-3 py-5 text-center rounded-t-lg h-64 md:h-80">
-                    <img src="{{asset('assets/images/booth-2.png')}}" alt="" class="w-52 mx-auto mb-3">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="" class="w-52 mx-auto mb-3">
                     <p class="text-prim-yellow text-[18px] font-bold nama-produk">Boot Container</p>
                     <p class="text-prim-yellow text-[14px] font-bold harga-produk mb-3">Rp. 20.000</p>
                 </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="produk">
                 <div class="bg-prim-brown w-full px-3 py-5 text-center rounded-t-lg h-64 md:h-80">
-                    <img src="{{asset('assets/images/booth-2.png')}}" alt="" class="w-52 mx-auto mb-3">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="" class="w-52 mx-auto mb-3">
                     <p class="text-prim-yellow text-[18px] font-bold nama-produk">Booth Portable</p>
                     <p class="text-prim-yellow text-[14px] font-bold harga-produk mb-3">Rp. 20.000</p>
                 </div>
@@ -40,7 +40,7 @@
             </div>
             <div class="produk">
                 <div class="bg-prim-brown w-full px-3 py-5 text-center rounded-t-lg h-64 md:h-80">
-                    <img src="{{asset('assets/images/booth-2.png')}}" alt="" class="w-52 mx-auto mb-3">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="" class="w-52 mx-auto mb-3">
                     <p class="text-prim-yellow text-[18px] font-bold nama-produk">Booth Display</p>
                     <p class="text-prim-yellow text-[14px] font-bold harga-produk mb-3">Rp. 20.000</p>
                 </div>
@@ -48,7 +48,7 @@
             </div>
             <div class="produk">
                 <div class="bg-prim-brown w-full px-3 py-5 text-center rounded-t-lg h-64 md:h-80">
-                    <img src="{{asset('assets/images/booth-2.png')}}" alt="" class="w-52 mx-auto mb-3">
+                    <img src="{{asset('assets/images/booth1.png')}}" alt="" class="w-52 mx-auto mb-3">
                     <p class="text-prim-yellow text-[18px] font-bold nama-produk">Booth Pameran</p>
                     <p class="text-prim-yellow text-[14px] font-bold harga-produk mb-3">Rp. 20.000</p>
                 </div>
