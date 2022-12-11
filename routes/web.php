@@ -53,9 +53,9 @@ Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou']
 //     return view('website.thankyou');
 // });
 
-// Route::get('/custom', function () {
-//     return view('website.custom-booth');
-// });
+Route::get('/custom', function () {
+    return view('website.custom-booth');
+});
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
