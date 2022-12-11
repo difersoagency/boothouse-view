@@ -1,30 +1,34 @@
 /*__________________________________________________________________;
 [Variables]
 Project:	Jampack
-___________________________________________________________________*/;
+___________________________________________________________________*/
 // Color variables
-$red: #FF0000;    
-$green:#00D67F;
-$pink:#E92990;
-$purple:#C02FF3;
-$violet:#7429F8;
-$indigo:#0069F7;
-$blue:#298DFF;
-$sky:#00B0FF;
-$cyan:#18DDEF;
-$teal:#007D88;
-$neon:#81E230;
-$lime:#C2E939;
-$sun:#FFEA00;
-$yellow:#FFC400;
-$orange:#FF9100;
-$pumpkin:#FF5700;
-$brown:#954D15;
-$gold:#C39749;
-$smoke:#5e7d8a;
-$grey:#9e9e9e;
-$black:#2F343A;
-$white:#fff;
+$red: #ff0000;
+$green: #00d67f;
+$pink: #e92990;
+$purple: #c02ff3;
+$violet: #7429f8;
+$indigo: #0069f7;
+$blue: #298dff;
+$sky: #00b0ff;
+$cyan: #18ddef;
+$teal: #007d88;
+$neon: #81e230;
+$lime: #c2e939;
+$sun: #ffea00;
+$yellow: #ffc400;
+$orange: #ff9100;
+$pumpkin: #ff5700;
+$brown: #954d15;
+$gold: #c39749;
+$smoke: #5e7d8a;
+$grey: #9e9e9e;
+$black: #2f343a;
+$white: #fff;
+$prim-red: #f03861;
+$prim-white: #fef2f2;
+$prim-yellow: #f5d97e;
+$prim-brown: #7d5e3f;
 
 // Red color variables
 $red_light_5: mix(white, $red, 92%);
@@ -48,7 +52,7 @@ $green_dark_1: mix(black, $green, 10%);
 $green_dark_2: mix(black, $green, 20%);
 $green_dark_3: mix(black, $green, 30%);
 $green_dark_4: mix(black, $green, 40%);
-$green_dark_5: mix(black, $green, 50%); 
+$green_dark_5: mix(black, $green, 50%);
 
 // Pink color variables
 $pink_light_5: mix(white, $pink, 92%);
@@ -267,21 +271,21 @@ $grey_dark_4: mix(black, $grey, 40%);
 $grey_dark_5: mix(black, $grey, 50%);
 
 // Dark color variables
-$black_1:mix(black, $black, 10%);
-$black_2:mix(black, $black, 20%);
-$black_3:mix(black, $black, 30%);
-$black_4:mix(black, $black, 40%);
-$black_5:mix(black, $black, 50%);
+$black_1: mix(black, $black, 10%);
+$black_2: mix(black, $black, 20%);
+$black_3: mix(black, $black, 30%);
+$black_4: mix(black, $black, 40%);
+$black_5: mix(black, $black, 50%);
 
 // Theme color variables
-$primary : $teal;
-$info : $cyan;
-$success : $green;
-$danger : $red;
-$warning : $yellow;
-$secondary : $grey_dark_3;
+$primary: $teal;
+$info: $cyan;
+$success: $green;
+$danger: $red;
+$warning: $yellow;
+$secondary: $grey_dark_3;
 
-// Primary color variables 
+// Primary color variables
 $primary_light_5: mix(white, $primary, 92%);
 $primary_light_4: mix(white, $primary, 78%);
 $primary_light_3: mix(white, $primary, 60%);
@@ -341,7 +345,7 @@ $warning_dark_3: mix(black, $warning, 30%);
 $warning_dark_4: mix(black, $warning, 40%);
 $warning_dark_5: mix(black, $warning, 50%);
 
-// Secondary color variables 
+// Secondary color variables
 $secondary_light_5: mix(white, $secondary, 92%);
 $secondary_light_4: mix(white, $secondary, 78%);
 $secondary_light_3: mix(white, $secondary, 60%);
@@ -354,16 +358,16 @@ $secondary_dark_4: mix(black, $secondary, 40%);
 $secondary_dark_5: mix(black, $secondary, 50%);
 
 // Social Media color variables
-$facebook:#1778F2;
-$twitter:#00acee;
-$dribbble:#ea4c89;
-$pinterest:#E60023;
-$youtube:#FF0000;
-$googleplus:#db4a39;
-$instagram:#f0100f;
-$behance:#053eff;
-$dropbox:#0061ff;
-$linkedin:#0077B5;
+$facebook: #1778f2;
+$twitter: #00acee;
+$dribbble: #ea4c89;
+$pinterest: #e60023;
+$youtube: #ff0000;
+$googleplus: #db4a39;
+$instagram: #f0100f;
+$behance: #053eff;
+$dropbox: #0061ff;
+$linkedin: #0077b5;
 $skype: #00aff0;
 $tumblr: #000000;
 $flickr: #0063dc;
@@ -372,19 +376,19 @@ $github: #24292e;
 
 // scss-docs-start table-loop
 $table-variants: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $grey_light_5,
-  "dark":       $black_2,
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $grey_light_5,
+    "dark": $black_2,
 ) !default;
 // scss-docs-end table-loop
 
 :root {
-  --bs-body-font-family: 'DM Sans', sans-serif;
-  --bs-text-opacity:1;
-  --bs-bg-opacity: 1;
+    --bs-body-font-family: "DM Sans", sans-serif;
+    --bs-text-opacity: 1;
+    --bs-bg-opacity: 1;
 }

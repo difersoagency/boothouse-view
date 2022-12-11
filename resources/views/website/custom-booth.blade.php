@@ -42,6 +42,11 @@
                     </div>
                 </div>
             </div>
+            <div class="w-full text-center">
+                <button class="mt-8 rounded-xl px-5 py-2 bg-prim-red text-prim-white">
+                    Pesan Booth
+                </button>
+            </div>
         </div>
     </div>
 </section>

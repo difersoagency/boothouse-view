@@ -60,3 +60,10 @@ Route::get('/custom', function () {
 Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
 });
+Route::get('/pesanan', function () {
+    return view('website.detail-pembayaran');
+});
+
+Route::get('/status', function () {
+    return view('website.status-pesanan');
+});

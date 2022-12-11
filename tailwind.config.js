@@ -12,6 +12,7 @@ module.exports = {
       'prim-white' : '#FEF2F2',
       'prim-yellow' : '#F5D97E',
       'prim-brown' : '#7D5E3F',
+      'success' : '#29CBA4',
     }
   },
   plugins: [],

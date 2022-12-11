@@ -100,3 +100,9 @@ function showImg(event){
     buttonParent.querySelector('i').classList.toggle('fa-arrow-up');
     
 }
+
+// Informasi Login
+function fieldDisable(event){
+    let field = document.querySelector(event);
+    console.log(event);
+}
