@@ -32,6 +32,12 @@
                         <input type="email"
                             class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
                             placeholder="Email" name="email">
+                        <input type="text"
+                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
+                            placeholder="Telepon" name="telp">
+                        <input type="text"
+                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
+                            placeholder="Username" name="username">
                         <input type="password"
                             class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
                             placeholder="Password" name="password">

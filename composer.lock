@@ -114,8 +114,7 @@
                 {
                     "url": "https://github.com/BenMorel",
                     "type": "github"
-<<<<<<< HEAD
-=======
+
                 },
                 {
                     "url": "https://tidelift.com/funding/github/packagist/brick/math",
@@ -168,7 +167,7 @@
                     "name": "Dragonfly Development Inc.",
                     "email": "info@dflydev.com",
                     "homepage": "http://dflydev.com"
->>>>>>> c90aa93d754f71589b407fa6918389af234cfa5d
+
                 },
                 {
                     "url": "https://tidelift.com/funding/github/packagist/brick/math",
@@ -1818,8 +1817,7 @@
                 }
             ],
             "time": "2022-11-26T17:36:00+00:00"
-<<<<<<< HEAD
-=======
+
         },
         {
             "name": "nette/schema",
@@ -1967,7 +1965,7 @@
                 "source": "https://github.com/nette/utils/tree/v3.2.8"
             },
             "time": "2022-09-12T23:36:20+00:00"
->>>>>>> c90aa93d754f71589b407fa6918389af234cfa5d
+
         },
         {
             "name": "nikic/php-parser",

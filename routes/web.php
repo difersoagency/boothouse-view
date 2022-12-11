@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\CekRole;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +23,8 @@ Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])-
 Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pesan'])->name('cara_pesan');
 Route::get('/detail-booth', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
+
+
+Route::group(['prefix' => '/admin'], function () {
+    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+});
