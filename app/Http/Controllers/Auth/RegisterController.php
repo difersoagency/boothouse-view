@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,7 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'depan' => ['required',],
             'belakang' => ['required',],
-            'username' => ['required',],
+            'username' => ['required', 'unique:user'],
             'telp' => ['required',],
             'email' => ['required', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'confirmed', 'min:6'],
@@ -71,8 +72,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $customer = Customer::create([
+            'nama_depan' => $data['depan'],
+            'nama_belakang' => $data['belakang'],
+            'no_telp' => $data['telp'],
+        ]);
+
+
         return User::create([
-            'name' => $data['depan'] . ' ' . $data['belakang'],
+            'customer_id' => $customer->id,
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

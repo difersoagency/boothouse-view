@@ -24,6 +24,53 @@ function myFunction() {
     }
 }
 
+
+// Canvas Upload 
+var canvas1 = document.querySelector('.top-side'),
+context = canvas1.getContext('2d');
+var img = new Image();
+const image_input = document.querySelector("#myFile");
+let uploaded_image;
+function make_base(element) {
+    element.onload = function() {
+        context.drawImage(element, 0, 0);
+    }
+}
+
+image_input.addEventListener("change", function() {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        uploaded_image = reader.result;
+        img.src = uploaded_image;
+        });
+    reader.readAsDataURL(this.files[0]);
+    make_base(img);
+});
+
+
+var canvas2 = document.querySelector('.bottom-side'),
+context2 = canvas2.getContext('2d');
+var img2 = new Image();
+const image_input2 = document.querySelector("#myFile2");
+let uploaded_image2;
+function make_base2(element) {
+    element.onload = function() {
+        context2.drawImage(element, 60, 12);
+    }
+}
+
+image_input2.addEventListener("change", function() {
+    const reader2 = new FileReader();
+    reader2.addEventListener("load", () => {
+        uploaded_image2 = reader2.result;
+        img2.src = uploaded_image2;
+        });
+    reader2.readAsDataURL(this.files[0]);
+    make_base2(img2);
+});
+
+
+
 // Search Field
 function searchFunc(){
     let input = document.querySelector(".product-search");

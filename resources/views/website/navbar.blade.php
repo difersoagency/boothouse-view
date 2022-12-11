@@ -1,4 +1,4 @@
-<nav class="top-nav w-full lg:w-[1280px] mx-auto grid grid-cols-12 justify-between items-center px-[20px] lg:px-[80px] py-[30px] transition-all">
+<nav class="top-nav w-full z-10 lg:w-[1280px] mx-auto grid grid-cols-12 justify-between items-center px-[20px] lg:px-[80px] py-[30px] transition-all">
     <div class="col-span-6 justify-between">
         <img src="{{asset('assets/images/logo.png')}}" alt="Logo BootHouse Indonesia" class="w-[178px]">
     </div>

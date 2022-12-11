@@ -23,7 +23,7 @@
                     </p>
                     <form action="{{('login')}}" class="mt-10" method="POST">
                         @csrf
-                        <input type="text" class="w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown" placeholder="Email" name="email">
+                        <input type="text" class="w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown" placeholder="Email atau Username" name="email">
                         <br>
                         <input type="password" class="mt-6 w-full lg:w-80 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown" placeholder="Password" name="password">
                         <div class="w-full lg:w-80 text-right mt-2">

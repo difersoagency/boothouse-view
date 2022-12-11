@@ -23,7 +23,9 @@ class CekRole
         if (in_array(['pegawai', 'pemilik'], $allowed_roles)) {
             return $next($request);
         }
-        if (auth()->user()->role != 'pelanggan') {
+
+
+        if (auth()->user()->karyawan_id != '') {
             return redirect()->route('admin.dashboard');
         } else {
             return redirect()->route('home');

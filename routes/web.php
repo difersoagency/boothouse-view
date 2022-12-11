@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/', function () {
+    return view('website.home');
+});
+
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])->name('katalog');
@@ -24,7 +28,35 @@ Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pes
 Route::get('/detail-booth', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
 
+// Route::get('/katalog', function () {
+//     return view('website.katalog');
+// });
 
-Route::group(['prefix' => '/admin'], function () {
+// Route::get('/cara-pesan', function () {
+//     return view('website.cara');
+// });
+
+
+// Route::get('/detail-booth', function () {
+//     return view('website.detail-booth');
+// });
+
+// Route::get('/login', function () {
+//     return view('website.login');
+// });
+
+// Route::get('/register', function () {
+//     return view('website.register');
+// });
+
+// Route::get('/thankyou', function () {
+//     return view('website.thankyou');
+// });
+
+// Route::get('/custom', function () {
+//     return view('website.custom-booth');
+// });
+
+Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
 });
