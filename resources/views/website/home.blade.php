@@ -13,7 +13,8 @@
                         yang dapat membuat booth sesuai dengan design impianmu dan memiliki hasil akhir yang berkualitas
                         guna mendukung kegiatan Anda menggunakan booth dari BootHouse</p>
                     <button
-                        class="bg-prim-red text-prim-white py-[10px] px-[22px] rounded-lg mt-[24px] hover:bg-prim-brown hover:text-prim-yellow transition-colors">Lihat
+                        class="bg-prim-red text-prim-white py-[10px] px-[22px] rounded-lg mt-[24px] hover:bg-prim-brown hover:text-prim-yellow transition-colors"
+                        onclick="location.href = '/katalog';">Lihat
                         Katalog</button>
                 </div>
                 <div class="image md:col-span-6 ml-auto mt-10 lg:mt-0">

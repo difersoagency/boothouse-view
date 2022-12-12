@@ -25,7 +25,7 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])->name('katalog');
 Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pesan'])->name('cara_pesan');
-Route::get('/detail-booth', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
+Route::get('/detail-booth/{id}', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
 
 // Route::get('/katalog', function () {
@@ -60,8 +60,10 @@ Route::get('/custom', function () {
 Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
 });
-Route::get('/pesanan', function () {
-    return view('website.detail-pembayaran');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/pesanan', function () {
+        return view('website.detail-pembayaran');
+    });
 });
 
 Route::get('/status', function () {

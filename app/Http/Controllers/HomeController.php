@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailBooth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,9 +30,11 @@ class HomeController extends Controller
     {
         return view('website.cara');
     }
-    public function detail_booth()
+    public function detail_booth($id)
     {
-        return view('website.detail-booth');
+        $data = DetailBooth::find($id);
+        $related_product = DetailBooth::where('jenis_booth_id', $data->jenis_booth_id)->whereNotIn('id', [$id])->get();
+        return view('website.detail-booth', ['data' => $data, 'related_product' => $related_product]);
     }
     public function thankyou()
     {
@@ -39,6 +42,8 @@ class HomeController extends Controller
     }
     public function katalog()
     {
-        return view('website.katalog');
+        $data = DetailBooth::all();
+
+        return view('website.katalog', ['data' => $data]);
     }
 }

@@ -25,7 +25,7 @@ function myFunction() {
 }
 
 
-// Canvas Upload 
+// Canvas Upload
 var canvas1 = document.querySelector('.top-side'),
 context = canvas1.getContext('2d');
 var img = new Image();
@@ -98,7 +98,7 @@ function showImg(event){
     image.classList.toggle('hidden');
     buttonParent.querySelector('i').classList.toggle('fa-arrow-down');
     buttonParent.querySelector('i').classList.toggle('fa-arrow-up');
-    
+
 }
 
 // Informasi Login
@@ -106,3 +106,18 @@ function fieldDisable(event){
     let field = document.querySelector(event);
     console.log(event);
 }
+
+
+function fetch_katalog_data(page,query)
+{
+ $.ajax({
+  url:"/katalog/data?page="+page+"&query="+query,
+  success:function(data)
+  {
+   $('#showdata_katalog').html(data);
+  }
+ });
+}
+
+
+
