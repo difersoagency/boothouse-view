@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailBooth;
+use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,6 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function home()
     {
         return view('website.home');
@@ -45,5 +48,17 @@ class HomeController extends Controller
         $data = DetailBooth::all();
 
         return view('website.katalog', ['data' => $data]);
+    }
+    public function getPayment()
+    {
+
+        $client = new Client();
+        try {
+            $res = $client->request('GET', 'http://localhost:96/api/coba', []);
+            $data = json_decode($res->getBody()->getContents());
+            dd($data);
+        } catch (Exception $e) {
+            return response()->json(['code' => 'as']);
+        }
     }
 }

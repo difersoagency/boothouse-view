@@ -14,39 +14,40 @@
                     <img src="{{ asset('assets/images/booth-2.png') }}" alt="" class="w-[80%] mx-auto">
                 </div>
                 <div class="detail-editor">
-                    <h2 class="text-prim-brown text-[24px] font-bold mb-8">{{ $data->JenisBooth->nama }}</h2>
-                    <h2 class="text-prim-brown text-[24px] font-bold mb-8">Rp.
-                        {{ number_format($data->harga, 0, ',', '.') }}</p>
-                    </h2>
+                    <form id="order_booths">
+                        <h2 class="text-prim-brown text-[24px] font-bold mb-8">{{ $data->JenisBooth->nama }}</h2>
+                        <h2 class="text-prim-brown text-[24px] font-bold mb-8">Rp.
+                            {{ number_format($data->harga, 0, ',', '.') }}</p>
+                        </h2>
 
-                    <p class="text-prim-brown font-bold text-[14px]">Pilih Warna :</p>
-                    <div class="color-pick grid grid-cols-12 mt-3 gap-16 mb-6">
-                        <div class="w-10 h-10 bg-prim-red rounded-full color cursor-pointer  outline-1">
+                        <p class="text-prim-brown font-bold text-[14px]">Pilih Warna :</p>
+                        <div class="color-pick grid grid-cols-12 mt-3 gap-16 mb-6">
+                            <div class="w-10 h-10 bg-prim-red rounded-full color cursor-pointer  outline-1">
+                            </div>
+                            <div class="w-10 h-10 bg-prim-brown rounded-full color cursor-pointer">
+                            </div>
+                            <div class="w-10 h-10 bg-prim-yellow rounded-full color cursor-pointer">
+                            </div>
+                            <div class="w-10 h-10 bg-prim-red rounded-full color cursor-pointer">
+                            </div>
                         </div>
-                        <div class="w-10 h-10 bg-prim-brown rounded-full color cursor-pointer">
-                        </div>
-                        <div class="w-10 h-10 bg-prim-yellow rounded-full color cursor-pointer">
-                        </div>
-                        <div class="w-10 h-10 bg-prim-red rounded-full color cursor-pointer">
-                        </div>
-                    </div>
-                    <p class="text-prim-brown font-bold text-[14px]">
-                        Ukuran Booth :
-                    </p>
-                    <div class="field-ukuran mt-2 justify-between">
-                        <ul class="grid gap-6 w-full md:grid-cols-2">
-                            <li>
-                                <input type="radio" id="50x40x80" name="ukuran" value="50x40x80" class="hidden peer"
-                                    required>
-                                <label for="50x40x80"
-                                    class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border-2 border-prim-brown cursor-pointer transition-all dark:hover:text-prim-brown dark:border-prim-brown dark:peer-checked:text-prim-brown peer-checked:bg-prim-yellow peer-checked:text-blue-600 hover:text-prim-whitee hover:bg-prim-yellow">
-                                    <div class="block">
-                                        <div class="w-full text-lg font-semibold">{{ $data->ukuran }}</div>
-                                    </div>
+                        <p class="text-prim-brown font-bold text-[14px]">
+                            Ukuran Booth :
+                        </p>
+                        <div class="field-ukuran mt-2 justify-between">
+                            <ul class="grid gap-6 w-full md:grid-cols-2">
+                                <li>
+                                    <input type="radio" id="50x40x80" name="ukuran" value="50x40x80"
+                                        class="hidden peer">
+                                    <label for="50x40x80"
+                                        class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border-2 border-prim-brown cursor-pointer transition-all dark:hover:text-prim-brown dark:border-prim-brown dark:peer-checked:text-prim-brown peer-checked:bg-prim-yellow peer-checked:text-blue-600 hover:text-prim-whitee hover:bg-prim-yellow">
+                                        <div class="block">
+                                            <div class="w-full text-lg font-semibold">{{ $data->ukuran }}</div>
+                                        </div>
 
-                                </label>
-                            </li>
-                            {{-- <li>
+                                    </label>
+                                </li>
+                                {{-- <li>
                                 <input type="radio" id="60x50x80" name="ukuran" value="60x50x80" class="hidden peer">
                                 <label for="60x50x80"
                                     class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border-2 border-prim-brown cursor-pointer transition-all dark:hover:text-prim-brown dark:border-prim-brown dark:peer-checked:text-prim-brown peer-checked:bg-prim-yellow peer-checked:text-blue-600 hover:text-prim-whitee hover:bg-prim-yellow">
@@ -57,16 +58,21 @@
                                 </label>
                             </li>
                              --}}
-                        </ul>
-                    </div>
-                    <div class="button-pesan mt-9 w-fit">
+                            </ul>
+                        </div>
+                        <div class="button-pesan mt-9 w-fit">
 
-                        <button
-                            class="pesan text-prim-white bg-prim-red px-6 py-2 rounded-lg hover:bg-prim-brown transition-colors"
-                            onclick="location.href = '/custom';">Pesan
-                            Booth</button>
-                    </div>
+                            {{-- <button
+                                class="pesan text-prim-white bg-prim-red px-6 py-2 rounded-lg hover:bg-prim-brown transition-colors"
+                                onclick="location.href = '/custom';">Pesan
+                                Booth</button> --}}
+                            <button type="submit"
+                                class=" text-prim-white bg-prim-red px-6 py-2 rounded-lg hover:bg-prim-brown transition-colors">Pesan
+                                Booth</button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
             <div class="produk-serupa mt-16">
                 <h2 class="text-prim-brown text-[24px] font-bold">Produk Serupa</h3>
@@ -82,7 +88,8 @@
                                         {{ number_format($r->harga, 0, ',', '.') }}</p>
                                     </p>
                                 </div>
-                                <button class="bg-prim-yellow text-prim-brown w-full py-3 font-bold rounded-b-lg"
+                                <button type="button"
+                                    class="bg-prim-yellow text-prim-brown w-full py-3 font-bold rounded-b-lg"
                                     onclick="location.href = '/detail-booth/{{ $r->id }}';">Pilih Booth</button>
                             </div>
                         @endforeach
@@ -93,7 +100,8 @@
             <h1 class="text-[20px] md:text-[36px] text-prim-brown font-bold">Sudah memiliki desain dan sketsa booth sendiri
                 ? <br> Upload desain Anda di sini!</h1>
             <button
-                class="bg-prim-red text-prim-white px-6 py-2 rounded-lg mt-5 hover:bg-prim-white hover:text-prim-red transition-colors">Upload
+                class="bg-prim-red text-prim-white px-6 py-2 rounded-lg mt-5 hover:bg-prim-white hover:text-prim-red transition-colors"
+                type="button">Upload
                 Desain</button>
         </div>
     </section>
