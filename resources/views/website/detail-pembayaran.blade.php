@@ -97,6 +97,7 @@
                             <p class="text-prim-brown font-bold" id="pajak-booth-bayar">: Rp <span>0</span></p>
                             <p class="text-prim-brown">Ongkos Kirim</p>
                             <p class="text-prim-brown font-bold" id="ongkir-booth-bayar">: Rp <span>0</span></p>
+                            <input id="ongkir-booth-bayar-text" value="0" class="hidden">
                             <p class="text-prim-brown">Uang Muka (Optional)</p>
                             <p>: <input type="number" name="dibayar" id="dp-booth-bayar" value="0"
                                     onkeyup="total();"
@@ -143,26 +144,44 @@
 
         function handleChange(src) {
             let result = document.querySelector('#ongkir-booth-bayar');
+            let result_text = document.getElementById('ongkir-booth-bayar-text');
             switch (src.value) {
                 case 'jasaKirim':
-                    message = ': Rp 1';
+                    message = ': Rp 1000';
+                    values = 1000;
                     break;
                 case 'mandiri':
                     message = ': Rp 0';
+                    values = 0;
                     break;
             }
+
+            result_text.value = values;
             result.textContent = message;
+            total()
         }
 
 
         function total() {
             let dp = document.getElementById('dp-booth-bayar').value;
+            let ongkir = document.getElementById('ongkir-booth-bayar-text').value;
             let harga = sessionStorage.getItem(
                 "harga-booth").split('.').join("");
             let pajak = harga * 0.1
-            let total = parseInt(harga) + parseInt(pajak) - parseInt(dp);
+            let total = parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(dp);
             let convert_total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             document.getElementById('total-booth-bayar').innerText = "Harga : Rp " + convert_total;
         }
+
+
+        const numInputs = document.getElementById('dp-booth-bayar')
+
+
+        numInputs.addEventListener('change', function(e) {
+            if (e.target.value == '') {
+                e.target.value = 0
+                total()
+            }
+        })
     </script>
 @endsection

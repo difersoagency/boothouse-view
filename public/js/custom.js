@@ -155,7 +155,9 @@ function snap_bayar(){
     }
 }
 
-
+function clearSession(){
+    sessionStorage.clear();
+}
 
 
 
