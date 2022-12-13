@@ -19,6 +19,7 @@ use App\Http\Controllers\Midtrans\Snap;
 
 // Sanitization
 use App\Http\Controllers\Midtrans\Sanitizer;
+use Illuminate\Support\Arr;
 
 class MidtransController extends Controller
 {
@@ -128,12 +129,29 @@ class MidtransController extends Controller
                 'order_id' => rand(),
                 'gross_amount' => 10000,
             ),
+            "item_details" => array(
+                "id" => "ITEM1",
+                "price" => 10000,
+                "quantity" => intval(1),
+                "name" => "Midtrans Bear",
+                "brand" => "Midtrans",
+                "category" => "Toys",
+                "merchant_name" => "Midtrans",
+                "url" => "http://toko/toko1?item=abc"
+            ),
             'customer_details' => array(
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
+                'first_name' => 'asdas',
+                'last_name' => 'asdasd',
                 'email' => 'budi.pra@example.com',
                 'phone' => '08111222333',
             ),
+            'shipping_address' => array(
+                'address'       => "Manggis 90",
+                'city'          => "Jakarta",
+                'phone'         => "08113366345",
+                'country_code'  => 'IDN'
+            ),
+
         );
 
         $snapToken = Snap::getSnapToken($params);

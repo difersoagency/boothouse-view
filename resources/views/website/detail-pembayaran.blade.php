@@ -250,7 +250,7 @@
             },
             dataType: 'JSON',
             success: function(response) {
-                alert('ok')
+                window.location.href = response.redirect_url;
             } ,
               error: function(xhr, status, error) {
            alert('nok')

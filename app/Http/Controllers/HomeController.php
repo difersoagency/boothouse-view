@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Midtrans\Config;
+use App\Http\Controllers\Midtrans\Snap;
 use App\Models\DetailBooth;
 use App\Models\DetailOrder;
 use App\Models\Kota;
@@ -92,6 +94,38 @@ class HomeController extends Controller
             'text' => 'testing',
             'hasil_custom' => 'hasil',
         ]);
+
+
+        // Set your Merchant Server Key
+        Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        Config::$isProduction = false;
+        // Set sanitization on (default)
+        Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $request->total_bayar,
+            ),
+            'customer_details' => array(
+                'first_name' =>  $request->depan,
+                'last_name' =>  $request->belakang,
+                'email' => 'budi.pra@example.com',
+                'phone' => '08111222333',
+            ),
+            'shipping_address' => array(
+                'address'       =>  $request->total_bayar,
+                'city'          => "Jakarta",
+                'phone'         => $request->tel,
+                'country_code'  => 'IDN'
+            ),
+        );
+
+        $snapToken = Snap::getSnapToken($params);
+        return response()->json($snapToken);
     }
 
     public function selectprovinsi(Request $request, $id)
