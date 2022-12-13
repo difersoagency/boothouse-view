@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jampack - Admin CRM Dashboard Template</title>
+    <title>Boothouse</title>
     <meta name="description"
         content="A modern CRM Dashboard Template with reusable and flexible components for your SaaS web applications by hencework. Based on Bootstrap." />
 
@@ -23,7 +23,7 @@
     <!-- Data Table CSS -->
     <link href="{{ asset('assets/admin/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/admin/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
+    <link href="{{ asset('assets/admin/vendor/datatables.net-responsive-\bs5/css/responsive.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
 
     <!-- CSS -->
@@ -76,7 +76,7 @@
     <!-- /Wrapper -->
 
     <!-- jQuery -->
-    @yield('custom_js')
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" type="text/javascript"></script>
     <!-- <script src="{{ asset('assets/admin/vendor/jquery/dist/jquery.min.js') }}"></script> -->
 
@@ -121,6 +121,8 @@
     <script src="{{ asset('assets/admin/dist/js/dashboard-data.js') }}"></script>
 
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-bJIjYUlD5RrvI9Er"></script>
+
+    @yield('custom_js')
 </body>
 
 </html>

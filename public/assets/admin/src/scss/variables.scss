@@ -278,7 +278,7 @@ $black_4: mix(black, $black, 40%);
 $black_5: mix(black, $black, 50%);
 
 // Theme color variables
-$primary: $teal;
+$primary: $prim-brown;
 $info: $cyan;
 $success: $green;
 $danger: $red;
@@ -376,7 +376,7 @@ $github: #24292e;
 
 // scss-docs-start table-loop
 $table-variants: (
-    "primary": $primary,
+    "primary": $prim-brown,
     "secondary": $secondary,
     "success": $success,
     "info": $info,
