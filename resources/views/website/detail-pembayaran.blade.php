@@ -205,6 +205,8 @@
 
 
     function checkoutBooth(){
+        
+
         let depan = $("#nama-depan").val();
         let belakang = $("#nama-belakang").val();
         let provinsi = $("#select-provinsi").val();
@@ -213,11 +215,19 @@
         let tel = $("#tel").val();
         let ukuranbooth = sessionStorage.getItem(
                 "ukuran-booth");
-        let ongkir = $("#ongkir-booth-bayar").val();
+        let ongkir = $("#ongkir-booth-bayar-text").val();
         let dp = $("#dp-booth-bayar").val();
-        let total_bayar = $("#total-booth-bayar").val();
+        let total_bayar = sessionStorage.getItem(
+                "total-booth");
+        let id_booth = sessionStorage.getItem(
+        "id-booth");
         let jenis_kirim = $('input[name="jenis_kirim"]:checked').val();
-        $.ajax({
+
+
+        if (depan == "" || belakang == "" || provinsi == null || kota == null || alamat == "" || tel == "") {
+            alert('form kosong')
+        }else{
+            $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -235,6 +245,7 @@
                 dp: dp,
                 total_bayar: total_bayar,
                 jenis_kirim: jenis_kirim,
+                id_booth: id_booth,
                 _token: '{{csrf_token()}}'
             },
             dataType: 'JSON',
@@ -245,6 +256,8 @@
            alert('nok')
         }
         })
+        }
+       
     }
         setValueBayar();
         total();
@@ -298,6 +311,7 @@
             let total = parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(dp);
             let convert_total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             document.getElementById('total-booth-bayar').innerText = convert_total;
+            sessionStorage.setItem('total-booth', total);
         }
 
 

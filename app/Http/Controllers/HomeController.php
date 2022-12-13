@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailBooth;
+use App\Models\DetailOrder;
 use App\Models\Kota;
+use App\Models\Order;
 use App\Models\Provinsi;
+use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -64,9 +67,31 @@ class HomeController extends Controller
         }
     }
 
-    public function checkout(Request $Request)
+    public function checkout(Request $request)
     {
-        dd($Request->all());
+        // dd($Request->all());
+
+        $order =  Order::create([
+            'no_order' => 'sds',
+            'tgl_order' => Carbon::now(),
+            'customer_id' => auth()->user()->customer_id,
+            'total_harga' => $request->total_bayar,
+            'jenis_pengiriman_id' => 1,
+            'alamat' => $request->alamat,
+            'kota_id' => $request->kota,
+            'no_telp' => $request->tel,
+            'biaya_kirim' => $request->ongkir,
+            'status_id' => 1,
+        ]);
+
+        DetailOrder::create([
+            'order_id' => $order->id,
+            'detail_booth_id' => $request->id_booth,
+            'image_file' => '-',
+            'warna_booth' => 'merah',
+            'text' => 'testing',
+            'hasil_custom' => 'hasil',
+        ]);
     }
 
     public function selectprovinsi(Request $request, $id)
