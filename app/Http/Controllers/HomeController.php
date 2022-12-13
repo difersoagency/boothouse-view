@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailBooth;
+use App\Models\Kota;
+use App\Models\Provinsi;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -65,5 +67,21 @@ class HomeController extends Controller
     public function checkout(Request $Request)
     {
         dd($Request->all());
+    }
+
+    public function selectprovinsi(Request $request, $id)
+    {
+        if ($id != 0) {
+            $data = Kota::where('provinsi_id', $id)->get();
+        } else {
+            $data = Provinsi::where('nama', 'LIKE', '%' . $request->input('term', '') . '%')->select('id', 'nama')->get();
+        }
+
+        echo json_encode($data);
+    }
+    public function selectkota($id)
+    {
+        $data = Kota::find($id);
+        echo json_encode($data);
     }
 }

@@ -42,6 +42,7 @@ image_input.addEventListener("change", function() {
     reader.addEventListener("load", () => {
         uploaded_image = reader.result;
         img.src = uploaded_image;
+        sessionStorage.setItem('atas', uploaded_image);
         });
     reader.readAsDataURL(this.files[0]);
     make_base(img);
@@ -64,6 +65,7 @@ image_input2.addEventListener("change", function() {
     reader2.addEventListener("load", () => {
         uploaded_image2 = reader2.result;
         img2.src = uploaded_image2;
+        sessionStorage.setItem('bawah', uploaded_image2);
         });
     reader2.readAsDataURL(this.files[0]);
     make_base2(img2);

@@ -23,13 +23,15 @@
                         </div>
                         <div>
                             <label for="provinsi" class="mb-2 text-prim-brown font-bold text-[14px]">Provinsi</label> <br>
-                            <input type="text" name="provinsi" id="provinsi"
+                            <select type="text" name="provinsi" id="select-provinsi"
                                 class="mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown">
+                            </select>
                         </div>
                         <div>
                             <label for="kota" class="mb-2 text-prim-brown font-bold text-[14px]">Kota</label> <br>
-                            <input type="text" name="kota" id="kota"
-                                class="mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown">
+                            <select type="text" name="kota" id="select-kota"
+                                class="select2 mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown">
+                            </select>
                         </div>
                         <div class="col-span-2">
                             <label for="alamat" class="mb-2 text-prim-brown font-bold text-[14px]">Alamat Lengkap</label>
@@ -57,9 +59,8 @@
                             <div class="info">
                                 <p class="text-prim-brown font-bold text-[16px]" id="nama-booth-bayar">Nama Produk</p>
                                 <p class="text-prim-brown font-bold mt-2 text-[16px]">Warna : Merah</p>
-                                <p class="text-prim-brown font-bold mt-2 text-[16px]" id="ukuran-booth-bayar">Ukuran : 10 x
-                                    10 x 10</p>
-                                <p class="text-prim-brown font-bold mt-2 text-[16px]" id="harga-booth-bayar">Harga : Rp.0
+                                <p class="text-prim-brown font-bold mt-2 text-[16px]" >Ukuran : <span id="ukuran-booth-bayar">-</span></p>
+                                <p class="text-prim-brown font-bold mt-2 text-[16px]" >Harga : Rp <span id="harga-booth-bayar">0</span>
                                 </p>
                             </div>
                         </div>
@@ -68,7 +69,7 @@
                             <ul class="grid gap-6 w-full md:grid-cols-2">
                                 <li>
                                     <input type="radio" id="mandiri" name="jenis_kirim" value="mandiri" class="hidden peer"
-                                        required onchange="handleChange(this);">
+                                        required onchange="handleChange(this);" checked>
                                     <label for="mandiri"
                                         class="inline-flex justify-between items-center px-5 py-2 w-full rounded-lg border-2 border-prim-brown bg-prim-white text-prim-brown font-bold cursor-pointer transition-all dark:hover:text-prim-white dark:border-prim-brown dark:peer-checked:text-prim-white peer-checked:bg-prim-brown peer-checked:text-blue-600 hover:text-prim-white hover:bg-prim-brown">
                                         <div class="block">
@@ -92,11 +93,11 @@
                         </div>
                         <div class="subtotal grid grid-cols-2 mt-8 gap-y-3 items-center">
                             <p class="text-prim-brown">Subtotal</p>
-                            <p class="text-prim-brown font-bold" id="subtotal-booth-bayar">: Rp <span>0</span></p>
+                            <p class="text-prim-brown font-bold" >: Rp <span id="subtotal-booth-bayar">0</span></p>
                             <p class="text-prim-brown">Pajak (10%)</p>
-                            <p class="text-prim-brown font-bold" id="pajak-booth-bayar">: Rp <span>0</span></p>
+                            <p class="text-prim-brown font-bold" >: Rp <span id="pajak-booth-bayar">0</span></p>
                             <p class="text-prim-brown">Ongkos Kirim</p>
-                            <p class="text-prim-brown font-bold" id="ongkir-booth-bayar">: Rp <span>0</span></p>
+                            <p class="text-prim-brown font-bold" >: Rp <span id="ongkir-booth-bayar">0</span></p>
                             <input id="ongkir-booth-bayar-text" value="0" class="hidden">
                             <p class="text-prim-brown">Uang Muka (Optional)</p>
                             <p>: <input type="number" name="dibayar" id="dp-booth-bayar" value="0"
@@ -107,7 +108,7 @@
                     </div>
                     <div class="px-8 py-5 bg-prim-brown rounded-b-md">
                         <h2 class="text-prim-yellow font-bold text-[26px]">Total</h2>
-                        <p class="text-prim-yellow font-bold text-[26px]" id="total-booth-bayar">Rp. <span>0</span>
+                        <p class="text-prim-yellow font-bold text-[26px]" >Rp <span id="total-booth-bayar">0</span>
                         </p>
                     </div>
                 </div>
@@ -117,13 +118,97 @@
         </div>
     </section>
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key=""></script>
+    <link rel="stylesheet" href="{{ asset('js/select2/css/select2.min.css') }}">
+    <script src="{{ asset('js/select2/js/select2.min.js') }}"></script>
+    {{-- <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key=""></script> --}}
     <script type="text/javascript">
+     $('#select-kota').select2({
+        placeholder: "Pilih Kota",
+     });
+
+     
+     $('#select-provinsi').select2({
+            placeholder: "Pilih Provinsi",
+            ajax: {
+                minimumResultsForSearch: 20,
+                dataType: 'json',
+                theme: "bootstrap",
+                delay: 250,
+                type: 'GET',
+                url: '/provinsi/0',
+                data: function(params) {
+                    return {
+                        term: params.term,
+                    }
+                },
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(obj) {
+                            return {
+                                id: obj.id,
+                                text: obj.nama
+                            };
+                        })
+                    };
+                },
+            }
+        }) .change(function() {
+            reset_pengiriman();
+            total();
+            $("#select-kota").val("").trigger( "change" );
+            var id = $(this).val();
+            $('#select-kota').select2({
+            placeholder: "Pilih Kota",
+            ajax: {
+                minimumResultsForSearch: 20,
+                dataType: 'json',
+                theme: "bootstrap",
+                delay: 250,
+                type: 'GET',
+                url: '/provinsi/'+id,
+                data: function(params) {
+                    return {
+                        term: params.term,
+                    }
+                },
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(obj) {
+                            return {
+                                id: obj.id,
+                                text: obj.nama
+                            };
+                        })
+                    };
+                },
+            }
+        }).change(function() {
+            var id = $(this).val();
+            $.ajax({
+            url: '/kota/'+id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(res) {
+                reset_pengiriman()
+                sessionStorage.setItem('ongkir_kota', res.biaya_kirim);
+                total();
+            }
+        });
+        })
+        });
+
+    function reset_pengiriman(){
+        document.getElementById("mandiri").checked = true;
+        document.querySelector('#ongkir-booth-bayar').textContent = 0;
+        document.getElementById('ongkir-booth-bayar-text').value = 0;
+    }
+
+
     function checkoutBooth(){
         let depan = $("#nama-depan").val();
         let belakang = $("#nama-belakang").val();
-        let provinsi = $("#provinsi").val();
-        let kota = $("#kota").val();
+        let provinsi = $("#select-provinsi").val();
+        let kota = $("#select-kota").val();
         let alamat = $("#alamat").val();
         let tel = $("#tel").val();
         let ukuranbooth = sessionStorage.getItem(
@@ -173,28 +258,28 @@
 
 
             document.getElementById('nama-booth-bayar').innerText = sessionStorage.getItem("nama-booth");
-            document.getElementById('harga-booth-bayar').innerText = "Harga : Rp " + sessionStorage.getItem("harga-booth");
-            document.getElementById('subtotal-booth-bayar').innerText = ": Rp " + sessionStorage.getItem(
+            document.getElementById('harga-booth-bayar').innerText = sessionStorage.getItem("harga-booth");
+            document.getElementById('subtotal-booth-bayar').innerText = sessionStorage.getItem(
                 "harga-booth");
-            document.getElementById('pajak-booth-bayar').innerText = ": Rp " + convert_pajak;
-            document.getElementById('ukuran-booth-bayar').innerText = "Ukuran : " + sessionStorage.getItem(
+            document.getElementById('pajak-booth-bayar').innerText = convert_pajak;
+            document.getElementById('ukuran-booth-bayar').innerText = sessionStorage.getItem(
                 "ukuran-booth");
 
         }
 
 
-
+     
         function handleChange(src) {
             let result = document.querySelector('#ongkir-booth-bayar');
             let result_text = document.getElementById('ongkir-booth-bayar-text');
             switch (src.value) {
-                case 'jasaKirim':
-                    message = ': Rp 1000';
-                    values = 1000;
-                    break;
                 case 'mandiri':
-                    message = ': Rp 0';
+                    message = 0;
                     values = 0;
+                    break;
+                case 'jasaKirim':
+                    message =  sessionStorage.getItem("ongkir_kota") === null ? '0' : sessionStorage.getItem("ongkir_kota").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    values = sessionStorage.getItem("ongkir_kota") === null ? '0' : sessionStorage.getItem("ongkir_kota");
                     break;
             }
 
@@ -212,7 +297,7 @@
             let pajak = harga * 0.1
             let total = parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(dp);
             let convert_total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            document.getElementById('total-booth-bayar').innerText = "Harga : Rp " + convert_total;
+            document.getElementById('total-booth-bayar').innerText = convert_total;
         }
 
 
