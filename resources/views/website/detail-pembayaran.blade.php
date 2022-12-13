@@ -9,7 +9,7 @@
             <div class="grid grid-cols-2 gap-10">
                 <div class="informasiKirim">
                     <h2 class="text-[26px] text-prim-brown font-bold">Informasi Pengiriman</h2>
-                    <form action="" class="grid grid-cols-2 mt-7 gap-x-8 gap-y-4">
+                    <div id="checkout-booths" action="checkout" class="grid grid-cols-2 mt-7 gap-x-8 gap-y-4">
                         <div>
                             <label for="nama-depan" class="text-prim-brown font-bold text-[14px]">Nama Depan</label> <br>
                             <input type="text" name="nama-depan" id="nama-depan"
@@ -44,10 +44,10 @@
                         </div>
                         <div></div>
                         <div class="submit-pembayaran">
-                            <button type="button" class=" mt-5 px-5 py-2 bg-prim-red rounded-md text-prim-white"
-                                onclick="snap_bayar()">Pembayaran</button>
+                            <button onclick="checkoutBooth()"type="button" class=" mt-5 px-5 py-2 bg-prim-red rounded-md text-prim-white"
+                              >Pembayaran</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="informasiPesanan">
                     <div class="px-8 py-5 bg-prim-yellow rounded-t-md">
@@ -67,7 +67,7 @@
                         <div class="mt-3">
                             <ul class="grid gap-6 w-full md:grid-cols-2">
                                 <li>
-                                    <input type="radio" id="mandiri" name="ukuran" value="mandiri" class="hidden peer"
+                                    <input type="radio" id="mandiri" name="jenis_kirim" value="mandiri" class="hidden peer"
                                         required onchange="handleChange(this);">
                                     <label for="mandiri"
                                         class="inline-flex justify-between items-center px-5 py-2 w-full rounded-lg border-2 border-prim-brown bg-prim-white text-prim-brown font-bold cursor-pointer transition-all dark:hover:text-prim-white dark:border-prim-brown dark:peer-checked:text-prim-white peer-checked:bg-prim-brown peer-checked:text-blue-600 hover:text-prim-white hover:bg-prim-brown">
@@ -78,7 +78,7 @@
                                     </label>
                                 </li>
                                 <li>
-                                    <input type="radio" id="jasaKirim" name="ukuran" value="jasaKirim"
+                                    <input type="radio" id="jasaKirim" name="jenis_kirim" value="jasaKirim"
                                         class="hidden peer" onchange="handleChange(this);">
                                     <label for="jasaKirim"
                                         class="inline-flex justify-between items-center text-center py-2 w-40 rounded-lg border-2 border-prim-brown bg-prim-white text-prim-brown font-bold cursor-pointer transition-all dark:hover:text-prim-white dark:border-prim-brown dark:peer-checked:text-prim-white peer-checked:bg-prim-brown peer-checked:text-blue-600 hover:text-prim-white hover:bg-prim-brown">
@@ -116,9 +116,51 @@
         </div>
         </div>
     </section>
-
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key=""></script>
     <script type="text/javascript">
+    function checkoutBooth(){
+        let depan = $("#nama-depan").val();
+        let belakang = $("#nama-belakang").val();
+        let provinsi = $("#provinsi").val();
+        let kota = $("#kota").val();
+        let alamat = $("#alamat").val();
+        let tel = $("#tel").val();
+        let ukuranbooth = sessionStorage.getItem(
+                "ukuran-booth");
+        let ongkir = $("#ongkir-booth-bayar").val();
+        let dp = $("#dp-booth-bayar").val();
+        let total_bayar = $("#total-booth-bayar").val();
+        let jenis_kirim = $('input[name="jenis_kirim"]:checked').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            url: '/checkout',
+            data: {
+                depan: depan,
+                belakang: belakang,
+                provinsi: provinsi,
+                kota: kota,
+                alamat: alamat,
+                tel: tel,
+                ukuran: ukuranbooth,
+                ongkir: ongkir,
+                dp: dp,
+                total_bayar: total_bayar,
+                jenis_kirim: jenis_kirim,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'JSON',
+            success: function(response) {
+                alert('ok')
+            } ,
+              error: function(xhr, status, error) {
+           alert('nok')
+        }
+        })
+    }
         setValueBayar();
         total();
 

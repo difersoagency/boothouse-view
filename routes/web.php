@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('website.home');
 });
 
-Route::get('/bayar', [App\Http\Controllers\HomeController::class, 'getPayment']);
+// Route::get('/bayar', [App\Http\Controllers\HomeController::class, 'getPayment']);
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])->name('katalog');
@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pesanan', function () {
         return view('website.detail-pembayaran');
     });
+    Route::post('/checkout', [App\Http\Controllers\HomeController::class, 'checkout']);
 });
 
 Route::get('/status', function () {

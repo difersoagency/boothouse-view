@@ -17,7 +17,7 @@
         @yield('content')
         @include('website.footer')
     </section>
-
+   
     <script src="{{ asset('js/custom.js') }}"></script>
 
 </body>

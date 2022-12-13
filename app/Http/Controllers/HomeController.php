@@ -61,4 +61,9 @@ class HomeController extends Controller
             return response()->json(['code' => 'as']);
         }
     }
+
+    public function checkout(Request $Request)
+    {
+        dd($Request->all());
+    }
 }

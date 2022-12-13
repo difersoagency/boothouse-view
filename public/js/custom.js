@@ -120,17 +120,13 @@ function fetch_katalog_data(page,query)
 }
 
 function snap_bayar(){
-       // // SnapToken acquired from previous step
             snap.pay('1bf21f3f-853b-4df8-93f5-92f3d12a5c66', {
-                // Optional
                 onSuccess: function(result) {
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
-                // Optional
                 onPending: function(result) {
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
-                // Optional
                 onError: function(result) {
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 }
@@ -158,6 +154,7 @@ function snap_bayar(){
 function clearSession(){
     sessionStorage.clear();
 }
+
 
 
 
