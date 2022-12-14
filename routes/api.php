@@ -20,3 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/coba', [App\Http\Controllers\MidtransController::class, 'getSnapToken']);
+Route::prefix('/penjualan')->group(function () {
+    Route::get('/data', [App\Http\Controllers\AdminController::class, 'data_penjualan']);
+    Route::get('/data_tanggal', [App\Http\Controllers\AdminController::class, 'data_penjualan_tanggal']);
+    Route::get('/data_status', [App\Http\Controllers\AdminController::class, 'data_penjualan_status']);
+});
+
+

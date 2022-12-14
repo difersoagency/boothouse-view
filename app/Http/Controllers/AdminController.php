@@ -26,27 +26,30 @@ class AdminController extends Controller
         $tglmin = $r->tgl_min;
         $tglmax = $r->tgl_max;
 
-        $order = Order::select('tgl_order')->addSelect(['count_booth_display' => function($q){
+        $order = Order::where([['tgl_order', '>=', $tglmin],['tgl_order', '<=', $tglmax]])->addSelect(['count_booth_display' => function($q){
             $q->selectRaw('coalesce(count("detail_booth.jenis_booth_id"),0)')
             ->from('detail_booth')
             ->join('detail_order', 'detail_order.detail_booth_id', '=', 'detail_booth.id')
-            ->where('detail_booth.jenis_booth', '=', '1')
-            ->whereColumn('detail_order.id', 'order.id');
+            ->where('detail_booth.jenis_booth_id', '=', '1')
+            ->whereColumn('detail_order.id', 'order.id')
+            ->groupBy('order.tgl_order');
         },
         'count_booth_outdoor' => function($q){
             $q->selectRaw('coalesce(count("detail_booth.jenis_booth_id"),0)')
             ->from('detail_booth')
             ->join('detail_order', 'detail_order.detail_booth_id', '=', 'detail_booth.id')
-            ->where('detail_booth.jenis_booth', '=', '2')
-            ->whereColumn('detail_order.id', 'order.id');
+            ->where('detail_booth.jenis_booth_id', '=', '2')
+            ->whereColumn('detail_order.id', 'order.id')
+            ->groupBy('order.tgl_order');
         },
         'count_booth_portable' => function($q){
             $q->selectRaw('coalesce(count("detail_booth.jenis_booth_id"),0)')
             ->from('detail_booth')
             ->join('detail_order', 'detail_order.detail_booth_id', '=', 'detail_booth.id')
-            ->where('detail_booth.jenis_booth', '=', '3')
-            ->whereColumn('detail_order.id', 'order.id');
-        }])->where([['tgl_order', '>=', $tglmin],['tgl_order', '<=', $tglmax]])->groupBy('tgl_order')->get();
+            ->where('detail_booth.jenis_booth_id', '=', '3')
+            ->whereColumn('detail_order.id', 'order.id')
+            ->groupBy('order.tgl_order');
+        }])->get();
         $data = array();
         foreach($order as $key => $res){
             $data['tgl_order'][$key] = $res->tgl_order;
@@ -58,6 +61,11 @@ class AdminController extends Controller
     }
 
     public function data_penjualan_status(){
-        Order::selectRaw('status_id, count(status_id)')->groupBy('status')->get();
+        $o = Order::selectRaw('status_id, count(status_id) as jumlah')->groupBy('status_id')->with('Status')->get();
+        $data = array();
+        foreach($o as $key => $i){
+            $data[$key] = array('nama' => $i->Status->nama, 'jumlah' => $i->jumlah);
+        }
+        return response()->json($data);
     }
 }
