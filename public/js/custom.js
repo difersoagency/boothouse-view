@@ -42,6 +42,7 @@ image_input.addEventListener("change", function() {
     reader.addEventListener("load", () => {
         uploaded_image = reader.result;
         img.src = uploaded_image;
+        sessionStorage.setItem('atas', uploaded_image);
         });
     reader.readAsDataURL(this.files[0]);
     make_base(img);
@@ -64,6 +65,7 @@ image_input2.addEventListener("change", function() {
     reader2.addEventListener("load", () => {
         uploaded_image2 = reader2.result;
         img2.src = uploaded_image2;
+        sessionStorage.setItem('bawah', uploaded_image2);
         });
     reader2.readAsDataURL(this.files[0]);
     make_base2(img2);
@@ -120,17 +122,13 @@ function fetch_katalog_data(page,query)
 }
 
 function snap_bayar(){
-       // // SnapToken acquired from previous step
             snap.pay('1bf21f3f-853b-4df8-93f5-92f3d12a5c66', {
-                // Optional
                 onSuccess: function(result) {
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
-                // Optional
                 onPending: function(result) {
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
-                // Optional
                 onError: function(result) {
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 }
@@ -138,11 +136,33 @@ function snap_bayar(){
 }
 
 
-// function order_booth(){
-//     var $form = $(this);
-//     var serializedData = $form.serialize();
-//     alert(serializedData);
-// }
+ function order_booth(){
+    let ukuran_form = document.querySelector('input[name=ukuran]:checked');
+    let nama_booth_katalog = document.getElementById('nama_booth_katalog').value;
+    let harga_booth_katalog = document.getElementById('harga_booth_katalog').value;
+    let id_booth_katalog = document.getElementById('id_booth_katalog').value;
+    let ukuran_booth_katalog = document.getElementById('ukuran_booth_katalog').value;
+    if (ukuran_form === null ) {
+        alert('Ukuran belum dipilih');
+     } else {
+        sessionStorage.setItem('id-booth', id_booth_katalog);
+        sessionStorage.setItem('nama-booth', nama_booth_katalog);
+        sessionStorage.setItem('harga-booth', harga_booth_katalog);
+        sessionStorage.setItem('ukuran-booth', ukuran_booth_katalog);
+        window.location.href = '/custom'
+    }
+}
+
+function clearSession(){
+    sessionStorage.clear();
+}
+
+
+
+
+
+
+
 
 
 

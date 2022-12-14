@@ -6,7 +6,8 @@
             <h1 class="text-[36px] text-prim-yellow font-bold">Custom Design Booth</h1>
             <a href="/katalog" class="text-prim-white text-[14px] hover:text-prim-red">Katalog</a>
             <span class="text-prim-white"> / </span>
-            <a href="/detail" class="text-prim-white text-[14px] hover:text-prim-red">Nama Produk</a>
+            <a href="/detail" class="text-prim-white text-[14px] hover:text-prim-red" id="nama_booth_custom">Nama
+                Produk</a>
             <span class="text-prim-white"> / </span>
             <a href="" class="text-prim-yellow text-[14px] hover:text-prim-red">Custom Design</a>
         </div>
@@ -52,4 +53,13 @@
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+        setValueCustom();
+
+        function setValueCustom() {
+            document.getElementById('nama_booth_custom').innerText = sessionStorage.getItem("nama-booth");
+            document.getElementById("nama_booth_custom").setAttribute("href", "detail-booth/" + sessionStorage
+                .getItem("id-booth"));
+        }
+    </script>
 @endsection
