@@ -1,5 +1,5 @@
 /*Dashboard Init*/
-"use strict"; 
+"use strict";
 /*DataTable Init*/
 if ($("#datable_1").length > 0) {
 	/*Checkbox Add*/
@@ -23,7 +23,7 @@ if ($("#datable_1").length > 0) {
 			sLengthMenu: "View  _MENU_",
 			paginate: {
 			  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
-			  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←' 
+			  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
 			}
 		},
 		"drawCallback": function () {
@@ -37,22 +37,22 @@ if ($("#datable_1").length > 0) {
 	$("div.contact-toolbar-left").html('<div class="d-xxl-flex d-none align-items-center"><div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example"><button type="button" class="btn btn-outline-light active">View all</button><button type="button" class="btn btn-outline-light">Monitored</button><button type="button" class="btn btn-outline-light">Unmonitored</button></div>');
 	$("div.contact-toolbar-right").addClass('d-flex justify-content-end').append('	<button class="btn btn-sm btn-outline-light ms-3"><span><span class="icon"><i class="bi bi-filter"></i></span><span class="btn-text">Filters</span></span></button>');
 	$("#datable_1").parent().addClass('table-responsive');
-	
+
 	/*Select all using checkbox*/
 	var  DT1 = $('#datable_1').DataTable();
 	$(".check-select-all").on( "click", function(e) {
 		$('.check-select').attr('checked', true);
 		if ($(this).is( ":checked" )) {
-			DT1.rows().select();    
-			$('.check-select').prop('checked', true);			
+			DT1.rows().select();
+			$('.check-select').prop('checked', true);
 		} else {
-			DT1.rows().deselect(); 
+			DT1.rows().deselect();
 			$('.check-select').prop('checked', false);
 		}
 	});
 	$(".check-select").on( "click", function(e) {
 		if ($(this).is( ":checked" )) {
-			$(this).closest('tr').addClass('selected');        
+			$(this).closest('tr').addClass('selected');
 		} else {
 			$(this).closest('tr').removeClass('selected');
 			$('.check-select-all').prop('checked', false);
@@ -135,13 +135,13 @@ var options1 = {
 			enabled: false
 		},
 	},
-	
+
 	plotOptions: {
 		bar: {
 			horizontal: false,
 			columnWidth: '35%',
 			borderRadius: 5,
-			
+
 		},
 	},
 	xaxis: {
@@ -154,7 +154,7 @@ var options1 = {
 	legend: {
 		show:false
 	},
-	colors: ['#007D88', '#25cba1', '#ebf3fe'],
+	colors: ['#7D5E3F', '#F03861', '#F5D97E'],
 	fill: {
 		opacity: 1
 	},
@@ -201,78 +201,78 @@ var options2 = {
 			  }
 		}
 	},
-	colors: ['#007D88', '#25cba1'],
+	colors: ['#7D5E3F', '#F5D97E'],
 	labels: ['Subscriptions', 'Food'],
 };
 
 var chart2 = new ApexCharts(document.querySelector("#radial_chart_2"), options2);
 chart2.render();
 
-/*Animated Map*/	
+/*Animated Map*/
 am4core.ready(function() {
 
 	// Themes begin
 	am4core.useTheme(am4themes_animated);
 	// Themes end
-	
+
 	// Create map instance
 	var chart2 = am4core.create("anim_map_2", am4maps.MapChart);
-	
+
 	// Set map definition
 	chart2.geodata = am4geodata_worldLow;
-	
+
 	// Set projection
 	chart2.projection = new am4maps.projections.Miller();
-	
+
 	// Create map polygon series
 	var polygonSeries = chart2.series.push(new am4maps.MapPolygonSeries());
 	polygonSeries.mapPolygons.template.fill = am4core.color("#E6E9EB");
 	polygonSeries.mapPolygons.template.fillOpacity = 1;
 	// Exclude Antartica
 	polygonSeries.exclude = ["AQ"];
-	
+
 	// Make map load polygon (like country names) data from GeoJSON
 	polygonSeries.useGeodata = true;
-	
+
 	// Configure series
 	var polygonTemplate = polygonSeries.mapPolygons.template;
 	polygonTemplate.tooltipText = "{name}";
-	
-	
+
+
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
 	hs.properties.fill = am4core.color("#CCE5E7");
-	
+
 	// Add image series
 	var imageSeries = chart2.series.push(new am4maps.MapImageSeries());
 	imageSeries.mapImages.template.propertyFields.longitude = "longitude";
 	imageSeries.mapImages.template.propertyFields.latitude = "latitude";
 	imageSeries.mapImages.template.tooltipText = "{title}";
 	imageSeries.mapImages.template.propertyFields.url = "url";
-	
+
 	var circle = imageSeries.mapImages.template.createChild(am4core.Circle);
 	circle.radius = 3;
 	circle.propertyFields.fill = "color";
-	
+
 	var circle2 = imageSeries.mapImages.template.createChild(am4core.Circle);
 	circle2.radius = 3;
 	circle2.propertyFields.fill = "color";
-	
-	
+
+
 	circle2.events.on("inited", function(event){
 	  animateBullet(event.target);
 	})
-	
-	
+
+
 	function animateBullet(circle) {
 		var animation = circle.animate([{ property: "scale", from: 1, to: 5 }, { property: "opacity", from: 1, to: 0 }], 1000, am4core.ease.circleOut);
 		animation.events.on("animationended", function(event){
 		  animateBullet(event.target.object);
 		})
 	}
-	
+
 	var colorSet = new am4core.ColorSet();
-	
+
 	imageSeries.data = [ {
 	  "title": "Brussels",
 	  "latitude": 50.8371,
@@ -366,7 +366,7 @@ am4core.ready(function() {
 	  "longitude": 28.1876,
 	   "color":'#007D88'
 	} ];
-	
-	
-	
+
+
+
 	}); // end am4core.ready()

@@ -33,7 +33,17 @@
 						<div class="card-body">
 							<div class="text-center">
 								<div class="d-inline-block">
-									<span class="badge-status">
+									<span class="badge-status mx-1">
+										<span class="badge bg-primary badge-indicator badge-indicator-nobdr"></span>
+										<span class="badge-label">Tingkat Penjualan</span>
+									</span>
+
+                                    <span class="badge-status mx-1">
+										<span class="badge bg-primary badge-indicator badge-indicator-nobdr"></span>
+										<span class="badge-label">Tingkat Penjualan</span>
+									</span>
+
+                                    <span class="badge-status mx-1">
 										<span class="badge bg-primary badge-indicator badge-indicator-nobdr"></span>
 										<span class="badge-label">Tingkat Penjualan</span>
 									</span>
