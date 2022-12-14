@@ -56,25 +56,14 @@ class HomeController extends Controller
 
         return view('website.katalog', ['data' => $data]);
     }
-    public function getPayment()
-    {
 
-        $client = new Client();
-        try {
-            $res = $client->request('GET', 'http://localhost:96/api/coba', []);
-            $data = json_decode($res->getBody()->getContents());
-            dd($data);
-        } catch (Exception $e) {
-            return response()->json(['code' => 'as']);
-        }
-    }
 
     public function checkout(Request $request)
     {
         // dd($Request->all());
 
         $order =  Order::create([
-            'no_order' => 'sds',
+            'no_order' => rand(),
             'tgl_order' => Carbon::now(),
             'customer_id' => auth()->user()->customer_id,
             'total_harga' => $request->total_bayar,
@@ -96,35 +85,63 @@ class HomeController extends Controller
         ]);
 
 
-        // Set your Merchant Server Key
+        //Midtrans
         Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = false;
-        // Set sanitization on (default)
         Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
         Config::$is3ds = true;
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => $request->total_bayar,
-            ),
-            'customer_details' => array(
-                'first_name' =>  $request->depan,
-                'last_name' =>  $request->belakang,
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-            'shipping_address' => array(
-                'address'       =>  $request->total_bayar,
-                'city'          => "Jakarta",
-                'phone'         => $request->tel,
-                'country_code'  => 'IDN'
-            ),
+        // Optional
+        $billing_address = array(
+            'first_name'    => $request->depan,
+            'last_name'     => $request->belakang,
+            'address'       =>  $request->alamat,
+            'city'          => "Jakarta",
+            'postal_code'   => "16602",
+            'phone'         => $request->tel,
+            'country_code'  => 'IDN'
         );
 
-        $snapToken = Snap::getSnapToken($params);
+        // Optional
+        $shipping_address = array(
+            'first_name'    => $request->depan,
+            'last_name'     => $request->belakang,
+            'address'       =>  $request->alamat,
+            'city'          => "Jakarta",
+            'postal_code'   => "16601",
+            'phone'         => $request->tel,
+            'country_code'  => 'IDN'
+        );
+
+        $customer_details = array(
+            'first_name' =>  $request->depan,
+            'last_name' =>  $request->belakang,
+            'email' => 'budi.pra@example.com',
+            'phone' => $request->tel,
+            'billing_address'  => $billing_address,
+            'shipping_address' => $shipping_address
+        );
+
+        $transaction_details = array(
+            'order_id' => rand(),
+            'gross_amount' =>  $request->total_bayar,
+        );
+
+        $item_list[] = [
+            'id' => "111",
+            'price' => $request->total_bayar,
+            'quantity' => 1,
+            'name' => 'Booth ' . $request->nama_booths . ' (' . $request->ukuran . ')'
+        ];
+        $item_details = $item_list;
+        $transaction = array(
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        );
+
+
+        $snapToken = Snap::getSnapToken($transaction);
         return response()->json($snapToken);
     }
 
@@ -142,5 +159,42 @@ class HomeController extends Controller
     {
         $data = Kota::find($id);
         echo json_encode($data);
+    }
+
+
+    //Tes Session
+    public function step1(Request $request)
+    {
+        $request->session()->put('step1', 'step1');
+        echo "Data telah ditambahkan ke session.";
+    }
+
+    public function step2(Request $request)
+    {
+        if ($request->session()->has('step1')) {
+            $request->session()->put('step2', 'step2');
+        } else {
+            echo 'Tidak ada data dalam session.';
+        }
+    }
+
+    public function step3(Request $request)
+    {
+        if ($request->session()->has('step2')) {
+            $request->session()->put('step3', 'step3');
+        } else {
+            echo 'Tidak ada data dalam session.';
+        }
+    }
+
+    public function selesai(Request $request)
+    {
+        if ($request->session()->has('step3')) {
+            $request->session()->forget('step1');
+            $request->session()->forget('step2');
+            $request->session()->forget('step3');
+        } else {
+            echo 'Tidak ada data dalam session.';
+        }
     }
 }

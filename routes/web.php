@@ -30,31 +30,6 @@ Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pes
 Route::get('/detail-booth/{id}', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
 
-// Route::get('/katalog', function () {
-//     return view('website.katalog');
-// });
-
-// Route::get('/cara-pesan', function () {
-//     return view('website.cara');
-// });
-
-
-// Route::get('/detail-booth', function () {
-//     return view('website.detail-booth');
-// });
-
-// Route::get('/login', function () {
-//     return view('website.login');
-// });
-
-// Route::get('/register', function () {
-//     return view('website.register');
-// });
-
-// Route::get('/thankyou', function () {
-//     return view('website.thankyou');
-// });
-
 Route::get('/custom', function () {
     return view('website.custom-booth');
 });
@@ -76,3 +51,10 @@ Route::get('/status', function () {
 //List Data
 Route::get('/provinsi/{id}', [App\Http\Controllers\HomeController::class, 'selectprovinsi']);
 Route::get('/kota/{id}', [App\Http\Controllers\HomeController::class, 'selectkota']);
+
+
+//Tes Session
+// Route::get('/step1', [App\Http\Controllers\HomeController::class, 'step1']);
+// Route::get('/step2', [App\Http\Controllers\HomeController::class, 'step2']);
+// Route::get('/step3', [App\Http\Controllers\HomeController::class, 'step3']);
+// Route::get('/selesai', [App\Http\Controllers\HomeController::class, 'selesai']);

@@ -124,37 +124,61 @@ class MidtransController extends Controller
         // Set 3DS transaction for credit card to true
         Config::$is3ds = true;
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            "item_details" => array(
-                "id" => "ITEM1",
-                "price" => 10000,
-                "quantity" => intval(1),
-                "name" => "Midtrans Bear",
-                "brand" => "Midtrans",
-                "category" => "Toys",
-                "merchant_name" => "Midtrans",
-                "url" => "http://toko/toko1?item=abc"
-            ),
-            'customer_details' => array(
-                'first_name' => 'asdas',
-                'last_name' => 'asdasd',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-            'shipping_address' => array(
-                'address'       => "Manggis 90",
-                'city'          => "Jakarta",
-                'phone'         => "08113366345",
-                'country_code'  => 'IDN'
-            ),
 
+
+
+
+        // Optional
+        $billing_address = array(
+            'first_name'    => "Andri",
+            'last_name'     => "Litani",
+            'address'       => "Mangga 20",
+            'city'          => "Jakarta",
+            'postal_code'   => "16602",
+            'phone'         => "081122334455",
+            'country_code'  => 'IDN'
         );
 
-        $snapToken = Snap::getSnapToken($params);
+        // Optional
+        $shipping_address = array(
+            'first_name'    => "Obet",
+            'last_name'     => "Supriadi",
+            'address'       => "Manggis 90",
+            'city'          => "Jakarta",
+            'postal_code'   => "16601",
+            'phone'         => "08113366345",
+            'country_code'  => 'IDN'
+        );
+
+        $customer_details = array(
+            'first_name'    => "Andrsi",
+            'last_name'     => "Litani",
+            'email'         => "andri@litani.com",
+            'phone'         => "081122334455",
+            'billing_address'  => $billing_address,
+            'shipping_address' => $shipping_address
+        );
+
+        $item_list[] = [
+            'id' => "111",
+            'price' => 20000,
+            'quantity' => 1,
+            'name' => "Majohn"
+        ];
+        $item_details = $item_list;
+
+        $transaction_details = array(
+            'order_id' => rand(),
+            'gross_amount' => 20000, // no decimal allowed for creditcard
+        );
+
+        $transaction = array(
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        );
+
+        $snapToken = Snap::getSnapToken($transaction);
         return response()->json($snapToken);
     }
 }
