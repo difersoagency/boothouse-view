@@ -7,17 +7,17 @@
             </div>
             <div class="">
                 <h3 class="text-[20px] text-prim-yellow mb-4 font-bold">Link Perusahaan</h3 clas>
-                <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Beranda</a>
+                <a href="/" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Beranda</a>
                 <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Tentang Kami</a>
-                <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Katalog</a>
+                <a href="/katalog" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Katalog</a>
                 <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Hubungi Kami</a>
             </div>
             <div class="">
                 <h3 class="text-[20px] text-prim-yellow mb-4 font-bold">Jenis Booth</h3 clas>
-                <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Display Booth</a>
-                <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Outdoor Booth</a>
-                <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Portable Booth</a>
-                <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Upload Design</a>
+                <a href="/katalog/display" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Display Booth</a>
+                <a href="/katalog/outdoor" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Outdoor Booth</a>
+                <a href="/katalog/portable" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Portable Booth</a>
+                {{-- <a href="#" class="text-prim-yellow text-[16px] block mb-2 hover:text-prim-red transition-colors">Upload Design</a> --}}
             </div>
             <div class="">
                 <h3 class="text-[20px] text-prim-yellow mb-4 font-bold">Social Media</h3 clas>

@@ -57,7 +57,29 @@ class HomeController extends Controller
 
         return view('website.katalog', ['data' => $data]);
     }
+    public function katalog_filter($value)
+    {
+        $data = DetailBooth::whereHas('JenisBooth', function ($q) use ($value) {
+            $q->where('nama', 'like', '%' . $value . '%');
+        })->get();
 
+        return view('website.katalog', ['data' => $data]);
+    }
+    public function katalog_data(Request $request)
+    {
+        if ($request->ajax()) {
+            $query = $request->get('query');
+            $query = str_replace("", "%", $query);
+            if ($query != 'semua') {
+                $data = DetailBooth::whereHas('JenisBooth', function ($q) use ($query) {
+                    $q->where('nama', 'like', '%' . $query . '%');
+                })->get();
+            } else {
+                $data = DetailBooth::all();
+            }
+            return view('website.katalog-data', compact('data'))->render();
+        }
+    }
 
     public function checkout(Request $request)
     {

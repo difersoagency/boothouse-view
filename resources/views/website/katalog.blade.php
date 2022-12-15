@@ -12,13 +12,13 @@
                     <h2 class="text-[24px] text-prim-brown font-bold">Pilih Tipe Booth</h2>
                     <div class="grid grid-cols-2 md:grid-cols-4 mt-6 gap-10">
                         <button
-                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white">Semua</button>
+                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white filter_katalog" data-value="semua">Semua</button>
                         <button
-                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white">Outdoor</button>
+                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white filter_katalog" data-value="outdoor">Outdoor</button>
                         <button
-                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white">Portable</button>
+                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white filter_katalog "  data-value="portable">Portable</button>
                         <button
-                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white">Display</button>
+                            class="bg-prim-yellow py-2 rounded-lg text-prim-brown hover:bg-prim-red hover:text-prim-white filter_katalog"  data-value="display">Display</button>
                     </div>
                 </div>
                 <div class="search text-end mt-10 lg:mt-0 w-full">
@@ -39,4 +39,25 @@
                 Desain</button>
         </div>
     </section>
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+    <script>
+        
+$(document).ready(function(){
+    $(".filter_katalog").click(function(){
+        var values_filter = $(this).attr("data-value"); 
+        fetch_data(values_filter);
+    }); 
+
+function fetch_data(query){
+    $.ajax({
+    url:"/katalog_data?query="+query,
+    success:function(data){
+        //console.log(data)
+         $('#showdata_katalog').html(data);  
+        }
+    });
+
+    }
+});
+    </script>
 @endsection

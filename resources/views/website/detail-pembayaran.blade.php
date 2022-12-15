@@ -279,6 +279,7 @@
                             onSuccess: function(result) {
                                 window.location.href = '/thankyou';
                                 submitForm(response.data)
+                                clearSession()
                             },
                             onPending: function(result) {
                                 alert('pembayaran dibatalkan')

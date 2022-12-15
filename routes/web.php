@@ -26,6 +26,8 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 Route::post('/payToken', [App\Http\Controllers\MidtransController::class, 'getSnapToken']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])->name('katalog');
+Route::get('/katalog/{value}', [App\Http\Controllers\HomeController::class, 'katalog_filter'])->name('katalog_filter');
+Route::get('/katalog_data', [App\Http\Controllers\HomeController::class, 'katalog_data'])->name('katalog');
 Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pesan'])->name('cara_pesan');
 Route::get('/detail-booth/{id}', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
