@@ -8,6 +8,7 @@ use App\Models\DetailBooth;
 use App\Models\DetailOrder;
 use App\Models\Kota;
 use App\Models\Order;
+use App\Models\Pembayaran;
 use App\Models\Provinsi;
 use Carbon\Carbon;
 use Exception;
@@ -63,10 +64,10 @@ class HomeController extends Controller
         // dd($Request->all());
 
         $order =  Order::create([
-            'no_order' => rand(),
+            'no_order' => $request->order_id,
             'tgl_order' => Carbon::now(),
             'customer_id' => auth()->user()->customer_id,
-            'total_harga' => $request->total_bayar,
+            'total_harga' => $request->total_bayar + $request->sisa_bayar,
             'jenis_pengiriman_id' => 1,
             'alamat' => $request->alamat,
             'kota_id' => $request->kota,
@@ -84,65 +85,11 @@ class HomeController extends Controller
             'hasil_custom' => 'hasil',
         ]);
 
-
-        //Midtrans
-        Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
-
-        // Optional
-        $billing_address = array(
-            'first_name'    => $request->depan,
-            'last_name'     => $request->belakang,
-            'address'       =>  $request->alamat,
-            'city'          => "Jakarta",
-            'postal_code'   => "16602",
-            'phone'         => $request->tel,
-            'country_code'  => 'IDN'
-        );
-
-        // Optional
-        $shipping_address = array(
-            'first_name'    => $request->depan,
-            'last_name'     => $request->belakang,
-            'address'       =>  $request->alamat,
-            'city'          => "Jakarta",
-            'postal_code'   => "16601",
-            'phone'         => $request->tel,
-            'country_code'  => 'IDN'
-        );
-
-        $customer_details = array(
-            'first_name' =>  $request->depan,
-            'last_name' =>  $request->belakang,
-            'email' => 'budi.pra@example.com',
-            'phone' => $request->tel,
-            'billing_address'  => $billing_address,
-            'shipping_address' => $shipping_address
-        );
-
-        $transaction_details = array(
-            'order_id' => rand(),
-            'gross_amount' =>  $request->total_bayar,
-        );
-
-        $item_list[] = [
-            'id' => "111",
-            'price' => $request->total_bayar,
-            'quantity' => 1,
-            'name' => 'Booth ' . $request->nama_booths . ' (' . $request->ukuran . ')'
-        ];
-        $item_details = $item_list;
-        $transaction = array(
-            'transaction_details' => $transaction_details,
-            'customer_details' => $customer_details,
-            'item_details' => $item_details,
-        );
-
-
-        $snapToken = Snap::getSnapToken($transaction);
-        return response()->json($snapToken);
+        $bayar = Pembayaran::create([
+            'order_id' => $order->id,
+            'tanggal' => Carbon::now(),
+            'total_bayar' => $request->total_bayar,
+        ]);
     }
 
     public function selectprovinsi(Request $request, $id)

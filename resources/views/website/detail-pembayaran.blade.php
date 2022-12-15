@@ -113,6 +113,11 @@
                         <p class="text-prim-yellow font-bold text-[26px]">Rp <span id="total-booth-bayar">0</span>
                         </p>
                     </div>
+                    <div class="px-8 py-5 bg-prim-brown rounded-b-md">
+                        <h2 class="text-prim-yellow font-bold text-[26px]">Sisa</h2>
+                        <p class="text-prim-yellow font-bold text-[26px]">Rp <span id="sisa-booth-bayar">0</span>
+                        </p>
+                    </div>
                 </div>
 
             </div>
@@ -122,7 +127,7 @@
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('js/select2/css/select2.min.css') }}">
     <script src="{{ asset('js/select2/js/select2.min.js') }}"></script>
-    {{-- <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key=""></script> --}}
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-bJIjYUlD5RrvI9Er"></script>
     <script type="text/javascript">
         $('#select-kota').select2({
             placeholder: "Pilih Kota",
@@ -206,10 +211,20 @@
         }
 
 
+        function submitForm(data) {
+            $.ajax({
+                url: "/checkout",
+                method: "POST",
+                data: data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                datatype: "json"
+            });
+        }
+
+
         function checkoutBooth() {
-
-
-
             let depan = $("#nama-depan").val();
             let belakang = $("#nama-belakang").val();
             let provinsi = $("#select-provinsi").val();
@@ -224,6 +239,8 @@
                 "nama-booth");
             let total_bayar = sessionStorage.getItem(
                 "total-booth");
+            let sisa_bayar = sessionStorage.getItem(
+                "sisa-booth");
             let id_booth = sessionStorage.getItem(
                 "id-booth");
             let jenis_kirim = $('input[name="jenis_kirim"]:checked').val();
@@ -237,7 +254,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: "POST",
-                    url: '/checkout',
+                    url: '/payToken',
                     data: {
                         depan: depan,
                         belakang: belakang,
@@ -249,6 +266,7 @@
                         ongkir: ongkir,
                         dp: dp,
                         total_bayar: total_bayar,
+                        sisa_bayar: sisa_bayar,
                         jenis_kirim: jenis_kirim,
                         id_booth: id_booth,
                         nama_booths: nama_booths,
@@ -256,7 +274,19 @@
                     },
                     dataType: 'JSON',
                     success: function(response) {
-                        window.location.href = response.redirect_url;
+                        //      console.log(response.data)
+                        snap.pay(response.token, {
+                            onSuccess: function(result) {
+                                window.location.href = '/thankyou';
+                                submitForm(response.data)
+                            },
+                            onPending: function(result) {
+                                alert('pembayaran dibatalkan')
+                            },
+                            onError: function(result) {
+                                alert('eror')
+                            }
+                        });
                     },
                     error: function(xhr, status, error) {
                         alert('nok')
@@ -273,9 +303,6 @@
                 "harga-booth").split('.').join("");
             let pajak = harga * 0.1
             let convert_pajak = pajak.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-
-
             document.getElementById('nama-booth-bayar').innerText = sessionStorage.getItem("nama-booth");
             document.getElementById('harga-booth-bayar').innerText = sessionStorage.getItem("harga-booth");
             document.getElementById('subtotal-booth-bayar').innerText = sessionStorage.getItem(
@@ -315,10 +342,16 @@
             let harga = sessionStorage.getItem(
                 "harga-booth").split('.').join("");
             let pajak = harga * 0.1
-            let total = parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(dp);
+            let total_dp = parseInt(dp) + parseInt(pajak) + parseInt(ongkir);
+            let total_cash = parseInt(harga) + parseInt(pajak) + parseInt(ongkir);
+            let total = dp != 0 ? total_dp : total_cash;
+            let sisa = dp != 0 ? parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(total_dp) : 0
             let convert_total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            let convert_sisa = sisa.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             document.getElementById('total-booth-bayar').innerText = convert_total;
+            document.getElementById('sisa-booth-bayar').innerText = convert_sisa;
             sessionStorage.setItem('total-booth', total);
+            sessionStorage.setItem('sisa-booth', sisa);
         }
 
 
