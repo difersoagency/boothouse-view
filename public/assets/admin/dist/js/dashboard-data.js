@@ -1,45 +1,82 @@
 /*Dashboard Init*/
 "use strict";
 /*DataTable Init*/
-if ($("#datable_1").length > 0) {
+if ($("#penjualantable").length > 0) {
 	/*Checkbox Add*/
-	var tdCnt=0;
-	$('table tr').each(function(){
-		$('<span class="form-check mb-0"><input type="checkbox" class="form-check-input check-select" id="chk_sel_'+tdCnt+'"><label class="form-check-label" for="chk_sel_'+tdCnt+'"></label></span>').appendTo($(this).find("td:first-child"));
-		tdCnt++;
+	// var tdCnt=0;
+	// $('table tr').each(function(){
+	// 	$('<span class="form-check mb-0"><input type="checkbox" class="form-check-input check-select" id="chk_sel_'+tdCnt+'"><label class="form-check-label" for="chk_sel_'+tdCnt+'"></label></span>').appendTo($(this).find("td:first-child"));
+	// 	tdCnt++;
+	// });
+	var targetDt = $('#penjualantable').DataTable({
+			destroy: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                'type': 'GET',
+                'datatype': 'JSON',
+                'url': '/api/penjualan/data',
+                'headers': {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+            columns: [{
+                    data: 'customer_nama',
+                    className: 'nowrap-text align-center',
+                    orderable: false,
+                    searchable: false
+                }, {
+                    data: 'customer_nama',
+                    className: 'nowrap-text align-center',
+                },
+                {
+                    data: 'tgl_order',
+                    className: 'nowrap-text align-center',
+                },
+				{
+                    data: 'total_harga',
+                    className: 'nowrap-text align-center',
+                },
+                {
+                    data: 'status',
+                    className: 'nowrap-text align-center',
+                },
+                {
+                    data: null,
+                    className: 'nowrap-text align-center',
+                }
+            ],
+		// "dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+		// "ordering": true,
+		// "columnDefs": [ {
+		// 	"searchable": false,
+		// 	"orderable": false,
+		// 	"targets": [0,5]
+		// } ],
+		// "order": [1, 'asc' ],
+		// language: { search: "",
+		// 	searchPlaceholder: "Search",
+		// 	"info": "_START_ - _END_ of _TOTAL_",
+		// 	sLengthMenu: "View  _MENU_",
+		// 	paginate: {
+		// 	  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
+		// 	  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
+		// 	}
+		// },
+		// "drawCallback": function () {
+		// 	$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
+		// }
 	});
-	var targetDt = $('#datable_1').DataTable({
-		"dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-		"ordering": true,
-		"columnDefs": [ {
-			"searchable": false,
-			"orderable": false,
-			"targets": [0,5]
-		} ],
-		"order": [1, 'asc' ],
-		language: { search: "",
-			searchPlaceholder: "Search",
-			"info": "_START_ - _END_ of _TOTAL_",
-			sLengthMenu: "View  _MENU_",
-			paginate: {
-			  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
-			  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
-			}
-		},
-		"drawCallback": function () {
-			$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
-		}
-	});
-	$(document).on( 'click', '.del-button', function () {
-		targetDt.rows('.selected').remove().draw( false );
-		return false;
-	});
+	// $(document).on( 'click', '.del-button', function () {
+	// 	targetDt.rows('.selected').remove().draw( false );
+	// 	return false;
+	// });
 	$("div.contact-toolbar-left").html('<div class="d-xxl-flex d-none align-items-center"><div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example"><button type="button" class="btn btn-outline-light active">View all</button><button type="button" class="btn btn-outline-light">Monitored</button><button type="button" class="btn btn-outline-light">Unmonitored</button></div>');
 	$("div.contact-toolbar-right").addClass('d-flex justify-content-end').append('	<button class="btn btn-sm btn-outline-light ms-3"><span><span class="icon"><i class="bi bi-filter"></i></span><span class="btn-text">Filters</span></span></button>');
 	$("#datable_1").parent().addClass('table-responsive');
 
 	/*Select all using checkbox*/
-	var  DT1 = $('#datable_1').DataTable();
+	// var  DT1 = $('#datable_1').DataTable();
 	$(".check-select-all").on( "click", function(e) {
 		$('.check-select').attr('checked', true);
 		if ($(this).is( ":checked" )) {
@@ -59,6 +96,8 @@ if ($("#datable_1").length > 0) {
 		}
 	});
 }
+
+
 
 /*Apex Column Chart*/
 window.Apex = {

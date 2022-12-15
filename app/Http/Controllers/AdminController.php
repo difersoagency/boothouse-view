@@ -17,7 +17,7 @@ class AdminController extends Controller
         $data = array();
         foreach($order as $key => $res){
             $data[$key] = array('id' => $res->id,
-                'customer' => $res->Customer->nama,
+                'customer_nama' => $res->Customer->nama_depan.' '.$res->Customer->nama_belakang,
                 'tgl_order' => $res->tgl_order,
                 'status' => $res->Status->nama,
                 'total_harga' => $res->total_harga
