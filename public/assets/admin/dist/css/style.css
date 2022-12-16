@@ -125,7 +125,7 @@ Project:	Jampack
 /** Imports **/
 /****************************/
 @import url(https://fonts.googleapis.com/icon?family=DM+Sans:400,500,700&display=swap||Material+Icons);
-@import url(../../vendors/bootstrap/dist/css/bootstrap.min.css);
+@import url(../../vendor/bootstrap/dist/css/bootstrap.min.css);
 @import url(font-awesome.min.css);
 @import url(dripicons.css);
 @import url(cryptofont.min.css);
@@ -140,9 +140,9 @@ Project:	Jampack
 @import url(bootstrap-icons.css);
 @import url(flaticon.css);
 @import url(prism.css);
-@import url(../../vendors/simplebar/dist/simplebar.min.css);
-@import url(../../vendors/owl.carousel/dist/assets/owl.carousel.min.css);
-@import url(../../vendors/owl.carousel/dist/assets/owl.theme.default.min.css);
+@import url(../../vendor/simplebar/dist/simplebar.min.css);
+@import url(../../vendor/owl.carousel/dist/assets/owl.carousel.min.css);
+@import url(../../vendor/owl.carousel/dist/assets/owl.theme.default.min.css);
 @import url(../../src/scss/variables.scss);
 /*__________________________________________________________________;
 [Mixin]
@@ -59061,6 +59061,18 @@ td.text-truncate, th.text-truncate {
 
 .bg-blue {
   background-color: rgba(41, 141, 255, var(--bs-bg-opacity)) !important;
+}
+
+.bg-prim-brown {
+  background-color:  #7d5e3f !important;
+}
+
+.bg-prim-yellow {
+  background-color:  #f5d97e !important;
+}
+
+.bg-prim-red {
+  background-color:  #f03861 !important;
 }
 
 .bg-blue-dark-5 {
