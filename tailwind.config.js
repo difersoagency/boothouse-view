@@ -8,10 +8,10 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      'prim-red' : '#F03861',
-      'prim-white' : '#FEF2F2',
-      'prim-yellow' : '#F5D97E',
-      'prim-brown' : '#7D5E3F',
+      'prim-light-blue' : '#A2DBFA',
+      'prim-white' : '#E8F0F2',
+      'prim-dark-green' : '#053742',
+      'prim-dark-blue' : '#39A2DB',
       'success' : '#29CBA4',
     }
   },
