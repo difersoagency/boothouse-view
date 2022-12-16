@@ -59063,6 +59063,18 @@ td.text-truncate, th.text-truncate {
   background-color: rgba(41, 141, 255, var(--bs-bg-opacity)) !important;
 }
 
+.bg-prim-brown {
+  background-color:  #7d5e3f !important;
+}
+
+.bg-prim-yellow {
+  background-color:  #f5d97e !important;
+}
+
+.bg-prim-red {
+  background-color:  #f03861 !important;
+}
+
 .bg-blue-dark-5 {
   background-color: rgba(21, 71, 128, var(--bs-bg-opacity)) !important;
 }

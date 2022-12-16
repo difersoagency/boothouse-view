@@ -103,7 +103,7 @@ class AdminController extends Controller
         $o = Order::selectRaw('status_id, count(status_id) as jumlah')->groupBy('status_id')->with('Status')->get();
         $data = array();
         foreach($o as $key => $i){
-            $data[$key] = array('nama' => $i->Status->nama, 'jumlah' => $i->jumlah);
+            $data[$i->Status->nama] = $i->jumlah;
         }
         return response()->json($data);
     }
