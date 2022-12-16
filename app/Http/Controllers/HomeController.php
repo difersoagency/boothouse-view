@@ -8,6 +8,7 @@ use App\Models\DetailBooth;
 use App\Models\DetailOrder;
 use App\Models\Kota;
 use App\Models\Order;
+use App\Models\Pembayaran;
 use App\Models\Provinsi;
 use Carbon\Carbon;
 use Exception;
@@ -56,16 +57,27 @@ class HomeController extends Controller
 
         return view('website.katalog', ['data' => $data]);
     }
-    public function getPayment()
+    public function katalog_filter($value)
     {
+        $data = DetailBooth::whereHas('JenisBooth', function ($q) use ($value) {
+            $q->where('nama', 'like', '%' . $value . '%');
+        })->get();
 
-        $client = new Client();
-        try {
-            $res = $client->request('GET', 'http://localhost:96/api/coba', []);
-            $data = json_decode($res->getBody()->getContents());
-            dd($data);
-        } catch (Exception $e) {
-            return response()->json(['code' => 'as']);
+        return view('website.katalog', ['data' => $data]);
+    }
+    public function katalog_data(Request $request)
+    {
+        if ($request->ajax()) {
+            $query = $request->get('query');
+            $query = str_replace("", "%", $query);
+            if ($query != 'semua') {
+                $data = DetailBooth::whereHas('JenisBooth', function ($q) use ($query) {
+                    $q->where('nama', 'like', '%' . $query . '%');
+                })->get();
+            } else {
+                $data = DetailBooth::all();
+            }
+            return view('website.katalog-data', compact('data'))->render();
         }
     }
 
@@ -74,10 +86,10 @@ class HomeController extends Controller
         // dd($Request->all());
 
         $order =  Order::create([
-            'no_order' => 'sds',
+            'no_order' => $request->order_id,
             'tgl_order' => Carbon::now(),
             'customer_id' => auth()->user()->customer_id,
-            'total_harga' => $request->total_bayar,
+            'total_harga' => $request->total_bayar + $request->sisa_bayar,
             'jenis_pengiriman_id' => 1,
             'alamat' => $request->alamat,
             'kota_id' => $request->kota,
@@ -95,37 +107,11 @@ class HomeController extends Controller
             'hasil_custom' => 'hasil',
         ]);
 
-
-        // Set your Merchant Server Key
-        Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        Config::$isProduction = false;
-        // Set sanitization on (default)
-        Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        Config::$is3ds = true;
-
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => $request->total_bayar,
-            ),
-            'customer_details' => array(
-                'first_name' =>  $request->depan,
-                'last_name' =>  $request->belakang,
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-            'shipping_address' => array(
-                'address'       =>  $request->total_bayar,
-                'city'          => "Jakarta",
-                'phone'         => $request->tel,
-                'country_code'  => 'IDN'
-            ),
-        );
-
-        $snapToken = Snap::getSnapToken($params);
-        return response()->json($snapToken);
+        $bayar = Pembayaran::create([
+            'order_id' => $order->id,
+            'tanggal' => Carbon::now(),
+            'total_bayar' => $request->total_bayar,
+        ]);
     }
 
     public function selectprovinsi(Request $request, $id)
@@ -142,5 +128,42 @@ class HomeController extends Controller
     {
         $data = Kota::find($id);
         echo json_encode($data);
+    }
+
+
+    //Tes Session
+    public function step1(Request $request)
+    {
+        $request->session()->put('step1', 'step1');
+        echo "Data telah ditambahkan ke session.";
+    }
+
+    public function step2(Request $request)
+    {
+        if ($request->session()->has('step1')) {
+            $request->session()->put('step2', 'step2');
+        } else {
+            echo 'Tidak ada data dalam session.';
+        }
+    }
+
+    public function step3(Request $request)
+    {
+        if ($request->session()->has('step2')) {
+            $request->session()->put('step3', 'step3');
+        } else {
+            echo 'Tidak ada data dalam session.';
+        }
+    }
+
+    public function selesai(Request $request)
+    {
+        if ($request->session()->has('step3')) {
+            $request->session()->forget('step1');
+            $request->session()->forget('step2');
+            $request->session()->forget('step3');
+        } else {
+            echo 'Tidak ada data dalam session.';
+        }
     }
 }

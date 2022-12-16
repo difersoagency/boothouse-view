@@ -46,8 +46,8 @@
                         </div>
                         <div></div>
                         <div class="submit-pembayaran">
-                            <button onclick="checkoutBooth()"type="button" class=" mt-5 px-5 py-2 bg-prim-red rounded-md text-prim-white"
-                              >Pembayaran</button>
+                            <button onclick="checkoutBooth()"type="button"
+                                class=" mt-5 px-5 py-2 bg-prim-red rounded-md text-prim-white">Pembayaran</button>
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,10 @@
                             <div class="info">
                                 <p class="text-prim-brown font-bold text-[16px]" id="nama-booth-bayar">Nama Produk</p>
                                 <p class="text-prim-brown font-bold mt-2 text-[16px]">Warna : Merah</p>
-                                <p class="text-prim-brown font-bold mt-2 text-[16px]" >Ukuran : <span id="ukuran-booth-bayar">-</span></p>
-                                <p class="text-prim-brown font-bold mt-2 text-[16px]" >Harga : Rp <span id="harga-booth-bayar">0</span>
+                                <p class="text-prim-brown font-bold mt-2 text-[16px]">Ukuran : <span
+                                        id="ukuran-booth-bayar">-</span></p>
+                                <p class="text-prim-brown font-bold mt-2 text-[16px]">Harga : Rp <span
+                                        id="harga-booth-bayar">0</span>
                                 </p>
                             </div>
                         </div>
@@ -68,8 +70,8 @@
                         <div class="mt-3">
                             <ul class="grid gap-6 w-full md:grid-cols-2">
                                 <li>
-                                    <input type="radio" id="mandiri" name="jenis_kirim" value="mandiri" class="hidden peer"
-                                        required onchange="handleChange(this);" checked>
+                                    <input type="radio" id="mandiri" name="jenis_kirim" value="mandiri"
+                                        class="hidden peer" required onchange="handleChange(this);" checked>
                                     <label for="mandiri"
                                         class="inline-flex justify-between items-center px-5 py-2 w-full rounded-lg border-2 border-prim-brown bg-prim-white text-prim-brown font-bold cursor-pointer transition-all dark:hover:text-prim-white dark:border-prim-brown dark:peer-checked:text-prim-white peer-checked:bg-prim-brown peer-checked:text-blue-600 hover:text-prim-white hover:bg-prim-brown">
                                         <div class="block">
@@ -93,11 +95,11 @@
                         </div>
                         <div class="subtotal grid grid-cols-2 mt-8 gap-y-3 items-center">
                             <p class="text-prim-brown">Subtotal</p>
-                            <p class="text-prim-brown font-bold" >: Rp <span id="subtotal-booth-bayar">0</span></p>
+                            <p class="text-prim-brown font-bold">: Rp <span id="subtotal-booth-bayar">0</span></p>
                             <p class="text-prim-brown">Pajak (10%)</p>
-                            <p class="text-prim-brown font-bold" >: Rp <span id="pajak-booth-bayar">0</span></p>
+                            <p class="text-prim-brown font-bold">: Rp <span id="pajak-booth-bayar">0</span></p>
                             <p class="text-prim-brown">Ongkos Kirim</p>
-                            <p class="text-prim-brown font-bold" >: Rp <span id="ongkir-booth-bayar">0</span></p>
+                            <p class="text-prim-brown font-bold">: Rp <span id="ongkir-booth-bayar">0</span></p>
                             <input id="ongkir-booth-bayar-text" value="0" class="hidden">
                             <p class="text-prim-brown">Uang Muka (Optional)</p>
                             <p>: <input type="number" name="dibayar" id="dp-booth-bayar" value="0"
@@ -108,7 +110,12 @@
                     </div>
                     <div class="px-8 py-5 bg-prim-brown rounded-b-md">
                         <h2 class="text-prim-yellow font-bold text-[26px]">Total</h2>
-                        <p class="text-prim-yellow font-bold text-[26px]" >Rp <span id="total-booth-bayar">0</span>
+                        <p class="text-prim-yellow font-bold text-[26px]">Rp <span id="total-booth-bayar">0</span>
+                        </p>
+                    </div>
+                    <div class="px-8 py-5 bg-prim-brown rounded-b-md">
+                        <h2 class="text-prim-yellow font-bold text-[26px]">Sisa</h2>
+                        <p class="text-prim-yellow font-bold text-[26px]">Rp <span id="sisa-booth-bayar">0</span>
                         </p>
                     </div>
                 </div>
@@ -120,14 +127,14 @@
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('js/select2/css/select2.min.css') }}">
     <script src="{{ asset('js/select2/js/select2.min.js') }}"></script>
-    {{-- <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key=""></script> --}}
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-bJIjYUlD5RrvI9Er"></script>
     <script type="text/javascript">
-     $('#select-kota').select2({
-        placeholder: "Pilih Kota",
-     });
+        $('#select-kota').select2({
+            placeholder: "Pilih Kota",
+        });
 
-     
-     $('#select-provinsi').select2({
+
+        $('#select-provinsi').select2({
             placeholder: "Pilih Provinsi",
             ajax: {
                 minimumResultsForSearch: 20,
@@ -152,113 +159,143 @@
                     };
                 },
             }
-        }) .change(function() {
+        }).change(function() {
             reset_pengiriman();
             total();
-            $("#select-kota").val("").trigger( "change" );
+            $("#select-kota").val("").trigger("change");
             var id = $(this).val();
             $('#select-kota').select2({
-            placeholder: "Pilih Kota",
-            ajax: {
-                minimumResultsForSearch: 20,
-                dataType: 'json',
-                theme: "bootstrap",
-                delay: 250,
-                type: 'GET',
-                url: '/provinsi/'+id,
-                data: function(params) {
-                    return {
-                        term: params.term,
+                placeholder: "Pilih Kota",
+                ajax: {
+                    minimumResultsForSearch: 20,
+                    dataType: 'json',
+                    theme: "bootstrap",
+                    delay: 250,
+                    type: 'GET',
+                    url: '/provinsi/' + id,
+                    data: function(params) {
+                        return {
+                            term: params.term,
+                        }
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(obj) {
+                                return {
+                                    id: obj.id,
+                                    text: obj.nama
+                                };
+                            })
+                        };
+                    },
+                }
+            }).change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    url: '/kota/' + id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(res) {
+                        reset_pengiriman()
+                        sessionStorage.setItem('ongkir_kota', res.biaya_kirim);
+                        total();
                     }
-                },
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(obj) {
-                            return {
-                                id: obj.id,
-                                text: obj.nama
-                            };
-                        })
-                    };
-                },
-            }
-        }).change(function() {
-            var id = $(this).val();
+                });
+            })
+        });
+
+        function reset_pengiriman() {
+            document.getElementById("mandiri").checked = true;
+            document.querySelector('#ongkir-booth-bayar').textContent = 0;
+            document.getElementById('ongkir-booth-bayar-text').value = 0;
+        }
+
+
+        function submitForm(data) {
             $.ajax({
-            url: '/kota/'+id,
-            type: 'GET',
-            dataType: 'json',
-            success: function(res) {
-                reset_pengiriman()
-                sessionStorage.setItem('ongkir_kota', res.biaya_kirim);
-                total();
-            }
-        });
-        })
-        });
-
-    function reset_pengiriman(){
-        document.getElementById("mandiri").checked = true;
-        document.querySelector('#ongkir-booth-bayar').textContent = 0;
-        document.getElementById('ongkir-booth-bayar-text').value = 0;
-    }
+                url: "/checkout",
+                method: "POST",
+                data: data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                datatype: "json"
+            });
+        }
 
 
-    function checkoutBooth(){
-        
-
-        let depan = $("#nama-depan").val();
-        let belakang = $("#nama-belakang").val();
-        let provinsi = $("#select-provinsi").val();
-        let kota = $("#select-kota").val();
-        let alamat = $("#alamat").val();
-        let tel = $("#tel").val();
-        let ukuranbooth = sessionStorage.getItem(
+        function checkoutBooth() {
+            let depan = $("#nama-depan").val();
+            let belakang = $("#nama-belakang").val();
+            let provinsi = $("#select-provinsi").val();
+            let kota = $("#select-kota").val();
+            let alamat = $("#alamat").val();
+            let tel = $("#tel").val();
+            let ukuranbooth = sessionStorage.getItem(
                 "ukuran-booth");
-        let ongkir = $("#ongkir-booth-bayar-text").val();
-        let dp = $("#dp-booth-bayar").val();
-        let total_bayar = sessionStorage.getItem(
+            let ongkir = $("#ongkir-booth-bayar-text").val();
+            let dp = $("#dp-booth-bayar").val();
+            let nama_booths = sessionStorage.getItem(
+                "nama-booth");
+            let total_bayar = sessionStorage.getItem(
                 "total-booth");
-        let id_booth = sessionStorage.getItem(
-        "id-booth");
-        let jenis_kirim = $('input[name="jenis_kirim"]:checked').val();
+            let sisa_bayar = sessionStorage.getItem(
+                "sisa-booth");
+            let id_booth = sessionStorage.getItem(
+                "id-booth");
+            let jenis_kirim = $('input[name="jenis_kirim"]:checked').val();
 
 
-        if (depan == "" || belakang == "" || provinsi == null || kota == null || alamat == "" || tel == "") {
-            alert('form kosong')
-        }else{
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "POST",
-            url: '/checkout',
-            data: {
-                depan: depan,
-                belakang: belakang,
-                provinsi: provinsi,
-                kota: kota,
-                alamat: alamat,
-                tel: tel,
-                ukuran: ukuranbooth,
-                ongkir: ongkir,
-                dp: dp,
-                total_bayar: total_bayar,
-                jenis_kirim: jenis_kirim,
-                id_booth: id_booth,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'JSON',
-            success: function(response) {
-                window.location.href = response.redirect_url;
-            } ,
-              error: function(xhr, status, error) {
-           alert('nok')
+            if (depan == "" || belakang == "" || provinsi == null || kota == null || alamat == "" || tel == "") {
+                alert('form kosong')
+            } else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: '/payToken',
+                    data: {
+                        depan: depan,
+                        belakang: belakang,
+                        provinsi: provinsi,
+                        kota: kota,
+                        alamat: alamat,
+                        tel: tel,
+                        ukuran: ukuranbooth,
+                        ongkir: ongkir,
+                        dp: dp,
+                        total_bayar: total_bayar,
+                        sisa_bayar: sisa_bayar,
+                        jenis_kirim: jenis_kirim,
+                        id_booth: id_booth,
+                        nama_booths: nama_booths,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'JSON',
+                    success: function(response) {
+                        //      console.log(response.data)
+                        snap.pay(response.token, {
+                            onSuccess: function(result) {
+                                window.location.href = '/thankyou';
+                                submitForm(response.data)
+                                clearSession()
+                            },
+                            onPending: function(result) {
+                                alert('pembayaran dibatalkan')
+                            },
+                            onError: function(result) {
+                                alert('eror')
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        alert('nok')
+                    }
+                })
+            }
+
         }
-        })
-        }
-       
-    }
         setValueBayar();
         total();
 
@@ -267,9 +304,6 @@
                 "harga-booth").split('.').join("");
             let pajak = harga * 0.1
             let convert_pajak = pajak.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-
-
             document.getElementById('nama-booth-bayar').innerText = sessionStorage.getItem("nama-booth");
             document.getElementById('harga-booth-bayar').innerText = sessionStorage.getItem("harga-booth");
             document.getElementById('subtotal-booth-bayar').innerText = sessionStorage.getItem(
@@ -281,7 +315,7 @@
         }
 
 
-     
+
         function handleChange(src) {
             let result = document.querySelector('#ongkir-booth-bayar');
             let result_text = document.getElementById('ongkir-booth-bayar-text');
@@ -291,7 +325,8 @@
                     values = 0;
                     break;
                 case 'jasaKirim':
-                    message =  sessionStorage.getItem("ongkir_kota") === null ? '0' : sessionStorage.getItem("ongkir_kota").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    message = sessionStorage.getItem("ongkir_kota") === null ? '0' : sessionStorage.getItem("ongkir_kota")
+                        .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                     values = sessionStorage.getItem("ongkir_kota") === null ? '0' : sessionStorage.getItem("ongkir_kota");
                     break;
             }
@@ -308,10 +343,16 @@
             let harga = sessionStorage.getItem(
                 "harga-booth").split('.').join("");
             let pajak = harga * 0.1
-            let total = parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(dp);
+            let total_dp = parseInt(dp) + parseInt(pajak) + parseInt(ongkir);
+            let total_cash = parseInt(harga) + parseInt(pajak) + parseInt(ongkir);
+            let total = dp != 0 ? total_dp : total_cash;
+            let sisa = dp != 0 ? parseInt(harga) + parseInt(pajak) + parseInt(ongkir) - parseInt(total_dp) : 0
             let convert_total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            let convert_sisa = sisa.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             document.getElementById('total-booth-bayar').innerText = convert_total;
+            document.getElementById('sisa-booth-bayar').innerText = convert_sisa;
             sessionStorage.setItem('total-booth', total);
+            sessionStorage.setItem('sisa-booth', sisa);
         }
 
 

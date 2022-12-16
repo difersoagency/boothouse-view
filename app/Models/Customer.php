@@ -25,6 +25,6 @@ class Customer extends Model
     }
     public function User()
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class);
     }
 }

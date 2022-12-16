@@ -16,6 +16,7 @@ class Order extends Model
         'total_harga',
         'jenis_pengiriman_id',
         'tgl_kirim',
+        'nama',
         'alamat',
         'kota_id',
         'no_telp',

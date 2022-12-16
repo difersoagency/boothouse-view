@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Provinsi;
+use App\Models\Kota;
+use App\Models\Customer;
 use App\Models\DetailBooth;
 use App\Models\Order;
 use App\Models\DetailOrder;
@@ -106,5 +108,45 @@ class AdminController extends Controller
             $data[$i->Status->nama] = $i->jumlah;
         }
         return response()->json($data);
+    }
+
+    public function master_customer(){
+        $cust = Customer::all();
+        $data = array();
+        foreach($cust as $key => $i){
+            $data[$key] = array('id' => $i->id,
+                'nama_depan' => $i->nama_depan,
+                'nama_belakang' => $i->nama_belakang,
+                'no_telp' => $i->no_telp,
+                'username' => $i->User->username,
+                'email' => $i->User->email
+            );
+        }
+        return response()->json(['data' => $data]);
+    }
+
+    public function master_kota(){
+        $kota = Kota::all();
+        $data = array();
+        foreach($kota as $key => $i){
+            $data[$key] = array('id' => $i->id,
+                'nama' => $i->nama,
+                'provinsi' => $i->provinsi->nama,
+            );
+        }
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function master_provinsi(){
+        $prov = Provinsi::all();
+        $data = array();
+        foreach($prov as $key => $i){
+            $data[$key] = array('id' => $i->id,
+                'nama' => $i->nama,
+            );
+        }
+
+        return response()->json(['data' => $data]);
     }
 }

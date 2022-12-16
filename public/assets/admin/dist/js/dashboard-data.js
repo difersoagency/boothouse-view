@@ -27,8 +27,6 @@ $(function(){
 					}
 				},
 				columns: [{
-						data: null,
-					}, {
 						data: 'customer_nama',
 						className: 'nowrap-text align-center',
 					},
@@ -79,7 +77,7 @@ $(function(){
 			"columnDefs": [ {
 				"searchable": false,
 				"orderable": false,
-				"targets": [0,4,5]
+				"targets": [0,3,4]
 			} ],
 			"order": [1, 'asc' ],
 			language: { search: "",
@@ -96,7 +94,7 @@ $(function(){
 			}
 		});
 	
-		no_kolom(penjualantable);
+		// no_kolom(penjualantable);
 		// $(document).on( 'click', '.del-button', function () {
 		// 	targetDt.rows('.selected').remove().draw( false );
 		// 	return false;
@@ -204,6 +202,195 @@ $(function(){
 	}
 	
 	status();
+
+	if ($("#customertable").length > 0) {
+		var customertable = $('#customertable').DataTable({
+				destroy: true,
+				processing: true,
+				serverSide: true,
+				ajax: {
+					'type': 'GET',
+					'datatype': 'JSON',
+					'url': '/api/master/customer',
+					'headers': {
+						'X-CSRF-TOKEN': '{{ csrf_token() }}'
+					}
+				},
+				columns: [{
+						data: 'nama_depan',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'nama_belakang',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'username',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'email',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'no_telp',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: null,
+						className: 'nowrap-text align-center',
+						render: function(data, type, row) {
+							var data = '';
+							data += `<a data-toggle="detailmodal" data-target="#detailmodal" class="detailmodal" id="detailmodal"><button type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> Detail</button></a>`;
+							return data;
+						}
+					}
+				],
+			"dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+			"ordering": true,
+			"columnDefs": [ {
+				"searchable": false,
+				"orderable": false,
+				"targets": [0]
+			} ],
+			"order": [0, 'asc' ],
+			language: { search: "",
+				searchPlaceholder: "Search",
+				"info": "_START_ - _END_ of _TOTAL_",
+				sLengthMenu: "View  _MENU_",
+				paginate: {
+				  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
+				  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
+				}
+			},
+			"drawCallback": function () {
+				$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
+			}
+		});
+	
+		// no_kolom(penjualantable);
+		// $(document).on( 'click', '.del-button', function () {
+		// 	targetDt.rows('.selected').remove().draw( false );
+		// 	return false;
+		// });
+	}
+
+	if ($("#kotatable").length > 0) {
+		var kotatable = $('#kotatable').DataTable({
+				destroy: true,
+				processing: true,
+				serverSide: true,
+				ajax: {
+					'type': 'GET',
+					'datatype': 'JSON',
+					'url': '/api/master/kota',
+					'headers': {
+						'X-CSRF-TOKEN': '{{ csrf_token() }}'
+					}
+				},
+				columns: [{
+						data: 'provinsi',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'nama',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: null,
+						className: 'nowrap-text align-center',
+						render: function(data, type, row) {
+							var data = '';
+							data += `<a data-toggle="detailmodal" data-target="#detailmodal" class="detailmodal" id="detailmodal"><button type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> Detail</button></a>`;
+							return data;
+						}
+					}
+				],
+			"dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+			"ordering": true,
+			"columnDefs": [ {
+				"searchable": false,
+				"orderable": false,
+				"targets": [0]
+			} ],
+			"order": [0, 'asc' ],
+			language: { search: "",
+				searchPlaceholder: "Search",
+				"info": "_START_ - _END_ of _TOTAL_",
+				sLengthMenu: "View  _MENU_",
+				paginate: {
+				  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
+				  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
+				}
+			},
+			"drawCallback": function () {
+				$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
+			}
+		});
+	
+		// no_kolom(penjualantable);
+		// $(document).on( 'click', '.del-button', function () {
+		// 	targetDt.rows('.selected').remove().draw( false );
+		// 	return false;
+		// });
+	}
+
+	if ($("#provinsitable").length > 0) {
+		var provinsitable = $('#provinsitable').DataTable({
+				destroy: true,
+				processing: true,
+				serverSide: true,
+				ajax: {
+					'type': 'GET',
+					'datatype': 'JSON',
+					'url': '/api/master/provinsi',
+					'headers': {
+						'X-CSRF-TOKEN': '{{ csrf_token() }}'
+					}
+				},
+				columns: [
+					{
+						data: 'nama',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: null,
+						className: 'nowrap-text align-center',
+						render: function(data, type, row) {
+							var data = '';
+							data += `<a data-toggle="detailmodal" data-target="#detailmodal" class="detailmodal" id="detailmodal"><button type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> Detail</button></a>`;
+							return data;
+						}
+					}
+				],
+			"dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+			"ordering": true,
+			"columnDefs": [ {
+				"searchable": false,
+				"orderable": false,
+				"targets": [0]
+			} ],
+			"order": [0, 'asc' ],
+			language: { search: "",
+				searchPlaceholder: "Search",
+				"info": "_START_ - _END_ of _TOTAL_",
+				sLengthMenu: "View  _MENU_",
+				paginate: {
+				  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
+				  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
+				}
+			},
+			"drawCallback": function () {
+				$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
+			}
+		});
+	
+		// no_kolom(penjualantable);
+		// $(document).on( 'click', '.del-button', function () {
+		// 	targetDt.rows('.selected').remove().draw( false );
+		// 	return false;
+		// });
+	}
 })
 
 

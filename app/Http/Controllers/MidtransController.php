@@ -19,6 +19,7 @@ use App\Http\Controllers\Midtrans\Snap;
 
 // Sanitization
 use App\Http\Controllers\Midtrans\Sanitizer;
+use App\Models\Kota;
 use Illuminate\Support\Arr;
 
 class MidtransController extends Controller
@@ -30,131 +31,82 @@ class MidtransController extends Controller
      */
 
     //
-    public function getSnapToken(Request $req)
+    public function getSnapToken(Request $request)
     {
-
-        // $item_list = array();
-        // $amount = 0;
-        // Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
-        // if (!isset(Config::$serverKey)) {
-        //     return "Please set your payment server key";
-        // }
-        // Config::$isSanitized = true;
-
-        // // Enable 3D-Secure
-        // Config::$is3ds = true;
-
-        // // Required
-
-        // $item_list[] = [
-        //     'id' => "111",
-        //     'price' => 20000,
-        //     'quantity' => 1,
-        //     'name' => "Majohn"
-        // ];
-
-        // $transaction_details = array(
-        //     'order_id' => rand(),
-        //     'gross_amount' => 20000, // no decimal allowed for creditcard
-        // );
-
-
-        // // Optional
-        // $item_details = $item_list;
-
-        // // Optional
-        // $billing_address = array(
-        //     'first_name'    => "Andri",
-        //     'last_name'     => "Litani",
-        //     'address'       => "Mangga 20",
-        //     'city'          => "Jakarta",
-        //     'postal_code'   => "16602",
-        //     'phone'         => "081122334455",
-        //     'country_code'  => 'IDN'
-        // );
-
-        // // Optional
-        // $shipping_address = array(
-        //     'first_name'    => "Obet",
-        //     'last_name'     => "Supriadi",
-        //     'address'       => "Manggis 90",
-        //     'city'          => "Jakarta",
-        //     'postal_code'   => "16601",
-        //     'phone'         => "08113366345",
-        //     'country_code'  => 'IDN'
-        // );
-
-        // // Optional
-        // $customer_details = array(
-        //     'first_name'    => "Andrsi",
-        //     'last_name'     => "Litani",
-        //     'email'         => "andri@litani.com",
-        //     'phone'         => "081122334455",
-        //     'billing_address'  => $billing_address,
-        //     'shipping_address' => $shipping_address
-        // );
-
-        // // Optional, remove this to display all available payment methods
-        // $enable_payments = array();
-
-        // // Fill transaction details
-        // $transaction = array(
-        //     'enabled_payments' => $enable_payments,
-        //     'transaction_details' => $transaction_details,
-        //     'customer_details' => $customer_details,
-        //     'item_details' => $item_details,
-        // );
-        // // return $transaction;
-        // try {
-        //     $snapToken = Snap::getSnapToken($transaction);
-        //     return response()->json($snapToken);
-        //     // return ['code' => 1 , 'message' => 'success' , 'result' => $snapToken];
-        // } catch (\Exception $e) {
-        //     dd($e);
-        //     return ['code' => 0, 'message' => 'failed'];
-        // }
-
-
-        // Set your Merchant Server Key
+        $kota = Kota::find($request->kota);
+        //Midtrans
         Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = false;
-        // Set sanitization on (default)
         Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
         Config::$is3ds = true;
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            "item_details" => array(
-                "id" => "ITEM1",
-                "price" => 10000,
-                "quantity" => intval(1),
-                "name" => "Midtrans Bear",
-                "brand" => "Midtrans",
-                "category" => "Toys",
-                "merchant_name" => "Midtrans",
-                "url" => "http://toko/toko1?item=abc"
-            ),
-            'customer_details' => array(
-                'first_name' => 'asdas',
-                'last_name' => 'asdasd',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-            'shipping_address' => array(
-                'address'       => "Manggis 90",
-                'city'          => "Jakarta",
-                'phone'         => "08113366345",
-                'country_code'  => 'IDN'
-            ),
+        // Optional
+        $billing_address = array(
+            'first_name'    => $request->depan,
+            'last_name'     => $request->belakang,
+            'address'       =>  $request->alamat,
+            'city'          => $kota->nama,
+            'phone'         => $request->tel,
+        );
+
+        // Optional
+        $shipping_address = array(
+            'first_name'    => $request->depan,
+            'last_name'     => $request->belakang,
+            'address'       =>  $request->alamat,
+            'city'          =>  $kota->nama,
+            'phone'         => $request->tel,
 
         );
 
-        $snapToken = Snap::getSnapToken($params);
-        return response()->json($snapToken);
+        $customer_details = array(
+            'first_name' =>  $request->depan,
+            'last_name' =>  $request->belakang,
+            'email' => auth()->user()->email,
+            'phone' => $request->tel,
+            'billing_address'  => $billing_address,
+            'shipping_address' => $shipping_address
+        );
+
+        $transaction_details = array(
+            'order_id' => rand(),
+            'gross_amount' =>  $request->total_bayar,
+        );
+
+        $item_list[] = [
+            'id' =>  rand(),
+            'price' => $request->total_bayar,
+            'quantity' => 1,
+            'name' => 'Booth ' . $request->nama_booths . ' (' . $request->ukuran . ')',
+            'brand' => 'BoothHouse Production',
+            'category' => $request->nama_booths
+        ];
+        $item_details = $item_list;
+        $transaction = array(
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        );
+
+        $data = array(
+            'order_id' => $transaction_details['order_id'],
+            'depan' => $request->depan,
+            'belakang' => $request->belakang,
+            'provinsi' => $request->provinsi,
+            'kota' => $request->kota,
+            'alamat' => $request->alamat,
+            'tel' => $request->tel,
+            'ukuran' => $request->ukuran,
+            'ongkir' => $request->ongkir,
+            'dp' => $request->dp,
+            'total_bayar' => $request->total_bayar,
+            'sisa_bayar' => $request->sisa_bayar,
+            'jenis_kirim' => $request->jenis_kirim,
+            'id_booth' => $request->id_booth,
+            'nama_booths' => $request->nama_booths,
+            '_token' => $request->_token,
+        );
+        $snapToken = Snap::getSnapToken($transaction);
+        return response()->json(['token' => $snapToken->token, 'data' => $data]);
     }
 }

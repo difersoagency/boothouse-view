@@ -26,4 +26,10 @@ Route::prefix('/penjualan')->group(function () {
     Route::get('/data_status', [App\Http\Controllers\AdminController::class, 'data_penjualan_status']);
 });
 
+Route::prefix('/master')->group(function () {
+    Route::get('/kota', [App\Http\Controllers\AdminController::class, 'master_kota']);
+    Route::get('/customer', [App\Http\Controllers\AdminController::class, 'master_customer']);
+    Route::get('/provinsi', [App\Http\Controllers\AdminController::class, 'master_provinsi']);
+});
+
 

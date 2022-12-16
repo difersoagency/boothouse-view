@@ -100,7 +100,6 @@
 								<table id="penjualantable" class="table nowrap w-100 mb-5">
 									<thead>
 										<tr>
-											<th>No</th>
 											<th>Nama Customer</th>
 											<th class="w-25">Tanggal Pemesanan</th>
 											<th>Total Pesanan</th>
