@@ -172,6 +172,25 @@ class AdminController extends Controller
                 'harga' => number_format($i->harga),
             );
         }
+        return response()->json(['data' => $data]);
+    }
+
+    public function order()
+    {
+        $order = Order::all();
+        $data = array();
+        foreach ($order as $key => $i) {
+            $data[$key] = array(
+                'no_order' => $i->no_order,
+                'tgl_order' => $i->tgl_order,
+                'nama' => '-',
+                'pengiriman' => $i->JenisPengiriman->nama,
+                'alamat' => $i->alamat,
+                'kota' => $i->Kota->nama . ', ' . $i->Kota->Provinsi->nama,
+                'no_telp' => $i->no_telp,
+                'status' => $i->Status->nama,
+            );
+        }
 
         return response()->json(['data' => $data]);
     }

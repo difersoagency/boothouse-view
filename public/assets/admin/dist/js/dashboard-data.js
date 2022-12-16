@@ -439,6 +439,64 @@ $(function(){
 		// 	return false;
 		// });
 	}
+	if ($("#ordertable").length > 0) {
+		var ordertable = $('#ordertable').DataTable({
+			columns: [
+				{ data: "no_order" },
+				{ data: "tgl_order" },
+				{ data: "nama" },
+				{ data: "alamat" },
+				{ data: "kota" },
+				{ data: "status" },
+				
+				{
+									data: null,
+									className: 'nowrap-text align-center',
+									render: function(data, type, row) {
+										var data = '';
+										data += `<a data-toggle="detailmodal" data-target="#detailmodal" class="detailmodal" id="detailmodal"><button type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> Detail</button></a>`;
+										return data;
+									}
+								}
+				
+			],
+			
+					"dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+			"ordering": true,
+			"columnDefs": [ {
+				"searchable": true,
+				"orderable": false,
+				"targets": [0]
+			} ],
+			"order": [0, 'asc' ],
+			language: { search: "",
+				searchPlaceholder: "Search",
+				"info": "_START_ - _END_ of _TOTAL_",
+				sLengthMenu: "View  _MENU_",
+				paginate: {
+				  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
+				  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
+				}
+			},
+			"drawCallback": function () {
+				$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
+			}
+		});
+		$.ajax({
+			url: '/api/transaksi/order',
+			dataType: 'json',
+			success: function (json) {
+				ordertable.rows.add(json.data).draw();
+		  
+			}
+		});
+	
+		// no_kolom(penjualantable);
+		// $(document).on( 'click', '.del-button', function () {
+		// 	targetDt.rows('.selected').remove().draw( false );
+		// 	return false;
+		// });
+	}
 
 
 

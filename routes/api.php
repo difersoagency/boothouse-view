@@ -31,3 +31,7 @@ Route::prefix('/master')->group(function () {
     Route::get('/provinsi', [App\Http\Controllers\AdminController::class, 'master_provinsi']);
     Route::get('/booth', [App\Http\Controllers\AdminController::class, 'master_booth']);
 });
+
+Route::prefix('/transaksi')->group(function () {
+    Route::get('/order', [App\Http\Controllers\AdminController::class, 'order']);
+});

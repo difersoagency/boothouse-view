@@ -91,6 +91,37 @@
 								</a>	
 							</li>
 						</ul>
+						
+						
+						</div>
+					<div class="menu-gap"></div>
+					<div class="menu-group">
+						<div class="nav-header">
+							<span>Transaksi</span>
+						</div>
+						<ul class="navbar-nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link" href="/transaksi/order">
+									<span class="nav-icon-wrap">
+										<span class="svg-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+										<circle cx="12" cy="7" r="4" />
+										<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+										</svg>
+										</span>
+									</span>
+									<span class="nav-link-text">Order</span>
+								</a>
+							</li>	
+							
+							
+						
+						</ul>
+						
+						
+						</div>
+						
 					</div>
 				</div>
 			</div>

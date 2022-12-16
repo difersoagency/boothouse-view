@@ -57,6 +57,10 @@ Route::group(['prefix' => '/master', 'middleware' => ['auth']], function () {
     Route::view('/booth', 'admin.master.booth')->name('master.booth');
 });
 
+Route::group(['prefix' => '/transaksi', 'middleware' => ['auth']], function () {
+    Route::view('/order', 'admin.transaksi.order')->name('transaksi.order');
+});
+
 //List Data
 Route::get('/provinsi/{id}', [App\Http\Controllers\HomeController::class, 'selectprovinsi']);
 Route::get('/kota/{id}', [App\Http\Controllers\HomeController::class, 'selectkota']);
