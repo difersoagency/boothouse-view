@@ -2,8 +2,8 @@
 				<div class="menu-content-wrap">
 					<div class="menu-group">
 						<ul class="navbar-nav flex-column">
-							<li class="nav-item active">
-								<a class="nav-link" href="index.html">
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/dashboard">
 									<span class="nav-icon-wrap">
 										<span class="svg-icon">
 											<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-template" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -24,70 +24,104 @@
 					<div class="menu-gap"></div>
 					<div class="menu-group">
 						<div class="nav-header">
+							<span>Master</span>
+						</div>
+						<ul class="navbar-nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link" href="/master/customer">
+									<span class="nav-icon-wrap">
+										<span class="svg-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+										<circle cx="12" cy="7" r="4" />
+										<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+										</svg>
+										</span>
+									</span>
+									<span class="nav-link-text">Customer</span>
+								</a>
+							</li>	
+							<li class="nav-item">
+								<a class="nav-link" href="/master/kota">
+									<span class="nav-icon-wrap">
+										<span class="svg-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+										<circle cx="12" cy="11" r="3" />
+										<path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+										</svg>
+										</span>
+									</span>
+									<span class="nav-link-text">Kota</span>
+									
+								</a>	
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/master/provinsi">
+									<span class="nav-icon-wrap">
+										<span class="svg-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-current-location" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+										<circle cx="12" cy="12" r="3" />
+										<circle cx="12" cy="12" r="8" />
+										<line x1="12" y1="2" x2="12" y2="4" />
+										<line x1="12" y1="20" x2="12" y2="22" />
+										<line x1="20" y1="12" x2="22" y2="12" />
+										<line x1="2" y1="12" x2="4" y2="12" />
+										</svg>
+										</span>
+									</span>
+									<span class="nav-link-text">Provinsi</span>
+									
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/master/booth">
+									<span class="nav-icon-wrap">
+										<span class="svg-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+										<circle cx="12" cy="11" r="3" />
+										<path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+										</svg>
+										</span>
+									</span>
+									<span class="nav-link-text">Booth</span>
+									
+								</a>	
+							</li>
+						</ul>
+						
+						
+						</div>
+					<div class="menu-gap"></div>
+					<div class="menu-group">
+						<div class="nav-header">
 							<span>Transaksi</span>
 						</div>
 						<ul class="navbar-nav flex-column">
 							<li class="nav-item">
-								<a class="nav-link" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#dash_chat">
+								<a class="nav-link" href="/transaksi/order">
 									<span class="nav-icon-wrap">
 										<span class="svg-icon">
-											<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-												<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-												<path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
-												<line x1="12" y1="11" x2="12" y2="11.01" />
-												<line x1="8" y1="11" x2="8" y2="11.01" />
-												<line x1="16" y1="11" x2="16" y2="11.01" />
-											</svg>
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+										<circle cx="12" cy="7" r="4" />
+										<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+										</svg>
 										</span>
 									</span>
-									<span class="nav-link-text">Pemesanan</span>
+									<span class="nav-link-text">Order</span>
 								</a>
-								<!-- <ul id="dash_chat" class="nav flex-column collapse  nav-children">
-									<li class="nav-item">
-										<ul class="nav flex-column">
-											<li class="nav-item">
-												<a class="nav-link" href="chats.html"><span class="nav-link-text">Chats</span></a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="chats-group.html"><span class="nav-link-text">Groups</span></a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="chats-contact.html"><span class="nav-link-text">Contacts</span></a>
-											</li>
-										</ul>	
-									</li>	
-								</ul>	 -->
 							</li>	
-							<li class="nav-item">
-								<a class="nav-link" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#dash_chatpop">
-									<span class="nav-icon-wrap">
-										<span class="svg-icon">
-											<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message-circle-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-												<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-												<path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
-												<line x1="12" y1="12" x2="12" y2="12.01" />
-												<line x1="8" y1="12" x2="8" y2="12.01" />
-												<line x1="16" y1="12" x2="16" y2="12.01" />
-											</svg>
-										</span>
-									</span>
-									<span class="nav-link-text">Chat Popup</span>
-									
-								</a>
-								<ul id="dash_chatpop" class="nav flex-column collapse  nav-children">
-									<li class="nav-item">
-										<ul class="nav flex-column">
-											<li class="nav-item">
-												<a class="nav-link" href="chatpopup.html"><span class="nav-link-text">Direct Message</span></a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="chatbot.html"><span class="nav-link-text">Chatbot</span></a>
-											</li>
-										</ul>	
-									</li>	
-								</ul>	
-							</li>
+							
+							
+						
 						</ul>
+						
+						
+						</div>
+						
 					</div>
 				</div>
 			</div>

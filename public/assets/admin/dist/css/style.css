@@ -17,7 +17,7 @@ Project:	Jampack
 	++Border++
 	++Colors++
 	++Shadow++
-	++Font Size++	
+	++Font Size++
 	++Font Weight++
 	++Text Case++
 	++Letter Spacing++
@@ -70,7 +70,7 @@ Project:	Jampack
 	++Apex Chart++
 	++charts++
 	++Nestable++
-	++Treeview++	
+	++Treeview++
 	++Modals++
 	++Close++
 	++Sweet-alert++
@@ -78,7 +78,7 @@ Project:	Jampack
 	++Toast++
 	++Bootstrap Notify++
 	++Tooltop++
-	++Images++  
+	++Images++
 	++Icons++
     ++Carousel++
 	++Twitter slider++
@@ -119,13 +119,13 @@ Project:	Jampack
 	++Authantication Pages++
 	++Fixed Footer++
 
-++++ Componets Import ++++	
+++++ Componets Import ++++
 -------------------------------------------------------------------*/
 /****************************/
 /** Imports **/
 /****************************/
 @import url(https://fonts.googleapis.com/icon?family=DM+Sans:400,500,700&display=swap||Material+Icons);
-@import url(../../vendors/bootstrap/dist/css/bootstrap.min.css);
+@import url(../../vendor/bootstrap/dist/css/bootstrap.min.css);
 @import url(font-awesome.min.css);
 @import url(dripicons.css);
 @import url(cryptofont.min.css);
@@ -140,9 +140,10 @@ Project:	Jampack
 @import url(bootstrap-icons.css);
 @import url(flaticon.css);
 @import url(prism.css);
-@import url(../../vendors/simplebar/dist/simplebar.min.css);
-@import url(../../vendors/owl.carousel/dist/assets/owl.carousel.min.css);
-@import url(../../vendors/owl.carousel/dist/assets/owl.theme.default.min.css);
+@import url(../../vendor/simplebar/dist/simplebar.min.css);
+@import url(../../vendor/owl.carousel/dist/assets/owl.carousel.min.css);
+@import url(../../vendor/owl.carousel/dist/assets/owl.theme.default.min.css);
+@import url(../../src/scss/variables.scss);
 /*__________________________________________________________________;
 [Mixin]
 Project:	Jampack
@@ -248,7 +249,7 @@ ul.hk-list.hk-list-sm li {
 
 a {
   text-decoration: none;
-  color: #007D88;
+  color: #7D5E3F;
   -webkit-transition: color 0.2s ease;
   -moz-transition: color 0.2s ease;
   transition: color 0.2s ease;
@@ -59062,6 +59063,18 @@ td.text-truncate, th.text-truncate {
   background-color: rgba(41, 141, 255, var(--bs-bg-opacity)) !important;
 }
 
+.bg-prim-brown {
+  background-color:  #7d5e3f !important;
+}
+
+.bg-prim-yellow {
+  background-color:  #f5d97e !important;
+}
+
+.bg-prim-red {
+  background-color:  #f03861 !important;
+}
+
 .bg-blue-dark-5 {
   background-color: rgba(21, 71, 128, var(--bs-bg-opacity)) !important;
 }
@@ -75631,7 +75644,7 @@ table.dataTable thead td, table.dataTable thead th {
   background-image: none !important;
 }
 table.dataTable thead td.sorting_asc, table.dataTable thead td.sorting_desc, table.dataTable thead th.sorting_asc, table.dataTable thead th.sorting_desc {
-  color: #007D88;
+  color: #7D5E3F;
   background-image: none !important;
 }
 table.dataTable thead td.sorting::before, table.dataTable thead td.sorting_asc::before, table.dataTable thead td.sorting_desc::before, table.dataTable thead td.sorting::after, table.dataTable thead td.sorting_asc::after, table.dataTable thead td.sorting_desc::after, table.dataTable thead th.sorting::before, table.dataTable thead th.sorting_asc::before, table.dataTable thead th.sorting_desc::before, table.dataTable thead th.sorting::after, table.dataTable thead th.sorting_asc::after, table.dataTable thead th.sorting_desc::after {
@@ -78892,8 +78905,8 @@ div.hopscotch-bubble .hopscotch-bubble-container .hopscotch-actions .hopscotch-n
 }
 
 .pagination .page-item.active .page-link {
-  background: #007D88;
-  border-color: #007D88;
+  background: #7D5E3F;
+  border-color: #7D5E3F;
   color: #fff;
 }
 .pagination .page-item.disabled .page-link {
@@ -83213,11 +83226,11 @@ Project:	Jampack
   transform: translateX(5px);
 }
 .hk-wrapper[data-layout="vertical"] .hk-menu .menu-content-wrap .menu-group .navbar-nav .nav-item.active > .nav-link {
-  color: #007D88 !important;
+  color: #7d5e3f !important;
 }
 .hk-wrapper[data-layout="vertical"] .hk-menu .menu-content-wrap .menu-group .navbar-nav > .nav-item.active > .nav-link {
-  background: rgba(0, 125, 136, 0.15);
-  color: #007D88 !important;
+  background: #F5D97E;
+  color: #7d5e3f !important;
   border-radius: 0.5rem;
 }
 .hk-wrapper[data-layout="vertical"] .hk-menu .menu-content-wrap .menu-group .navbar-nav > .nav-item > ul {

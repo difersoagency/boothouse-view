@@ -9,12 +9,12 @@
     <div class="w-full lg:w-[1280px] mx-auto px-[20px] lg:px-[80px] mt-[70px]">
         <div class="grid grid-cols-1 lg:grid-cols-2 items-end">
             <div class="kategori">
-                <h2 class="text-[24px] text-prim-brown font-bold">Pilih Tipe Booth</h2>
+                <h2 class="text-[24px] text-prim-dark-green font-bold">Pilih Tipe Booth</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 mt-6 gap-10">
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors">Semua</button>
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors">Outdoor</button>
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors">Portable</button>
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors">Display</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="semua">Semua</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="outdoor">Outdoor</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="portable">Portable</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="display">Display</button>
                 </div>
             </div>
             <div class="search text-end mt-10 lg:mt-0 w-full">
@@ -32,4 +32,26 @@
             Desain</button>
     </div>
 </section>
+@endsection
+</section>
+<script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $(".filter_katalog").click(function() {
+            var values_filter = $(this).attr("data-value");
+            fetch_data(values_filter);
+        });
+
+        function fetch_data(query) {
+            $.ajax({
+                url: "/katalog_data?query=" + query,
+                success: function(data) {
+                    //console.log(data)
+                    $('#showdata_katalog').html(data);
+                }
+            });
+
+        }
+    });
+</script>
 @endsection

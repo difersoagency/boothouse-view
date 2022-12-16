@@ -19,4 +19,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/coba', [App\Http\Controllers\MidtransController::class, 'getSnapToken']);
+Route::prefix('/penjualan')->group(function () {
+    Route::get('/data', [App\Http\Controllers\AdminController::class, 'data_penjualan']);
+    Route::get('/data_tanggal', [App\Http\Controllers\AdminController::class, 'data_penjualan_tanggal']);
+    Route::get('/data_status', [App\Http\Controllers\AdminController::class, 'data_penjualan_status']);
+});
+
+Route::prefix('/master')->group(function () {
+    Route::get('/kota', [App\Http\Controllers\AdminController::class, 'master_kota']);
+    Route::get('/customer', [App\Http\Controllers\AdminController::class, 'master_customer']);
+    Route::get('/provinsi', [App\Http\Controllers\AdminController::class, 'master_provinsi']);
+    Route::get('/booth', [App\Http\Controllers\AdminController::class, 'master_booth']);
+});
+
+Route::prefix('/transaksi')->group(function () {
+    Route::get('/order', [App\Http\Controllers\AdminController::class, 'order']);
+});
