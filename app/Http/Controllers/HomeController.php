@@ -37,6 +37,11 @@ class HomeController extends Controller
     {
         return view('website.home');
     }
+    public function status()
+    {
+        $order =  Order::where('customer_id',  auth()->user()->customer_id)->get();
+        return view('website.status-pesanan', ['order' => $order]);
+    }
     public function cara_pesan()
     {
         return view('website.cara');
@@ -86,6 +91,7 @@ class HomeController extends Controller
         // dd($Request->all());
 
         $order =  Order::create([
+            'nama' => $request->depan . ' ' .  $request->belakang,
             'no_order' => $request->order_id,
             'tgl_order' => Carbon::now(),
             'customer_id' => auth()->user()->customer_id,
@@ -102,7 +108,7 @@ class HomeController extends Controller
             'order_id' => $order->id,
             'detail_booth_id' => $request->id_booth,
             'image_file' => '-',
-            'warna_booth' => 'merah',
+            'warna_booth' => $request->warna,
             'text' => 'testing',
             'hasil_custom' => 'hasil',
         ]);
@@ -128,42 +134,5 @@ class HomeController extends Controller
     {
         $data = Kota::find($id);
         echo json_encode($data);
-    }
-
-
-    //Tes Session
-    public function step1(Request $request)
-    {
-        $request->session()->put('step1', 'step1');
-        echo "Data telah ditambahkan ke session.";
-    }
-
-    public function step2(Request $request)
-    {
-        if ($request->session()->has('step1')) {
-            $request->session()->put('step2', 'step2');
-        } else {
-            echo 'Tidak ada data dalam session.';
-        }
-    }
-
-    public function step3(Request $request)
-    {
-        if ($request->session()->has('step2')) {
-            $request->session()->put('step3', 'step3');
-        } else {
-            echo 'Tidak ada data dalam session.';
-        }
-    }
-
-    public function selesai(Request $request)
-    {
-        if ($request->session()->has('step3')) {
-            $request->session()->forget('step1');
-            $request->session()->forget('step2');
-            $request->session()->forget('step3');
-        } else {
-            echo 'Tidak ada data dalam session.';
-        }
     }
 }

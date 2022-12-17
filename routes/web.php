@@ -46,9 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/checkout', [App\Http\Controllers\HomeController::class, 'checkout']);
 });
 
-Route::get('/status', function () {
-    return view('website.status-pesanan');
-});
+Route::get('/status', [App\Http\Controllers\HomeController::class, 'status']);
 
 Route::group(['prefix' => '/master', 'middleware' => ['auth']], function () {
     Route::view('/customer', 'admin.master.customer')->name('master.customer');

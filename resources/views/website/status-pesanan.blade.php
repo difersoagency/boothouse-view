@@ -25,24 +25,28 @@
                 </li>
             </ul>
         </div>
-        <div class="riwayat mt-10 hidden">
+        <div class="riwayat mt-10 ">
             <h1 class="text-prim-brown text-[26px] font-bold">Riwayat Pemesanan</h1>
             <div class="listRiwayat grid grid-cols-3 gap-6 mt-5">
+                @foreach($order as $d)
                 <div class="px-4 py-5 bg-prim-yellow rounded-md grid grid-cols-2 items-center">
                     <img src="{{asset('assets/images/booth1.png')}}" alt="Booth 1">
                     <div class="ket">
                         <div class="px-7 py-2 bg-success w-fit rounded-md text-prim-white font-bold">
-                            Selesai
+                            {{$d->Status->nama}}
                         </div>
-                        <p class="text-prim-brown text-[14px] mt-4 font-bold">Container Booth</p>
-                        <p class="text-prim-brown text-[14px] mt-1 font-bold">Tanggal : <span> 10-10-2022 </span> </p>
-                        <p class="text-prim-brown text-[14px] mt-1 font-bold">Total : <span>Rp.123.000</span> </p>
+                        <p class="text-prim-brown text-[14px] mt-4 font-bold">{{$d->DetailOrder->DetailBooth->JenisBooth->nama}}</p>
+                        <p class="text-prim-brown text-[14px] mt-4 font-bold">{{$d->DetailOrder->DetailBooth->ukuran}} ({{$d->DetailOrder->warna_booth}})</p>
+                        <p class="text-prim-brown text-[14px] mt-1 font-bold">Tanggal : <span> {{$d->tgl_order}} </span> </p>
+                        <p class="text-prim-brown text-[14px] mt-1 font-bold">Total : <span>Rp. {{number_format($d->total_harga)}}</span> </p>
+                        <p class="text-prim-brown text-[14px] mt-1 font-bold">{{ $d->total_harga != $d->Pembayaran->sum('total_bayar') ? 'Belum Lunas' : 'Lunas'}}</p>
                         <button class="bg-prim-red px-3 mt-3 hover:bg-prim-white hover:text-prim-red transition-colors rounded-lg py-1 text-prim-white font-bold">
                             Detail
                         </button>
                     </div>
                 </div>
-                <div class="px-4 py-5 bg-prim-yellow rounded-md grid grid-cols-2 items-center">
+                @endforeach
+                {{-- <div class="px-4 py-5 bg-prim-yellow rounded-md grid grid-cols-2 items-center">
                     <img src="{{asset('assets/images/booth1.png')}}" alt="Booth 1">
                     <div class="ket">
                         <div class="px-7 py-2 bg-prim-white w-fit rounded-md text-prim-brown font-bold">
@@ -83,7 +87,7 @@
                             Detail
                         </button>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="dataDiri mt-10 w-[50%]">
@@ -92,7 +96,7 @@
                 <div>
                     <label for="email" class="text-prim-brown text-[16px]">Email</label>
                     <br>
-                    <input type="text" name="email" id="email-field" class="mt-3 bg-prim-white px-3 py-2 border-2 rounded-xl border-prim-brown text-prim-brown" placeholder="email@gmail.com" value="youremail@gmail.com" disabled>
+                    <input type="text" name="email" id="email-field" class="mt-3 bg-prim-white px-3 py-2 border-2 rounded-xl border-prim-brown text-prim-brown" placeholder="email@gmail.com" value="{{ Auth::user()->email }}" disabled>
                     <br>
                     <button class="bg-prim-red text-prim-white text-[14px] px-4 py-2 mt-7 rounded-xl" onclick="fieldDisable('#email-field')">Ubah Email</button>
                 </div>

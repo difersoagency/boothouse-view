@@ -20,6 +20,8 @@ use App\Http\Controllers\Midtrans\Snap;
 // Sanitization
 use App\Http\Controllers\Midtrans\Sanitizer;
 use App\Models\Kota;
+use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
 class MidtransController extends Controller
@@ -34,6 +36,16 @@ class MidtransController extends Controller
     public function getSnapToken(Request $request)
     {
         $kota = Kota::find($request->kota);
+        $check = Order::all();
+        $urut = 1;
+        if (count($check) > 0) {
+            $urut =  count($check) + 1;
+            $no = $urut . '/INV/' . $this->getMonth() . '/' . $this->getYear();
+        } else {
+            $no = $urut . '/INV/' . $this->getMonth() . '/' . $this->getYear();
+        }
+
+
         //Midtrans
         Config::$serverKey = 'SB-Mid-server-Om5tljPgzx6GgKequ_fp4uvG';
         Config::$isProduction = false;
@@ -69,7 +81,7 @@ class MidtransController extends Controller
         );
 
         $transaction_details = array(
-            'order_id' => rand(),
+            'order_id' => $no,
             'gross_amount' =>  $request->total_bayar,
         );
 
@@ -97,6 +109,7 @@ class MidtransController extends Controller
             'alamat' => $request->alamat,
             'tel' => $request->tel,
             'ukuran' => $request->ukuran,
+            'warna' => $request->warna,
             'ongkir' => $request->ongkir,
             'dp' => $request->dp,
             'total_bayar' => $request->total_bayar,
@@ -108,5 +121,30 @@ class MidtransController extends Controller
         );
         $snapToken = Snap::getSnapToken($transaction);
         return response()->json(['token' => $snapToken->token, 'data' => $data]);
+    }
+
+    function toRomawi($number)
+    {
+        $map = array('M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400, 'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1);
+        $returnValue = '';
+        while ($number > 0) {
+            foreach ($map as $roman => $int) {
+                if ($number >= $int) {
+                    $number -= $int;
+                    $returnValue .= $roman;
+                    break;
+                }
+            }
+        }
+        return $returnValue;
+    }
+    function getMonth()
+    {
+        $m = Carbon::now()->format('m');
+        return $this->toRomawi($m);
+    }
+    function getYear()
+    {
+        return  Carbon::now()->format('Y');
     }
 }

@@ -11,10 +11,10 @@
             <div class="kategori">
                 <h2 class="text-[24px] text-prim-dark-green font-bold">Pilih Tipe Booth</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 mt-6 gap-10">
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="semua">Semua</button>
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="outdoor">Outdoor</button>
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="portable">Portable</button>
-                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors" data-value="display">Display</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors filter_katalog" data-value="semua">Semua</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors filter_katalog" data-value="outdoor">Outdoor</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors filter_katalog" data-value="portable">Portable</button>
+                    <button class="bg-prim-light-blue py-2 rounded-lg text-prim-dark-green hover:bg-prim-dark-blue transition-colors filter_katalog" data-value="display">Display</button>
                 </div>
             </div>
             <div class="search text-end mt-10 lg:mt-0 w-full">
@@ -32,8 +32,7 @@
             Desain</button>
     </div>
 </section>
-@endsection
-</section>
+
 <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
 <script>
     $(document).ready(function() {

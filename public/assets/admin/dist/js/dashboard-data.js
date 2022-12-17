@@ -15,17 +15,6 @@ $(function(){
 			}).draw();
 		}
 		var penjualantable = $('#penjualantable').DataTable({
-				destroy: true,
-				processing: true,
-				serverSide: true,
-				ajax: {
-					'type': 'GET',
-					'datatype': 'JSON',
-					'url': '/api/penjualan/data',
-					'headers': {
-						'X-CSRF-TOKEN': '{{ csrf_token() }}'
-					}
-				},
 				columns: [{
 						data: 'customer_nama',
 						className: 'nowrap-text align-center',
@@ -93,7 +82,15 @@ $(function(){
 				$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
 			}
 		});
-	
+
+		$.ajax({
+			url: '/api/penjualan/data',
+			dataType: 'json',
+			success: function (json) {
+				penjualantable.rows.add(json.data).draw();
+		  
+			}
+		});
 		// no_kolom(penjualantable);
 		// $(document).on( 'click', '.del-button', function () {
 		// 	targetDt.rows('.selected').remove().draw( false );
@@ -282,6 +279,10 @@ $(function(){
 					},
 					{
 						data: 'nama',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'biaya',
 						className: 'nowrap-text align-center',
 					},
 					{

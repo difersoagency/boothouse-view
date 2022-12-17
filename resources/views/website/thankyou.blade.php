@@ -9,7 +9,7 @@
         <p class="text-prim-brown">Anda dapat melihat perjalanan pesanan Anda di halaman order status, jika ada yang
             dirasa tidak sesuai pada booth yang telah dikirim dapat menghubungi Admin di Whatsapp. Untuk pengiriman
             barang dilakukan setelah pembayaran selesai dilunasi.</p>
-        <button class="mt-4 mx-auto col-span-2 px-5 py-2 hover:bg-prim-light-blue rounded-full bg-prim-dark-green transition-colors text-prim-white hover:text-prim-dark-green font-bold">
+        <button class="mt-4 mx-auto col-span-2 px-5 py-2 hover:bg-prim-light-blue rounded-full bg-prim-dark-green transition-colors text-prim-white hover:text-prim-dark-green font-bold"  onclick="location.href='status'">
             Status Pesanan
         </button>
     </div>

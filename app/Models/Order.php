@@ -42,7 +42,7 @@ class Order extends Model
     }
     public function DetailOrder()
     {
-        return $this->hasMany(DetailOrder::class);
+        return $this->hasOne(DetailOrder::class);
     }
     public function JenisPengiriman()
     {

@@ -26,6 +26,7 @@
 										<tr>
 											<th>Provnsi</th>
 											<th>Nama</th>
+											<th>Biaya Kirim</th>
 											<th>Aksi</th>
 										</tr>
 									</thead>
