@@ -23,7 +23,7 @@
     <!-- Data Table CSS -->
     <link href="{{ asset('assets/admin/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/admin/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
+    <link href="{{ asset('assets/admin/vendor/datatables.net-responsive-\bs5/css/responsive.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
 
     <!-- CSS -->

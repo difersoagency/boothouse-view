@@ -79,21 +79,24 @@
 								<a class="nav-link" href="/master/booth">
 									<span class="nav-icon-wrap">
 										<span class="svg-icon">
-										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-current-location" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
 										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-										<circle cx="12" cy="11" r="3" />
-										<path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+										<circle cx="12" cy="12" r="3" />
+										<circle cx="12" cy="12" r="8" />
+										<line x1="12" y1="2" x2="12" y2="4" />
+										<line x1="12" y1="20" x2="12" y2="22" />
+										<line x1="20" y1="12" x2="22" y2="12" />
+										<line x1="2" y1="12" x2="4" y2="12" />
 										</svg>
 										</span>
 									</span>
 									<span class="nav-link-text">Booth</span>
 									
-								</a>	
+								</a>
 							</li>
+							
 						</ul>
-						
-						
-						</div>
+					</div>
 					<div class="menu-gap"></div>
 					<div class="menu-group">
 						<div class="nav-header">
@@ -130,7 +133,6 @@
 									@csrf
 								</form>					
 								</ul>
-							</div>					
-					</div>
+							</div>	
 				</div>
 			</div>
