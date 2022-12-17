@@ -1212,9 +1212,17 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(162 219 250 / var(--tw-bg-opacity));
 }
+.peer:checked ~ .peer-checked\:bg-prim-dark-green {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 55 66 / var(--tw-bg-opacity));
+}
 .peer:checked ~ .peer-checked\:text-prim-dark-green {
   --tw-text-opacity: 1;
   color: rgb(5 55 66 / var(--tw-text-opacity));
+}
+.peer:checked ~ .peer-checked\:text-prim-white {
+  --tw-text-opacity: 1;
+  color: rgb(232 240 242 / var(--tw-text-opacity));
 }
 @media (prefers-color-scheme: dark) {
 
