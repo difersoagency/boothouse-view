@@ -113,15 +113,24 @@
 									</span>
 									<span class="nav-link-text">Order</span>
 								</a>
-							</li>	
-							
-							
-						
-						</ul>
-						
-						
+							</li>						
+							</ul>
 						</div>
-						
+						<div class="menu-gap"></div>
+						<div class="menu-group">
+							<ul class="navbar-nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+									document.getElementById('logout-form').submit();">
+										
+										<span class="nav-link-text">Keluar</span>
+									</a>
+								</li>	
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+								</form>					
+								</ul>
+							</div>					
 					</div>
 				</div>
 			</div>

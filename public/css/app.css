@@ -1218,11 +1218,6 @@ video {
 }
 @media (prefers-color-scheme: dark) {
 
-  .dark\:border-prim-dark-green {
-    --tw-border-opacity: 1;
-    border-color: rgb(5 55 66 / var(--tw-border-opacity));
-  }
-
   .dark\:hover\:text-prim-white:hover {
     --tw-text-opacity: 1;
     color: rgb(232 240 242 / var(--tw-text-opacity));

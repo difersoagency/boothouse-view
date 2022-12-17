@@ -24,7 +24,7 @@ class AdminController extends Controller
                 'customer_nama' => $res->Customer->nama_depan . ' ' . $res->Customer->nama_belakang,
                 'tgl_order' => $res->tgl_order,
                 'status' => $res->Status->nama,
-                'total_harga' => $res->total_harga
+                'total_harga' => number_format($res->total_harga)
             );
         }
         return response()->json(['data' => $data]);
@@ -140,6 +140,7 @@ class AdminController extends Controller
                 'id' => $i->id,
                 'nama' => $i->nama,
                 'provinsi' => $i->provinsi->nama,
+                'biaya' => number_format($i->biaya_kirim),
             );
         }
 

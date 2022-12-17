@@ -136,19 +136,25 @@ function snap_bayar(){
 }
 
 
+function pilih_waran_booth(src) {
+    sessionStorage.setItem('warna-booth', src.value);
+}
  function order_booth(){
     let ukuran_form = document.querySelector('input[name=ukuran]:checked');
+    let warna_form = document.querySelector('input[name=warna]:checked');
     let nama_booth_katalog = document.getElementById('nama_booth_katalog').value;
     let harga_booth_katalog = document.getElementById('harga_booth_katalog').value;
     let id_booth_katalog = document.getElementById('id_booth_katalog').value;
     let ukuran_booth_katalog = document.getElementById('ukuran_booth_katalog').value;
-    if (ukuran_form === null ) {
-        alert('Ukuran belum dipilih');
+  
+    if (ukuran_form === null ||warna_form === null ) {
+        alert('Ukuran atau Warna belum dipilih');
      } else {
         sessionStorage.setItem('id-booth', id_booth_katalog);
         sessionStorage.setItem('nama-booth', nama_booth_katalog);
         sessionStorage.setItem('harga-booth', harga_booth_katalog);
         sessionStorage.setItem('ukuran-booth', ukuran_booth_katalog);
+      
         window.location.href = '/custom'
     }
 }

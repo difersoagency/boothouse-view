@@ -13,13 +13,13 @@
                         <div>
                             <label for="nama-depan" class="text-prim-brown font-bold text-[14px]">Nama Depan</label> <br>
                             <input type="text" name="nama-depan" id="nama-depan"
-                                class="mt-3 h-10 w-full rounded-md border-2 border-prim-brown px-3 text-prim-brown">
+                                class="mt-3 h-10 w-full rounded-md border-2 border-prim-brown px-3 text-prim-brown" value="{{ Auth::user()->customer->nama_depan }}">
                         </div>
                         <div>
                             <label for="nama-belakang" class="mb-2 text-prim-brown font-bold text-[14px]">Nama
                                 Belakang</label> <br>
                             <input type="text" name="nama-belakang" id="nama-belakang"
-                                class="mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown">
+                                class="mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown" value="{{ Auth::user()->customer->nama_belakang }}">
                         </div>
                         <div>
                             <label for="provinsi" class="mb-2 text-prim-brown font-bold text-[14px]">Provinsi</label> <br>
@@ -41,8 +41,8 @@
                         </div>
                         <div class="">
                             <label for="tel" class="mb-2 text-prim-brown font-bold text-[14px]">No.Telepon</label> <br>
-                            <input type="tel" name="tel" id="tel"
-                                class="mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown">
+                            <input type="text" name="tel" id="tel"
+                                class="mt-3 h-10 rounded-md border-2 w-full border-prim-brown px-3 text-prim-brown" value="{{ Auth::user()->customer->no_telp }}">
                         </div>
                         <div></div>
                         <div class="submit-pembayaran">
@@ -58,7 +58,8 @@
                             <img src="{{ asset('assets/images/booth1.png') }}" alt="" width="80%">
                             <div class="info">
                                 <p class="text-prim-brown font-bold text-[16px]" id="nama-booth-bayar">Nama Produk</p>
-                                <p class="text-prim-brown font-bold mt-2 text-[16px]">Warna : Merah</p>
+                                <p class="text-prim-brown font-bold mt-2 text-[16px]">Warna : <span
+                                    id="warna-booth">-</span></p>
                                 <p class="text-prim-brown font-bold mt-2 text-[16px]">Ukuran : <span
                                         id="ukuran-booth-bayar">-</span></p>
                                 <p class="text-prim-brown font-bold mt-2 text-[16px]">Harga : Rp <span
@@ -244,6 +245,7 @@
             let id_booth = sessionStorage.getItem(
                 "id-booth");
             let jenis_kirim = $('input[name="jenis_kirim"]:checked').val();
+            let warna = sessionStorage.getItem("warna-booth");
 
 
             if (depan == "" || belakang == "" || provinsi == null || kota == null || alamat == "" || tel == "") {
@@ -263,6 +265,7 @@
                         alamat: alamat,
                         tel: tel,
                         ukuran: ukuranbooth,
+                        warna: warna,
                         ongkir: ongkir,
                         dp: dp,
                         total_bayar: total_bayar,
@@ -274,7 +277,7 @@
                     },
                     dataType: 'JSON',
                     success: function(response) {
-                        //      console.log(response.data)
+                         //  console.log(response.data)
                         snap.pay(response.token, {
                             onSuccess: function(result) {
                                 window.location.href = '/thankyou';
@@ -306,6 +309,7 @@
             let convert_pajak = pajak.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             document.getElementById('nama-booth-bayar').innerText = sessionStorage.getItem("nama-booth");
             document.getElementById('harga-booth-bayar').innerText = sessionStorage.getItem("harga-booth");
+            document.getElementById('warna-booth').innerText = sessionStorage.getItem("warna-booth");
             document.getElementById('subtotal-booth-bayar').innerText = sessionStorage.getItem(
                 "harga-booth");
             document.getElementById('pajak-booth-bayar').innerText = convert_pajak;

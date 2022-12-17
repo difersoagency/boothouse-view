@@ -27,32 +27,32 @@
                 <p class="text-prim-brown font-bold text-[14px]">Pilih Warna :</p>
                 <ul class="grid gap-6 md:grid-cols-6 color-picker mt-2 mb-5">
                     <li>
-                        <input type="radio" id="merah" name="ukuran" value="merah" class="hidden peer" required>
-                        <label for="merah" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
+                        <input type="radio" id="hijau-tua" name="warna" value="Hijau Tua" class="hidden peer" required onchange="pilih_waran_booth(this)">
+                        <label for="hijau-tua" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
                             <div class="w-10 h-10 bg-prim-dark-green rounded-full color cursor-pointer  outline-1">
                             </div>
 
                         </label>
                     </li>
                     <li>
-                        <input type="radio" id="kuning" name="ukuran" value="kuning" class="hidden peer" required>
-                        <label for="kuning" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
+                        <input type="radio" id="biru-tua" name="warna" value="Biru Tua" class="hidden peer" required onchange="pilih_waran_booth(this)">
+                        <label for="biru-tua" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
                             <div class="w-10 h-10 bg-prim-dark-blue rounded-full color cursor-pointer  outline-1">
                             </div>
 
                         </label>
                     </li>
                     <li>
-                        <input type="radio" id="hijau" name="ukuran" value="hijau" class="hidden peer" required>
-                        <label for="hijau" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
+                        <input type="radio" id="hijau-muda" name="warna" value="Hijau Muda" class="hidden peer" required onchange="pilih_waran_booth(this)">
+                        <label for="hijau-muda" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
                             <div class="w-10 h-10 bg-success rounded-full color cursor-pointer  outline-1">
                             </div>
 
                         </label>
                     </li>
                     <li>
-                        <input type="radio" id="coklat" name="ukuran" value="coklat" class="hidden peer" required>
-                        <label for="coklat" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
+                        <input type="radio" id="biru-muda" name="warna" value="Biru Muda" class="hidden peer" required onchange="pilih_waran_booth(this)">
+                        <label for="biru-muda" class="inline-flex justify-between items-center px-2 py-2 rounded-full   bg-prim-white font-bold cursor-pointer transition-all dark:hover:text-prim-white  dark:peer-checked:bg-prim-light-blue peer-checked:bg-prim-light-blue  hover:bg-prim-light-blue">
                             <div class="w-10 h-10 bg-prim-light-blue rounded-full color cursor-pointer  outline-1">
                             </div>
 
@@ -106,7 +106,7 @@
                             </p>
                             </p>
                         </div>
-                        <button type="button" class="bg-prim-white text-prim-dark-green w-full py-3 font-bold rounded-b-lg" onclick="location.href = '/detail-booth/{{ $r->id }}';">Pilih Booth</button>
+                        <button type="button" class="bg-prim-light-blue text-prim-dark-green w-full hover:bg-prim-dark-blue transition-colors py-3 font-bold rounded-b-lg" onclick="location.href = '/detail-booth/{{ $r->id }}';">Pilih Booth</button>
                     </div>
                     @endforeach
                 </div>
