@@ -16,6 +16,7 @@ class Order extends Model
         'total_harga',
         'jenis_pengiriman_id',
         'tgl_kirim',
+        'nama',
         'alamat',
         'kota_id',
         'no_telp',
@@ -41,7 +42,7 @@ class Order extends Model
     }
     public function DetailOrder()
     {
-        return $this->hasMany(DetailOrder::class);
+        return $this->hasOne(DetailOrder::class);
     }
     public function JenisPengiriman()
     {

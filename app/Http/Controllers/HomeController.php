@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Midtrans\Config;
+use App\Http\Controllers\Midtrans\Snap;
 use App\Models\DetailBooth;
+use App\Models\DetailOrder;
+use App\Models\Kota;
+use App\Models\Order;
+use App\Models\Pembayaran;
+use App\Models\Provinsi;
+use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -29,6 +37,11 @@ class HomeController extends Controller
     {
         return view('website.home');
     }
+    public function status()
+    {
+        $order =  Order::where('customer_id',  auth()->user()->customer_id)->get();
+        return view('website.status-pesanan', ['order' => $order]);
+    }
     public function cara_pesan()
     {
         return view('website.cara');
@@ -49,16 +62,77 @@ class HomeController extends Controller
 
         return view('website.katalog', ['data' => $data]);
     }
-    public function getPayment()
+    public function katalog_filter($value)
     {
+        $data = DetailBooth::whereHas('JenisBooth', function ($q) use ($value) {
+            $q->where('nama', 'like', '%' . $value . '%');
+        })->get();
 
-        $client = new Client();
-        try {
-            $res = $client->request('GET', 'http://localhost:96/api/coba', []);
-            $data = json_decode($res->getBody()->getContents());
-            dd($data);
-        } catch (Exception $e) {
-            return response()->json(['code' => 'as']);
+        return view('website.katalog', ['data' => $data]);
+    }
+    public function katalog_data(Request $request)
+    {
+        if ($request->ajax()) {
+            $query = $request->get('query');
+            $query = str_replace("", "%", $query);
+            if ($query != 'semua') {
+                $data = DetailBooth::whereHas('JenisBooth', function ($q) use ($query) {
+                    $q->where('nama', 'like', '%' . $query . '%');
+                })->get();
+            } else {
+                $data = DetailBooth::all();
+            }
+            return view('website.katalog-data', compact('data'))->render();
         }
+    }
+
+    public function checkout(Request $request)
+    {
+        // dd($Request->all());
+
+        $order =  Order::create([
+            'nama' => $request->depan . ' ' .  $request->belakang,
+            'no_order' => $request->order_id,
+            'tgl_order' => Carbon::now(),
+            'customer_id' => auth()->user()->customer_id,
+            'total_harga' => $request->total_bayar + $request->sisa_bayar,
+            'jenis_pengiriman_id' => 1,
+            'alamat' => $request->alamat,
+            'kota_id' => $request->kota,
+            'no_telp' => $request->tel,
+            'biaya_kirim' => $request->ongkir,
+            'status_id' => 1,
+        ]);
+
+        DetailOrder::create([
+            'order_id' => $order->id,
+            'detail_booth_id' => $request->id_booth,
+            'image_file' => '-',
+            'warna_booth' => $request->warna,
+            'text' => 'testing',
+            'hasil_custom' => 'hasil',
+        ]);
+
+        $bayar = Pembayaran::create([
+            'order_id' => $order->id,
+            'tanggal' => Carbon::now(),
+            'total_bayar' => $request->total_bayar,
+        ]);
+    }
+
+    public function selectprovinsi(Request $request, $id)
+    {
+        if ($id != 0) {
+            $data = Kota::where('provinsi_id', $id)->get();
+        } else {
+            $data = Provinsi::where('nama', 'LIKE', '%' . $request->input('term', '') . '%')->select('id', 'nama')->get();
+        }
+
+        echo json_encode($data);
+    }
+    public function selectkota($id)
+    {
+        $data = Kota::find($id);
+        echo json_encode($data);
     }
 }

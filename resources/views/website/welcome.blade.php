@@ -10,7 +10,7 @@
     <title>BootHouse Indonesia - Tempat Pemesanan Booth Acara Terpercaya</title>
 </head>
 
-<body>
+<body class="bg-prim-white">
     <section class="home overflow-x-hidden">
         <!-- Navigator Atas -->
         @include('website.navbar')

@@ -13,48 +13,32 @@
 <body>
     <section class="bg-prim-white loginPage overflow-hidden">
         <div class="w-full lg:w-[1280px] mx-auto px-[20px] lg:px-[90px]">
-            <div class=" grid grid-cols-1 lg:grid-cols-2 items-center">
+            <div class=" grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
                 <div class="formLogin mt-[30%] lg:mt-0">
                     <div class="py-3 w-fit">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-52">
+                        <img src="{{ asset('assets/images/logo_new.png') }}" alt="" class="w-52">
                     </div>
-                    <p class="text-prim-brown">
+                    <p class="text-prim-dark-green">
                         Buat akun dan kreasikan booth sesuai dengan imajinasi
                     </p>
-                    <form action="{{('register')}}" method="POST" class="mt-10 grid grid-cols-2 gap-5"> 
+                    <form action="{{('register')}}" method="POST" class="mt-10 grid grid-cols-2 gap-5">
                         @csrf
-                        <input type="text"
-                            class="w-full  px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Nama Depan" name="depan">
-                        <input type="text"
-                            class="w-full  px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Nama Belakang" name="belakang">
-                        <input type="email"
-                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Email" name="email">
-                        <input type="text"
-                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Telepon" name="telp">
-                        <input type="text"
-                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Username" name="username">
-                        <input type="password"
-                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Password" name="password">
-                        <input type="password"
-                            class="w-full col-span-2 px-5 rounded-3xl text-prim-brown bg-prim-white border-2 h-12 border-prim-brown"
-                            placeholder="Ulangi Password"  name="password_confirmation">
-                        <button
-                            class="mt-4 w-full mx-auto col-span-2 px-10 py-3 bg-prim-yellow rounded-full hover:bg-prim-red transition-colors hover:text-prim-white text-prim-brown font-bold" type="submit">
+                        <input type="text" class="w-full  px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Nama Depan" name="depan">
+                        <input type="text" class="w-full  px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Nama Belakang" name="belakang">
+                        <input type="email" class="w-full col-span-2 px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Email" name="email">
+                        <input type="text" class="w-full col-span-2 px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Telepon" name="telp">
+                        <input type="text" class="w-full col-span-2 px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Username" name="username">
+                        <input type="password" class="w-full col-span-2 px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Password" name="password">
+                        <input type="password" class="w-full col-span-2 px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Ulangi Password" name="password_confirmation">
+                        <button class="mt-4 w-full mx-auto col-span-2 px-10 py-3 bg-prim-dark-green rounded-full hover:bg-prim-light-blue transition-colors hover:text-prim-dark-green text-prim-white font-bold" type="submit">
                             Daftar
                         </button>
                     </form>
-                        <div class="w-full lg:w-80 text-center mt-2 col-span-2 mx-auto">
-                            <p class="text-prim-brown text-[12px]">Sudah mempunyai akun? <span><a href="/login"
-                                        class="font-bold underline hover:text-prim-red transition-colors mx-auto">Masuk
-                                        dengan Akun</a></span></p>
-                        </div>
-                    
+                    <div class="w-full lg:w-80 text-center mt-2 col-span-2 mx-auto">
+                        <p class="text-prim-dark-green text-[12px]">Sudah mempunyai akun? <span><a href="/login" class="font-bold underline hover:text-prim-light-blue transition-colors mx-auto">Masuk
+                                    dengan Akun</a></span></p>
+                    </div>
+
                 </div>
                 <div class="hidden lg:block">
                     <img src="{{ asset('assets/images/register.png') }}" alt="Register Image" class="h-screen ml-auto">
