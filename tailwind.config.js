@@ -13,6 +13,8 @@ module.exports = {
       'prim-dark-green' : '#053742',
       'prim-dark-blue' : '#39A2DB',
       'success' : '#29CBA4',
+      'fail' : '#FF7777',
+      'yellow' : '#F9FA9B',
     }
   },
   plugins: [],
