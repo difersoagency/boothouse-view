@@ -50,9 +50,9 @@ Route::get('/status', [App\Http\Controllers\HomeController::class, 'status']);
 
 Route::group(['prefix' => '/master', 'middleware' => ['auth']], function () {
     Route::view('/customer', 'admin.master.customer')->name('master.customer');
-    Route::view('/kota', 'admin.master.kota')->name('master.kota');
     Route::view('/provinsi', 'admin.master.provinsi')->name('master.provinsi');
     Route::view('/booth', 'admin.master.booth')->name('master.booth');
+    Route::view('/kota', 'admin.master.kota')->name('master.kota');
 });
 
 Route::group(['prefix' => '/transaksi', 'middleware' => ['auth']], function () {
@@ -62,10 +62,3 @@ Route::group(['prefix' => '/transaksi', 'middleware' => ['auth']], function () {
 //List Data
 Route::get('/provinsi/{id}', [App\Http\Controllers\HomeController::class, 'selectprovinsi']);
 Route::get('/kota/{id}', [App\Http\Controllers\HomeController::class, 'selectkota']);
-
-
-//Tes Session
-// Route::get('/step1', [App\Http\Controllers\HomeController::class, 'step1']);
-// Route::get('/step2', [App\Http\Controllers\HomeController::class, 'step2']);
-// Route::get('/step3', [App\Http\Controllers\HomeController::class, 'step3']);
-// Route::get('/selesai', [App\Http\Controllers\HomeController::class, 'selesai']);

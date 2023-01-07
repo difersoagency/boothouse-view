@@ -11,6 +11,8 @@ use App\Models\DetailOrder;
 use App\Models\JenisBooth;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as ValidationValidator;
 
 class AdminController extends Controller
 {
@@ -147,6 +149,74 @@ class AdminController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function create_kota()
+    {
+        $provinsi = Provinsi::all();
+        return view('admin.master.kota-modal-create', ['provinsi' => $provinsi]);
+    }
+    public function edit_kota($id)
+    {
+        $data = Kota::find($id);
+        $provinsi = Provinsi::all();
+        return view('admin.master.kota-modal-edit', ['provinsi' => $provinsi, 'data' => $data]);
+    }
+    public function delete_kota(Request $request)
+    {
+        $data = Kota::find($request->id);
+        $delete = $data->delete();
+        if ($delete) {
+            return response()->json(['info' => 'success', 'msg' => 'Data berhasil di hapus']);
+        } else {
+            return response()->json(['info' => 'error', 'msg' => 'Hapus Gagal, periksa kembali']);
+        }
+    }
+    public function update_kota(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'kota' => ['required', 'unique:kota,nama,' . $id],
+            'provinsi' => ['required'],
+            'ongkir' => ['required', 'numeric']
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data yang sudah diisi dengan benar"]);
+        } else {
+            $data = Kota::find($id);
+            $data->nama = $request->kota;
+            $data->provinsi_id = $request->provinsi;
+            $data->biaya_kirim = $request->ongkir;
+            $data->save();
+
+            if ($data) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di Ubah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Ubah data Gagal, periksa kembali"]);
+            }
+        }
+    }
+    public function store_kota(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'kota' => ['required', 'unique:kota,nama'],
+            'provinsi' => ['required'],
+            'ongkir' => ['required']
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data telah diisi dengan benar"]);
+        } else {
+            $c = Kota::create([
+                'provinsi_id' => $request->provinsi,
+                'nama' => $request->kota,
+                'biaya_kirim' => $request->ongkir
+            ]);
+
+            if ($c) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di tambah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Tambah data Gagal, periksa kembali"]);
+            }
+        }
+    }
+
     public function master_provinsi()
     {
         $prov = Provinsi::all();
@@ -176,6 +246,82 @@ class AdminController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function create_booth()
+    {
+        $booth = JenisBooth::all();
+        return view('admin.master.booth-modal-create', ['booth' => $booth]);
+    }
+    public function edit_booth($id)
+    {
+        $booth = JenisBooth::all();
+        $data = DetailBooth::find($id);
+        $split = explode("*", $data->ukuran);
+        $panjang =  $split[0];
+        $lebar =  $split[1];
+        $tinggi =  $split[2];
+        return view('admin.master.booth-modal-edit', ['data' => $data, 'booth' => $booth, 'panjang' => $panjang, 'lebar' => $lebar, 'tinggi' => $tinggi]);
+    }
+    public function update_booth(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'jenis' => ['required'],
+            'panjang' => ['required', 'numeric'],
+            'lebar' => ['required', 'numeric'],
+            'tinggi' => ['required', 'numeric'],
+            'harga' => ['required', 'numeric']
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data yang sudah diisi dengan benar"]);
+        } else {
+            $data = DetailBooth::find($id);
+            $data->jenis_booth_id = $request->jenis;
+            $data->ukuran =  $request->panjang . '*' . $request->lebar . '*' . $request->tinggi;
+            $data->harga = $request->harga;
+            $data->save();
+
+            if ($data) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di Ubah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Ubah data Gagal, periksa kembali"]);
+            }
+        }
+    }
+    public function store_booth(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'jenis' => ['required'],
+            'panjang' => ['required', 'numeric'],
+            'lebar' => ['required', 'numeric'],
+            'tinggi' => ['required', 'numeric'],
+            'harga' => ['required', 'numeric']
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data telah diisi dengan benar"]);
+        } else {
+            $c = DetailBooth::create([
+                'jenis_booth_id' => $request->jenis,
+                'ukuran' => $request->panjang . '*' . $request->lebar . '*' . $request->tinggi,
+                'harga' => $request->harga
+            ]);
+
+            if ($c) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di tambah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Tambah data Gagal, periksa kembali"]);
+            }
+        }
+    }
+
+    public function delete_booth(Request $request)
+    {
+        $data = DetailBooth::find($request->id);
+        $delete = $data->delete();
+        if ($delete) {
+            return response()->json(['info' => 'success', 'msg' => 'Data berhasil di hapus']);
+        } else {
+            return response()->json(['info' => 'error', 'msg' => 'Hapus Gagal, periksa kembali']);
+        }
+    }
     public function order()
     {
         $order = Order::all();

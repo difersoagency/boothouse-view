@@ -290,7 +290,8 @@ $(function(){
 						className: 'nowrap-text align-center',
 						render: function(data, type, row) {
 							var data = '';
-							data += `<a data-toggle="detailmodal" data-target="#detailmodal" class="detailmodal" id="detailmodal"><button type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> Detail</button></a>`;
+							data += `<button type="button" class="btn btn-outline-info btn-sm" id="edit-modal-kota"  data-id=`+row.id+`><i class="fas fa-pencil-alt"></i> Edit</button> `;
+							data += `<button type="button" class="btn btn-outline-danger btn-sm" id="hapus_kota" data-id=`+row.id+`><i class="fas fa-trash-alt"></i> Hapus</button>`;
 							return data;
 						}
 					}
@@ -397,7 +398,8 @@ $(function(){
 									className: 'nowrap-text align-center',
 									render: function(data, type, row) {
 										var data = '';
-										data += `<a data-toggle="detailmodal" data-target="#detailmodal" class="detailmodal" id="detailmodal"><button type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> Detail</button></a>`;
+										data += `<button type="button" class="btn btn-outline-info btn-sm" id="edit-modal-booth"  data-id=`+row.id+`><i class="fas fa-pencil-alt"></i> Edit</button> `;
+										data += `<button type="button" class="btn btn-outline-danger btn-sm" id="hapus_booth" data-id=`+row.id+`><i class="fas fa-trash-alt"></i> Hapus</button>`;
 										return data;
 									}
 								}
