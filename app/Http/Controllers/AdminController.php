@@ -231,6 +231,65 @@ class AdminController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function create_provinsi()
+    {
+        return view('admin.master.provinsi-modal-create');
+    }
+    public function edit_provinsi($id)
+    {
+        $data = Provinsi::find($id);
+        return view('admin.master.provinsi-modal-edit', ['data' => $data]);
+    }
+    public function store_provinsi(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'provinsi' => ['required', 'unique:provinsi,nama'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data telah diisi dengan benar"]);
+        } else {
+            $c = Provinsi::create([
+                'nama' => $request->provinsi,
+            ]);
+
+            if ($c) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di tambah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Tambah data Gagal, periksa kembali"]);
+            }
+        }
+    }
+
+    public function update_provinsi(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'provinsi' => ['required', 'unique:provinsi,nama,' . $id],
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data yang sudah diisi dengan benar"]);
+        } else {
+            $data = Provinsi::find($id);
+            $data->nama = $request->provinsi;
+            $data->save();
+
+            if ($data) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di Ubah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Ubah data Gagal, periksa kembali"]);
+            }
+        }
+    }
+    public function delete_provinsi(Request $request)
+    {
+        $data = Provinsi::find($request->id);
+        $delete = $data->delete();
+        if ($delete) {
+            return response()->json(['info' => 'success', 'msg' => 'Data berhasil di hapus']);
+        } else {
+            return response()->json(['info' => 'error', 'msg' => 'Hapus Gagal, periksa kembali']);
+        }
+    }
+
     public function master_booth()
     {
         $booth = DetailBooth::all();
@@ -328,9 +387,10 @@ class AdminController extends Controller
         $data = array();
         foreach ($order as $key => $i) {
             $data[$key] = array(
+                'id' => $i->id,
                 'no_order' => $i->no_order,
                 'tgl_order' => $i->tgl_order,
-                'nama' => '-',
+                'nama' => $i->nama,
                 'pengiriman' => $i->JenisPengiriman->nama,
                 'alamat' => $i->alamat,
                 'kota' => $i->Kota->nama . ', ' . $i->Kota->Provinsi->nama,
@@ -340,5 +400,11 @@ class AdminController extends Controller
         }
 
         return response()->json(['data' => $data]);
+    }
+
+    public function  detail_order($id)
+    {
+        $order = Order::find($id);
+        return view('admin.master.order-modal-detail', ['order' => $order]);
     }
 }

@@ -29,7 +29,6 @@
 											<th>Nama</th>
 											<th>Alamat</th>
 											<th>Kota</th>
-										
 											<th>Status</th>
 											<th>Aksi</th>
 										</tr>
@@ -45,4 +44,43 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" id="modal-body">
+			
+			</div>
+		</div>
+	</div>
+</div>
+@section('custom_js')
+
+<script>
+	$(document).on('click', '#detail-modal-order', function(event) {
+    event.preventDefault();
+	var data_id = $(this).attr('data-id');
+	var data_inv = $(this).attr('data-inv');
+	
+	$.ajax({
+		url: "/api/transaksi/order/detail/" + data_id,
+         
+            // return the result
+            success: function(result) {
+				$('#modal-form').modal("show");
+				$('#modal-title').text("Detail Order : " + data_inv);
+                $('#modal-body').html(result).show();
+				// $(".select2").select2({
+   				// 	 dropdownParent: $("#modal-form")
+ 				//  });
+            },
+        })
+});
+	</script>
+	@stop
 @endsection

@@ -27,8 +27,15 @@ Route::prefix('/penjualan')->group(function () {
 
 Route::prefix('/master')->group(function () {
     Route::get('/customer', [App\Http\Controllers\AdminController::class, 'master_customer']);
-    Route::get('/provinsi', [App\Http\Controllers\AdminController::class, 'master_provinsi']);
 
+    Route::group(['prefix' => '/provinsi'], function () {
+        Route::get('/',  [App\Http\Controllers\AdminController::class, 'master_provinsi']);
+        Route::get('/create',  [App\Http\Controllers\AdminController::class, 'create_provinsi'])->name('master.provinsi.tambah');
+        Route::get('/edit/{id}',  [App\Http\Controllers\AdminController::class, 'edit_provinsi'])->name('master.provinsi.edit');
+        Route::post('/store',  [App\Http\Controllers\AdminController::class, 'store_provinsi'])->name('master.provinsi.store');
+        Route::post('/update/{id}',  [App\Http\Controllers\AdminController::class, 'update_provinsi'])->name('master.provinsi.update');
+        Route::delete('/delete/', [App\Http\Controllers\AdminController::class, 'delete_provinsi'])->name('master.provinsi.delete');
+    });
 
     Route::group(['prefix' => '/kota'], function () {
         Route::get('/',  [App\Http\Controllers\AdminController::class, 'master_kota'])->name('master.kota');
@@ -50,5 +57,8 @@ Route::prefix('/master')->group(function () {
 });
 
 Route::prefix('/transaksi')->group(function () {
-    Route::get('/order', [App\Http\Controllers\AdminController::class, 'order']);
+    Route::group(['prefix' => '/order'], function () {
+        Route::get('/', [App\Http\Controllers\AdminController::class, 'order']);
+        Route::get('/detail/{id}', [App\Http\Controllers\AdminController::class, 'detail_order'])->name('transaksi.order.detail');
+    });
 });
