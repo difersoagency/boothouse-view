@@ -58,39 +58,15 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="/master/provinsi">
-									<span class="nav-icon-wrap">
-										<span class="svg-icon">
-										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-current-location" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-										<circle cx="12" cy="12" r="3" />
-										<circle cx="12" cy="12" r="8" />
-										<line x1="12" y1="2" x2="12" y2="4" />
-										<line x1="12" y1="20" x2="12" y2="22" />
-										<line x1="20" y1="12" x2="22" y2="12" />
-										<line x1="2" y1="12" x2="4" y2="12" />
-										</svg>
-										</span>
-									</span>
-									<span class="nav-link-text">Provinsi</span>
+									<i data-feather="map"></i>
+									<span class="nav-link-text">&nbsp;&nbsp;&nbsp;Provinsi</span>
 									
 								</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="/master/booth">
-									<span class="nav-icon-wrap">
-										<span class="svg-icon">
-										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-current-location" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-										<circle cx="12" cy="12" r="3" />
-										<circle cx="12" cy="12" r="8" />
-										<line x1="12" y1="2" x2="12" y2="4" />
-										<line x1="12" y1="20" x2="12" y2="22" />
-										<line x1="20" y1="12" x2="22" y2="12" />
-										<line x1="2" y1="12" x2="4" y2="12" />
-										</svg>
-										</span>
-									</span>
-									<span class="nav-link-text">Booth</span>
+									<i data-feather="box"></i>
+									<span class="nav-link-text">&nbsp;&nbsp;&nbsp;Booth</span>
 									
 								</a>
 							</li>
@@ -104,17 +80,9 @@
 						</div>
 						<ul class="navbar-nav flex-column">
 							<li class="nav-item">
-								<a class="nav-link" href="/transaksi/order">
-									<span class="nav-icon-wrap">
-										<span class="svg-icon">
-										<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-										<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-										<circle cx="12" cy="7" r="4" />
-										<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-										</svg>
-										</span>
-									</span>
-									<span class="nav-link-text">Order</span>
+								<a class="nav-link" href="/transaksi/order">				
+								<i data-feather="shopping-bag"></i>
+									<span class="nav-link-text">&nbsp;&nbsp;&nbsp;Order</span>
 								</a>
 							</li>						
 							</ul>

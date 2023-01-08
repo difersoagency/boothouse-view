@@ -9,6 +9,7 @@ use App\Models\DetailBooth;
 use App\Models\Order;
 use App\Models\DetailOrder;
 use App\Models\JenisBooth;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Validator;
@@ -406,5 +407,19 @@ class AdminController extends Controller
     {
         $order = Order::find($id);
         return view('admin.master.order-modal-detail', ['order' => $order]);
+    }
+
+    public function  pembayaran_data($id)
+    {
+        $bayar = Pembayaran::where('order_id', $id)->get();
+        $data = array();
+        foreach ($bayar as $key => $o) {
+            $data[$key] = array(
+                'id' => $o->id,
+                'tgl_bayar' => $o->tanggal,
+                'total' => number_format($o->total_bayar)
+            );
+        }
+        return response()->json(['data' => $data]);
     }
 }

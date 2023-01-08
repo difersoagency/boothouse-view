@@ -69,18 +69,64 @@
 	
 	$.ajax({
 		url: "/api/transaksi/order/detail/" + data_id,
-         
             // return the result
             success: function(result) {
 				$('#modal-form').modal("show");
 				$('#modal-title').text("Detail Order : " + data_inv);
                 $('#modal-body').html(result).show();
-				// $(".select2").select2({
-   				// 	 dropdownParent: $("#modal-form")
- 				//  });
+				bayar_table(data_id)
             },
         })
 });
+
+function bayar_table(id){
+if ($("#detailordertable").length > 0) {
+		var detailordertable = $('#detailordertable').DataTable({
+				columns: [{
+						data: 'tgl_bayar',
+						className: 'nowrap-text align-center',
+					},
+					{
+						data: 'total',
+						className: 'nowrap-text align-center',
+					},
+				],
+			"dom": '<"row"<"col-7 mb-3"<"contact-toolbar-left">><"col-5 mb-3"<"contact-toolbar-right"f>>><"row"<"col-sm-12"t>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+			"ordering": true,
+			"columnDefs": [ {
+				"searchable": false,
+				"orderable": false,
+				"targets": [0]
+			} ],
+			"order": [0, 'asc' ],
+			language: { search: "",
+				searchPlaceholder: "Search",
+				"info": "_START_ - _END_ of _TOTAL_",
+				sLengthMenu: "View  _MENU_",
+				paginate: {
+				  next: '<i class="ri-arrow-right-s-line"></i>', // or '→'
+				  previous: '<i class="ri-arrow-left-s-line"></i>' // or '←'
+				}
+			},
+			"drawCallback": function () {
+				$('.dataTables_paginate > .pagination').addClass('custom-pagination pagination-simple pagination-sm');
+			}
+		});
+	
+		$.ajax({
+			url: '/api/transaksi/order/bayar/'+id,
+			dataType: 'json',
+			success: function (json) {
+				detailordertable.rows.add(json.data).draw();
+		  
+			}
+		});
+
+	
+	}
+}
+
+
 	</script>
 	@stop
 @endsection

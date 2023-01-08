@@ -60,5 +60,6 @@ Route::prefix('/transaksi')->group(function () {
     Route::group(['prefix' => '/order'], function () {
         Route::get('/', [App\Http\Controllers\AdminController::class, 'order']);
         Route::get('/detail/{id}', [App\Http\Controllers\AdminController::class, 'detail_order'])->name('transaksi.order.detail');
+        Route::get('/bayar/{id}', [App\Http\Controllers\AdminController::class, 'pembayaran_data'])->name('transaksi.order.bayar');
     });
 });
