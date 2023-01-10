@@ -47,7 +47,9 @@
             <div class="informasiPesanan">
                 <div class="px-8 py-5 bg-prim-light-blue rounded-t-md">
                     <h2 class="text-[26px] font-bold text-prim-dark-green">Detail Pesanan</h2>
-                    <div class="produk-pesanan mt-3 grid grid-cols-2 gap-5 items-center mb-5">
+                    <div class="produk-pesanan mt-3 grid grid-cols-2 gap-5 items-center mb-5 relative">
+                        <canvas class="top-checkout absolute bottom-[83%] left-[9.4%] w-[5.5rem] h-[2rem] object-fill border-prim-dark-green border-2"></canvas>
+                        <canvas class="bottom-checkout  absolute bottom-[3%] left-[9.6%] w-[5.5rem] h-[4rem] object-none border-prim-dark-green border-2"></canvas>
                         <img src="{{ asset('assets/images/booth1.png') }}" alt="" width="80%">
                         <div class="info">
                             <p class="text-prim-dark-green font-bold text-[16px]" id="nama-booth-bayar">Nama Produk</p>

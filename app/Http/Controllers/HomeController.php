@@ -46,6 +46,7 @@ class HomeController extends Controller
     {
         return view('website.cara');
     }
+
     public function detail_booth($id)
     {
         $data = DetailBooth::find($id);

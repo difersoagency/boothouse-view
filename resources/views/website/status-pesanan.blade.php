@@ -25,7 +25,7 @@
                 </li>
             </ul>
         </div>
-        <div class="riwayat mt-10 ">
+        <div class="riwayat mt-10 hidden">
             <h1 class="text-prim-dark-green text-[26px] font-bold">Riwayat Pemesanan</h1>
             <div class="listRiwayat grid grid-cols-3 gap-6 mt-5">
                 @foreach($order as $d)
@@ -90,7 +90,7 @@
             </div> --}}
         </div>
     </div>
-    <div class="dataDiri mt-10 w-[50%] hidden">
+    <div class="dataDiri mt-10 w-[50%]">
         <h1 class="text-[26px] text-prim-dark-green font-bold">Informasi Data Diri</h1>
         <form action="" class="grid grid-cols-2 mt-5">
             <div>

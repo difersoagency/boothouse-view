@@ -603,6 +603,14 @@ video {
   left: 41.6%;
 }
 
+.left-\[9\.4\%\] {
+  left: 9.4%;
+}
+
+.left-\[9\.6\%\] {
+  left: 9.6%;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -837,6 +845,10 @@ video {
   height: 0.25rem;
 }
 
+.h-\[2rem\] {
+  height: 2rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -900,6 +912,10 @@ video {
 
 .w-60 {
   width: 15rem;
+}
+
+.w-\[5\.5rem\] {
+  width: 5.5rem;
 }
 
 .flex-1 {

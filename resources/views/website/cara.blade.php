@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="image-step hidden mt-5 transition-all">
-                <img src="{{ asset('assets/images/cara-pesan.png') }}" alt="" class="transition-all">
+                <img src="{{ asset('assets/images/1.png') }}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="image-step hidden mt-5 transition-all">
-                <img src="{{ asset('assets/images/cara-pesan.png') }}" alt="" class="transition-all">
+                <img src="{{ asset('assets/images/2.png') }}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="image-step hidden mt-5 transition-all">
-                <img src="{{ asset('assets/images/cara-pesan.png') }}" alt="" class="transition-all">
+                <img src="{{ asset('assets/images/3.png') }}" alt="" class="transition-all">
             </div>
         </div>
 
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="image-step hidden mt-5 transition-all">
-                <img src="{{ asset('assets/images/cara-pesan.png') }}" alt="" class="transition-all">
+                <img src="{{ asset('assets/images/4.png') }}" alt="" class="transition-all">
             </div>
         </div>
 

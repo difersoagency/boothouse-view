@@ -77,7 +77,7 @@
                 <h2 class="text-[36px] text-center text-prim-dark-green font-bold">Mengapa Boot<span class="text-prim-white">House</span> ?</h2>
                 <div class="list-mengapa mt-[36px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
                     <div class="lg:col-span-4  w-full bg-prim-white rounded-xl px-[26px] py-[20px]">
-                        <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="mx-auto">
+                        <img src="{{ asset('assets/images/benefit-05.png') }}" alt="" class="mx-auto" width="30%">
                         <p class="text-[16px] text-prim-dark-green mt-4">Booth yang terbuat dari kontainer maupun yang
                             terbuat dari besi hollow menyerupai kontainer memiliki tampilan yang menarik dan lebih
                             modern karena warna-warnanya yang lebih menarik dan juga terdapat ruang yang bisa dilihat
@@ -85,7 +85,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-4  w-full bg-prim-white rounded-xl px-[26px] py-[20px]">
-                        <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="mx-auto">
+                        <img src="{{ asset('assets/images/benefit-06.png') }}" alt="" class="mx-auto" width="30%">
                         <p class="text-[16px] text-prim-dark-green mt-4">Booth yang terbuat dari kontainer maupun yang
                             terbuat dari besi hollow menyerupai kontainer memiliki tampilan yang menarik dan lebih
                             modern karena warna-warnanya yang lebih menarik dan juga terdapat ruang yang bisa dilihat
@@ -93,7 +93,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-4  w-full bg-prim-white rounded-xl px-[26px] py-[20px]">
-                        <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="mx-auto">
+                        <img src="{{ asset('assets/images/benefit-07.png') }}" alt="" class="mx-auto" width="30%">
                         <p class="text-[16px] text-prim-dark-green mt-4">Booth yang terbuat dari kontainer maupun yang
                             terbuat dari besi hollow menyerupai kontainer memiliki tampilan yang menarik dan lebih
                             modern karena warna-warnanya yang lebih menarik dan juga terdapat ruang yang bisa dilihat
