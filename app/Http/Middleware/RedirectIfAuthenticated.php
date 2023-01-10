@@ -19,14 +19,16 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
+        // dd(Auth::user()->customer_id != NULL ? 'customer' : 'karyawan');
         $guards = empty($guards) ? [null] : $guards;
+
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if (Auth::user()->role != 'pelanggan') {
-                    return redirect()->route('admin.dashboard');
-                } else {
+                if (Auth::user()->customer_id != NULL) {
                     return redirect()->route('home');
+                } else {
+                    return redirect()->route('admin.dashboard');
                 }
             }
         }

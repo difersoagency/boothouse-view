@@ -58,12 +58,7 @@ class LoginController extends Controller
     public function authenticated()
     {
         if (auth()->user()->karyawan_id != '') {
-            if(auth()->user()->Karyawan->divisi_id == '2'){
-                return redirect()->route('admin.dashboard');
-            }
-            else if(auth()->user()->Karyawan->divisi_id == '2'){
-                return redirect()->route('home');
-            }
+            return redirect()->route('admin.dashboard');
         } else {
             return redirect()->route('home');
         }

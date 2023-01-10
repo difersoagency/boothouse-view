@@ -78,6 +78,8 @@
                         </li>
                     </ul>
                 </div>
+                @if (Auth::check())
+                @if(Auth::user()->customer_id != NULL)
                 <div class="button-pesan mt-9 w-fit">
 
                     {{-- <button
@@ -87,6 +89,8 @@
                     <button type="button" class=" text-prim-white bg-prim-dark-green px-6 py-2 rounded-lg hover:bg-prim-dark-blue transition-colors" onclick=" order_booth()">Pesan
                         Booth</button>
                 </div>
+                @endif
+                @endif
 
             </div>
 

@@ -17,18 +17,20 @@ class CekRole
      */
     public function handle(Request $request, Closure $next, ...$allowed_roles)
     {
-
-        // $role = strtolower(request()->user()->role);
-
-        if (in_array(['pegawai', 'pemilik'], $allowed_roles)) {
+        if (request()->user()->customer_id != NULL) {
+            $role = 'customer';
+        } else {
+            $role = 'admin';
+        }
+        if (in_array($role, $allowed_roles)) {
             return $next($request);
         }
 
 
-        if (auth()->user()->karyawan_id != '') {
-            return redirect()->route('admin.dashboard');
-        } else {
+        if (request()->user()->customer_id != NULL) {
             return redirect()->route('home');
+        } else {
+            return redirect()->route('admin.dashboard');
         }
     }
 }

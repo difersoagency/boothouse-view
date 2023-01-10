@@ -22,6 +22,8 @@
 						</ul>	
 					</div>
 					<div class="menu-gap"></div>
+
+					@if(Auth::user()->karyawan->Divisi->nama == 'Karyawan')
 					<div class="menu-group">
 						<div class="nav-header">
 							<span>Master</span>
@@ -87,6 +89,24 @@
 							</li>						
 							</ul>
 						</div>
+
+						@endif
+
+						@if(Auth::user()->karyawan->Divisi->nama == 'Owner')
+						<div class="menu-group">
+							<div class="nav-header">
+								<span>Laporan</span>
+							</div>
+							<ul class="navbar-nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link" href="/transaksi/order">				
+									<i data-feather="shopping-bag"></i>
+										<span class="nav-link-text">&nbsp;&nbsp;&nbsp;Order</span>
+									</a>
+								</li>						
+								</ul>
+							</div>
+						@endif
 						<div class="menu-gap"></div>
 						<div class="menu-group">
 							<ul class="navbar-nav flex-column">
@@ -101,6 +121,6 @@
 									@csrf
 								</form>					
 								</ul>
-							</div>	
+						</div>	
 				</div>
 			</div>

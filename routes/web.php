@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('website.home');
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login');
 });
 
-//Route::get('/bayar', [App\Http\Controllers\HomeController::class, 'getPayment']);
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Route::post('/payToken', [App\Http\Controllers\MidtransController::class, 'getSnapToken']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
@@ -30,34 +32,43 @@ Route::get('/katalog/{value}', [App\Http\Controllers\HomeController::class, 'kat
 Route::get('/katalog_data', [App\Http\Controllers\HomeController::class, 'katalog_data'])->name('katalog');
 Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pesan'])->name('cara_pesan');
 Route::get('/detail-booth/{id}', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
-Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
 
-Route::get('/custom', function () {
-    return view('website.custom-booth');
-});
 
-Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
-    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
-});
-Route::group(['middleware' => ['auth']], function () {
+//Customer 
+Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/pesanan', function () {
         return view('website.detail-pembayaran');
     });
+    Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
+    Route::get('/status', [App\Http\Controllers\HomeController::class, 'status']);
     Route::post('/checkout', [App\Http\Controllers\HomeController::class, 'checkout']);
+    Route::get('/custom', function () {
+        return view('website.custom-booth');
+    });
 });
 
-Route::get('/status', [App\Http\Controllers\HomeController::class, 'status']);
 
-Route::group(['prefix' => '/master', 'middleware' => ['auth']], function () {
-    Route::view('/customer', 'admin.master.customer')->name('master.customer');
-    Route::view('/provinsi', 'admin.master.provinsi')->name('master.provinsi');
-    Route::view('/booth', 'admin.master.booth')->name('master.booth');
-    Route::view('/kota', 'admin.master.kota')->name('master.kota');
+
+//Admin
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::group(['prefix' => '/admin'], function () {
+        Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    });
+    Route::group(['prefix' => '/master'], function () {
+        Route::view('/customer', 'admin.master.customer')->name('master.customer');
+        Route::view('/provinsi', 'admin.master.provinsi')->name('master.provinsi');
+        Route::view('/booth', 'admin.master.booth')->name('master.booth');
+        Route::view('/kota', 'admin.master.kota')->name('master.kota');
+    });
+    Route::group(['prefix' => '/transaksi'], function () {
+        Route::view('/order', 'admin.transaksi.order')->name('transaksi.order');
+    });
 });
 
-Route::group(['prefix' => '/transaksi', 'middleware' => ['auth']], function () {
-    Route::view('/order', 'admin.transaksi.order')->name('transaksi.order');
-});
+
+
+
+
 
 //List Data
 Route::get('/provinsi/{id}', [App\Http\Controllers\HomeController::class, 'selectprovinsi']);
