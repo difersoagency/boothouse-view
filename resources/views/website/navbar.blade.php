@@ -12,9 +12,31 @@
     </div>
     <div class="login-button col-span-2 ml-auto hidden lg:block">
         @if (Auth::check())
-        <button onclick="location.href = '/logout'; clearSession()" class="bg-prim-dark-blue text-prim-dark-green  font-bold rounded-xl px-[49px] py-[7px]  hover:bg-prim-dark-green hover:text-prim-white transition-all">
+        <!-- <button onclick="location.href = '/logout'; clearSession()" class="bg-prim-dark-blue text-prim-dark-green  font-bold rounded-xl px-[49px] py-[7px]  hover:bg-prim-dark-green hover:text-prim-white transition-all">
             Keluar
-        </button>
+        </button> -->
+        <div class="grid grid-cols-2 justify-between items-center w-16">
+            @if(Auth::user()->customer_id != NULL)
+            <a href="/status" class="w-fit">
+                <i class="fa fa-user text-prim-dark-green hover:text-prim-light-blue" aria-hidden="true"></i>
+            </a>
+
+            <a href="/logout" class="w-fit">
+                <i class="fa fa-sign-out text-prim-dark-green hover:text-prim-light-blue" aria-hidden="true"></i>
+            </a>
+
+            @else
+            <a href="/admin/dashboard" class="w-fit mr-4">
+                <i class="fa fa-cog  text-prim-dark-green hover:text-prim-light-blue" aria-hidden="true"></i>
+            </a>
+
+            <a href="/logout" class="w-fit">
+                <i class="fa fa-sign-out text-prim-dark-green hover:text-prim-light-blue" aria-hidden="true"></i>
+            </a>
+            @endif
+
+
+        </div>
         @else
         <button onclick="location.href = '/login';" class="bg-prim-dark-blue text-prim-dark-green font-bold rounded-xl px-[49px] py-[7px] hover:bg-prim-dark-green hover:text-prim-white transition-all">
             Masuk

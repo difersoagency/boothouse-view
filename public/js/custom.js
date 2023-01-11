@@ -90,6 +90,7 @@ function searchFunc(){
     }
 }
 
+
 // Cara Pesan
 // let step = document.querySelectorAll('.step-detail');
 //     let image = step[4].querySelector('.image-step');
@@ -104,11 +105,7 @@ function showImg(event){
 }
 
 
-// Informasi Login
-function fieldDisable(event){
-    let field = document.querySelector(event);
-    console.log(event);
-}
+
 
 
 function fetch_katalog_data(page,query)
