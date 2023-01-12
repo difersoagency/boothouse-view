@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Midtrans\Config;
 use App\Http\Controllers\Midtrans\Snap;
+use App\Models\Customer;
 use App\Models\DetailBooth;
 use App\Models\DetailOrder;
 use App\Models\Kota;
 use App\Models\Order;
 use App\Models\Pembayaran;
 use App\Models\Provinsi;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -135,5 +138,35 @@ class HomeController extends Controller
     {
         $data = Kota::find($id);
         echo json_encode($data);
+    }
+    public function user_update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'unique:user,email,' . $id],
+            'kota' => ['required'],
+            'alamat' => ['required'],
+            'tel' => ['required', 'numeric']
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['data' => 'error', 'msg' => "Periksa dan Pastikan data yang sudah diisi dengan benar"]);
+        } else {
+            $user = User::find($id);
+            $user->email = $request->email;
+            $user->save();
+
+
+            $customer = Customer::find($user->customer_id);
+            $customer->kota_id = $request->kota;
+            $customer->alamat = $request->alamat;
+            $customer->no_telp = $request->tel;
+            $customer->save();
+
+
+            if ($customer) {
+                return response()->json(['data' => 'success', 'msg' => "Data berhasil di Ubah"]);
+            } else {
+                return response()->json(['data' => 'error', 'msg' => "Ubah data Gagal, periksa kembali"]);
+            }
+        }
     }
 }

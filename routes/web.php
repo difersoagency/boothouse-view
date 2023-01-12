@@ -34,7 +34,7 @@ Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pes
 Route::get('/detail-booth/{id}', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 
 
-//Customer 
+//Customer
 Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/pesanan', function () {
         return view('website.detail-pembayaran');

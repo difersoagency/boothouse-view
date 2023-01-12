@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -53,6 +56,24 @@ class LoginController extends Controller
     public function username()
     {
         return $this->username;
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $username = $request->input('email');
+        $password = $request->input('password');
+
+
+        $user = User::where('email', '=', $username)->orWhere('username', '=', $username)->first();
+
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Username atau password salah');
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return redirect()->back()->with('error', 'Username atau password salah');
+        }
     }
 
     public function authenticated()
