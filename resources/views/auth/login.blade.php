@@ -27,7 +27,7 @@
                         <br>
                         <input type="password" class="mt-6 w-full lg:w-80 px-5 rounded-3xl text-prim-dark-green bg-prim-white border-2 h-12 border-prim-brown" placeholder="Password" name="password">
                         <div class="w-full lg:w-80 text-right mt-2">
-                            <a href="" class="text-prim-dark-green underline text-[14px] hover:text-prim-dark-blue transition-colors">Lupa Password ?</a>
+                            <a href="/lupa-password" class="text-prim-dark-green underline text-[14px] hover:text-prim-dark-blue transition-colors">Lupa Password ?</a>
                         </div>
                         <button class="mt-9 w-full lg:w-80 px-10 py-3 bg-prim-dark-green rounded-full hover:bg-prim-light-blue transition-colors hover:text-prim-dark-green text-prim-white font-bold" type="submit">
                             Login

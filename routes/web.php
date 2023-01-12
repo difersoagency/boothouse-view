@@ -31,6 +31,7 @@ Route::get('/katalog', [App\Http\Controllers\HomeController::class, 'katalog'])-
 Route::get('/katalog/{value}', [App\Http\Controllers\HomeController::class, 'katalog_filter'])->name('katalog_filter');
 Route::get('/katalog_data', [App\Http\Controllers\HomeController::class, 'katalog_data'])->name('katalog');
 Route::get('/cara-pesan', [App\Http\Controllers\HomeController::class, 'cara_pesan'])->name('cara_pesan');
+Route::get('/lupa-password', [App\Http\Controllers\HomeController::class, 'lupa'])->name('lupa');
 Route::get('/detail-booth/{id}', [App\Http\Controllers\HomeController::class, 'detail_booth'])->name('detail_booth');
 
 

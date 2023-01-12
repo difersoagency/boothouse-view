@@ -37,6 +37,10 @@ class HomeController extends Controller
     {
         return view('website.home');
     }
+    public function lupa()
+    {
+        return view('auth.lupapass');
+    }
     public function status()
     {
         $order =  Order::where('customer_id',  auth()->user()->customer_id)->get();
