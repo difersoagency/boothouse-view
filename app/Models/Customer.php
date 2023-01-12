@@ -13,6 +13,8 @@ class Customer extends Model
         'nama_depan',
         'nama_belakang',
         'no_telp',
+        'alamat',
+        'kota_id',
     ];
 
     public function Order()
@@ -26,5 +28,9 @@ class Customer extends Model
     public function User()
     {
         return $this->hasOne(User::class);
+    }
+    public function Kota()
+    {
+        return $this->belongsTo(Kota::class, 'kota_id');
     }
 }
